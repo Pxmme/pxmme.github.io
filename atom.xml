@@ -1,1 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-19T15:46:42+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-19T15:50:42+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Trippy</title><link href="/write-up/tjctf-2018/misc/2018/08/12/TJCTF-Write-Up-Trippy/" rel="alternate" type="text/html" title="TJCTF - Trippy" /><published>2018-08-12T00:00:00+02:00</published><updated>2018-08-12T00:00:00+02:00</updated><id>/write-up/tjctf-2018/misc/2018/08/12/TJCTF-Write-Up-Trippy</id><content type="html" xml:base="/write-up/tjctf-2018/misc/2018/08/12/TJCTF-Write-Up-Trippy/">&lt;p&gt;An easy one about hiding text in .gif files.&lt;/p&gt;
+
+&lt;h2 id=&quot;challenge--trippy&quot;&gt;Challenge : Trippy&lt;/h2&gt;
+
+&lt;p&gt;No description&lt;/p&gt;
+
+&lt;p&gt;5 points&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Written by Alaska47&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
+
+&lt;p&gt;So, we have no description and a gif file. All of this for little to no points. This should be quick.&lt;/p&gt;
+
+&lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif
+ 
+~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctf
+tjctf{w0w}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Meh.&lt;/p&gt;
+
+&lt;p&gt;Flag : &lt;code class=&quot;highlighter-rouge&quot;&gt;tjctf{w0w}&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
+
+&lt;p&gt;Not much.&lt;/p&gt;</content><author><name>Pxmme</name></author><summary type="html">An easy one about hiding text in .gif files. Challenge : Trippy No description 5 points Written by Alaska47 Initial thoughts So, we have no description and a gif file. All of this for little to no points. This should be quick. Exploitation ~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif ~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctf tjctf{w0w} Meh. Flag : tjctf{w0w} After thoughts Not much.</summary></entry></feed>
