@@ -269,6 +269,181 @@
   
 
   <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pxmme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pxmme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+                
+                <a class="post-title-link" href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/" itemprop="url">
+                TJCTF - Weird Logo
+              </a>
+            
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-12T00:00:00+02:00">
+                2018-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="challenge">Challenge</h2>
+
+<p>This company’s logo stands in contrast of those of other leading edge tech companies with its poor design</p>
+
+<p>5 points</p>
+
+<p><em>Written by jfrucht25</em></p>
+
+<h2 id="initial-thoughts">Initial thoughts</h2>
+
+<p>Having a static .png image with this little amount of points rewarded means it won’t be tough.</p>
+
+<h2 id="exploitation">Exploitation</h2>
+
+<p>Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve!</p>
+
+<p><a href="https://github.com/zardus/ctf-tools/blob/master/stegsolve/install">You can install it here.</a></p>
+
+<p>Here is our beautiful logo :</p>
+
+<p><img src="/imgs/before.png" alt="Before" class="img-responsive" /></p>
+
+<p>And here is what we can find with just a few switches to the right :</p>
+
+<p><img src="/imgs/after.png" alt="After" class="img-responsive" /></p>
+
+<p>Flag : <code class="highlighter-rouge">tjctf{in_plain_sight}</code></p>
+
+<h2 id="after-thoughts">After thoughts</h2>
+
+<p>Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.</p>
+
+
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+        
+        
+        
+        
+          <div class="post-eof"></div>
+        
+      
+    </footer>
+  </article>
+
+  
+    
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="/2018/08/12/TJCTF-Write-Up-Trippy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -477,7 +652,7 @@ tjctf{w0w}
           
             <div class="site-state-item site-state-posts">
               <a href="">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

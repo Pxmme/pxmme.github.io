@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-19T16:00:03+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Trippy</title><link href="/2018/08/12/TJCTF-Write-Up-Trippy/" rel="alternate" type="text/html" title="TJCTF - Trippy" /><published>2018-08-12T00:00:00+02:00</published><updated>2018-08-12T00:00:00+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Trippy</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Trippy/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-19T16:07:44+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Weird Logo</title><link href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/" rel="alternate" type="text/html" title="TJCTF - Weird Logo" /><published>2018-08-12T00:00:00+02:00</published><updated>2018-08-12T00:00:00+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Weird-Logo</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Weird-Logo/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+
+&lt;p&gt;This company’s logo stands in contrast of those of other leading edge tech companies with its poor design&lt;/p&gt;
+
+&lt;p&gt;5 points&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Written by jfrucht25&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
+
+&lt;p&gt;Having a static .png image with this little amount of points rewarded means it won’t be tough.&lt;/p&gt;
+
+&lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
+
+&lt;p&gt;Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/zardus/ctf-tools/blob/master/stegsolve/install&quot;&gt;You can install it here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is our beautiful logo :&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/before.png&quot; alt=&quot;Before&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And here is what we can find with just a few switches to the right :&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/after.png&quot; alt=&quot;After&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Flag : &lt;code class=&quot;highlighter-rouge&quot;&gt;tjctf{in_plain_sight}&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
+
+&lt;p&gt;Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="forensics" /><summary type="html">Challenge This company’s logo stands in contrast of those of other leading edge tech companies with its poor design 5 points Written by jfrucht25 Initial thoughts Having a static .png image with this little amount of points rewarded means it won’t be tough. Exploitation Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve! You can install it here. Here is our beautiful logo : And here is what we can find with just a few switches to the right : Flag : tjctf{in_plain_sight} After thoughts Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.</summary></entry><entry><title type="html">TJCTF - Trippy</title><link href="/2018/08/12/TJCTF-Write-Up-Trippy/" rel="alternate" type="text/html" title="TJCTF - Trippy" /><published>2018-08-12T00:00:00+02:00</published><updated>2018-08-12T00:00:00+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Trippy</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Trippy/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;No description&lt;/p&gt;
 
@@ -25,4 +55,4 @@ tjctf{w0w}
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;Not much.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf" /><category term="write-up" /><category term="forensics" /><summary type="html">Challenge No description 5 points Written by Alaska47 Initial thoughts So, we have no description and a gif file. All of this for little to no points. This should be quick. Exploitation ~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif ~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctf tjctf{w0w} Meh. Flag : tjctf{w0w} After thoughts Not much.</summary></entry></feed>
+&lt;p&gt;Not much.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="forensics" /><summary type="html">Challenge No description 5 points Written by Alaska47 Initial thoughts So, we have no description and a gif file. All of this for little to no points. This should be quick. Exploitation ~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif ~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctf tjctf{w0w} Meh. Flag : tjctf{w0w} After thoughts Not much.</summary></entry></feed>

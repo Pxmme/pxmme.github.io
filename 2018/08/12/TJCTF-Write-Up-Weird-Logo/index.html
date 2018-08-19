@@ -109,17 +109,20 @@
 
 
 
-<meta name="description" content="Challenge No description 5 points Written by Alaska47 Initial thoughts So, we have no description and a gif file. All of this for little to no points. This should be quick. Exploitation ~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif ~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctf tjctf{w0w} Meh. Flag : tjctf{w0w} After thoughts Not much.">
+<meta name="description" content="Challenge This company’s logo stands in contrast of those of other leading edge tech companies with its poor design 5 points Written by jfrucht25 Initial thoughts Having a static .png image with this little amount of points rewarded means it won’t be tough. Exploitation Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve! You can install it here. Here is our beautiful logo : And here is what we can find with just a few switches to the right : Flag : tjctf{in_plain_sight} After thoughts Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.">
 <meta name="keywords" content="tjctf-2018, write-up, forensics">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TJCTF - Trippy">
-<meta property="og:url" content="/2018/08/12/TJCTF-Write-Up-Trippy/">
+<meta property="og:title" content="TJCTF - Weird Logo">
+<meta property="og:url" content="/2018/08/12/TJCTF-Write-Up-Weird-Logo/">
 <meta property="og:site_name" content="Pxmme">
-<meta property="og:description" content="Challenge No description 5 points Written by Alaska47 Initial thoughts So, we have no description and a gif file. All of this for little to no points. This should be quick. Exploitation ~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif ~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctf tjctf{w0w} Meh. Flag : tjctf{w0w} After thoughts Not much.">
+<meta property="og:description" content="Challenge This company’s logo stands in contrast of those of other leading edge tech companies with its poor design 5 points Written by jfrucht25 Initial thoughts Having a static .png image with this little amount of points rewarded means it won’t be tough. Exploitation Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve! You can install it here. Here is our beautiful logo : And here is what we can find with just a few switches to the right : Flag : tjctf{in_plain_sight} After thoughts Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="/imgs/before.png">
+<meta property="og:image" content="/imgs/after.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TJCTF - Trippy">
-<meta name="twitter:description" content="Challenge No description 5 points Written by Alaska47 Initial thoughts So, we have no description and a gif file. All of this for little to no points. This should be quick. Exploitation ~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif ~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctf tjctf{w0w} Meh. Flag : tjctf{w0w} After thoughts Not much.">
+<meta name="twitter:title" content="TJCTF - Weird Logo">
+<meta name="twitter:description" content="Challenge This company’s logo stands in contrast of those of other leading edge tech companies with its poor design 5 points Written by jfrucht25 Initial thoughts Having a static .png image with this little amount of points rewarded means it won’t be tough. Exploitation Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve! You can install it here. Here is our beautiful logo : And here is what we can find with just a few switches to the right : Flag : tjctf{in_plain_sight} After thoughts Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.">
+<meta name="twitter:image" content="/imgs/before.png">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -152,7 +155,7 @@
 
 
 
-  <title>TJCTF - Trippy | Pxmme</title>
+  <title>TJCTF - Weird Logo | Pxmme</title>
   
 
 
@@ -266,7 +269,7 @@
   
 
   <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="/2018/08/12/TJCTF-Write-Up-Trippy/">
+    <link itemprop="mainEntityOfPage" href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pxmme">
@@ -286,7 +289,7 @@
           <h1 class="post-title" itemprop="name headline">
           
           
-            TJCTF - Trippy
+            TJCTF - Weird Logo
           
         </h1>
         
@@ -358,32 +361,35 @@
 
   <h2 id="challenge">Challenge</h2>
 
-<p>No description</p>
+<p>This company’s logo stands in contrast of those of other leading edge tech companies with its poor design</p>
 
 <p>5 points</p>
 
-<p><em>Written by Alaska47</em></p>
+<p><em>Written by jfrucht25</em></p>
 
 <h2 id="initial-thoughts">Initial thoughts</h2>
 
-<p>So, we have no description and a gif file. All of this for little to no points. This should be quick.</p>
+<p>Having a static .png image with this little amount of points rewarded means it won’t be tough.</p>
 
 <h2 id="exploitation">Exploitation</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code>~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif
- 
-~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctf
-tjctf{w0w}
-</code></pre></td></tr></tbody></table></div>
-</div>
+<p>Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve!</p>
 
-<p>Meh.</p>
+<p><a href="https://github.com/zardus/ctf-tools/blob/master/stegsolve/install">You can install it here.</a></p>
 
-<p>Flag : <code class="highlighter-rouge">tjctf{w0w}</code></p>
+<p>Here is our beautiful logo :</p>
+
+<p><img src="/imgs/before.png" alt="Before" class="img-responsive" /></p>
+
+<p>And here is what we can find with just a few switches to the right :</p>
+
+<p><img src="/imgs/after.png" alt="After" class="img-responsive" /></p>
+
+<p>Flag : <code class="highlighter-rouge">tjctf{in_plain_sight}</code></p>
 
 <h2 id="after-thoughts">After thoughts</h2>
 
-<p>Not much.</p>
+<p>Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.</p>
 
 
       
@@ -437,15 +443,15 @@ tjctf{w0w}
         <div class="post-nav" id="post-nav-id">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/" rel="next" title="TJCTF - Weird Logo">
-                <i class="fa fa-chevron-left"></i> TJCTF - Weird Logo
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/12/TJCTF-Write-Up-Trippy/" rel="prev" title="TJCTF - Trippy">
+                TJCTF - Trippy <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
