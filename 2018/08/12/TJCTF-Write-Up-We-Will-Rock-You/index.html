@@ -83,7 +83,7 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Pxmme, blog" />
+  <meta name="keywords" content="tjctf-2018,write-up,forensics," />
 
 
 
@@ -109,17 +109,17 @@
 
 
 
-<meta name="description" content="Cybersec enthusiast.">
-<meta name="keywords" content="Pxmme, blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pxmme">
-<meta property="og:url" content="/">
+<meta name="description" content="The challenge Help! I lost the password to my Dogecoin wallet. I had like 10 Dogecoin in there. If you get the password, you’ll get the flag! Flag format: tjctf{password} [75 points] Written by Alaska47 Initial thoughts Seeing the name of the challenge, I immediately thought about the infamous rockyou.txt list of passwords. For those of you who don’t know it, it’s this huge list of passwords that was created out of real, leaked passwords. It’s natively present in Kali, check /usr/share/wordlists and you’ll find a rockyou.txt.gz :) So I assumed I’d have to bruteforce this wallet in order to retrieve the password. I googled for “wallet bruteforce” and found glv2’s Github magic thingy Exploitation First off, let’s clone this github repo. ~# git clone https://github.com/glv2/bruteforce-wallet Let’s install the dependencies required : ~# apt install libdb-dev libssl-dev -y Let’s then try to install it following the README’s instructions. ~# cd bruteforce-wallet &amp;amp;&amp;amp; ./autogen.sh ./autogen.sh: 6: ./autogen.sh: autoreconf: not found Oops! Seems I need to install a package first. apt-get install autoconf ~# ./autogen.sh configure.ac:6: installing &apos;./compile&apos; configure.ac:2: installing &apos;./install-sh&apos; configure.ac:2: installing &apos;./missing&apos; Makefile.am: installing &apos;./depcomp&apos; Then a ./configure, make and make install and we’re good! Now, let’s use our new little tool :3 ~# bruteforce-wallet -t 6 -f /root/Documents/rockyou.txt 9d7e6203fb6e2c14646c63bea94e48001b9317c86bec229c3e063904a168dfad_wallet.dat Warning: using dictionary mode, ignoring options -b, -e, -l, -m and -s. Tried passwords: 59 Tried passwords per second: 59,000000 Last tried password: samantha Password found: tinkerbell Got it! Password is “tinkerbell”, hereby flag is : tjctf{tinkerbell} After thoughts A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!">
+<meta name="keywords" content="tjctf-2018, write-up, forensics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TJCTF - We Will Rock You">
+<meta property="og:url" content="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/">
 <meta property="og:site_name" content="Pxmme">
-<meta property="og:description" content="Cybersec enthusiast.">
+<meta property="og:description" content="The challenge Help! I lost the password to my Dogecoin wallet. I had like 10 Dogecoin in there. If you get the password, you’ll get the flag! Flag format: tjctf{password} [75 points] Written by Alaska47 Initial thoughts Seeing the name of the challenge, I immediately thought about the infamous rockyou.txt list of passwords. For those of you who don’t know it, it’s this huge list of passwords that was created out of real, leaked passwords. It’s natively present in Kali, check /usr/share/wordlists and you’ll find a rockyou.txt.gz :) So I assumed I’d have to bruteforce this wallet in order to retrieve the password. I googled for “wallet bruteforce” and found glv2’s Github magic thingy Exploitation First off, let’s clone this github repo. ~# git clone https://github.com/glv2/bruteforce-wallet Let’s install the dependencies required : ~# apt install libdb-dev libssl-dev -y Let’s then try to install it following the README’s instructions. ~# cd bruteforce-wallet &amp;amp;&amp;amp; ./autogen.sh ./autogen.sh: 6: ./autogen.sh: autoreconf: not found Oops! Seems I need to install a package first. apt-get install autoconf ~# ./autogen.sh configure.ac:6: installing &apos;./compile&apos; configure.ac:2: installing &apos;./install-sh&apos; configure.ac:2: installing &apos;./missing&apos; Makefile.am: installing &apos;./depcomp&apos; Then a ./configure, make and make install and we’re good! Now, let’s use our new little tool :3 ~# bruteforce-wallet -t 6 -f /root/Documents/rockyou.txt 9d7e6203fb6e2c14646c63bea94e48001b9317c86bec229c3e063904a168dfad_wallet.dat Warning: using dictionary mode, ignoring options -b, -e, -l, -m and -s. Tried passwords: 59 Tried passwords per second: 59,000000 Last tried password: samantha Password found: tinkerbell Got it! Password is “tinkerbell”, hereby flag is : tjctf{tinkerbell} After thoughts A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pxmme">
-<meta name="twitter:description" content="Cybersec enthusiast.">
+<meta name="twitter:title" content="TJCTF - We Will Rock You">
+<meta name="twitter:description" content="The challenge Help! I lost the password to my Dogecoin wallet. I had like 10 Dogecoin in there. If you get the password, you’ll get the flag! Flag format: tjctf{password} [75 points] Written by Alaska47 Initial thoughts Seeing the name of the challenge, I immediately thought about the infamous rockyou.txt list of passwords. For those of you who don’t know it, it’s this huge list of passwords that was created out of real, leaked passwords. It’s natively present in Kali, check /usr/share/wordlists and you’ll find a rockyou.txt.gz :) So I assumed I’d have to bruteforce this wallet in order to retrieve the password. I googled for “wallet bruteforce” and found glv2’s Github magic thingy Exploitation First off, let’s clone this github repo. ~# git clone https://github.com/glv2/bruteforce-wallet Let’s install the dependencies required : ~# apt install libdb-dev libssl-dev -y Let’s then try to install it following the README’s instructions. ~# cd bruteforce-wallet &amp;amp;&amp;amp; ./autogen.sh ./autogen.sh: 6: ./autogen.sh: autoreconf: not found Oops! Seems I need to install a package first. apt-get install autoconf ~# ./autogen.sh configure.ac:6: installing &apos;./compile&apos; configure.ac:2: installing &apos;./install-sh&apos; configure.ac:2: installing &apos;./missing&apos; Makefile.am: installing &apos;./depcomp&apos; Then a ./configure, make and make install and we’re good! Now, let’s use our new little tool :3 ~# bruteforce-wallet -t 6 -f /root/Documents/rockyou.txt 9d7e6203fb6e2c14646c63bea94e48001b9317c86bec229c3e063904a168dfad_wallet.dat Warning: using dictionary mode, ignoring options -b, -e, -l, -m and -s. Tried passwords: 59 Tried passwords per second: 59,000000 Last tried password: samantha Password found: tinkerbell Got it! Password is “tinkerbell”, hereby flag is : tjctf{tinkerbell} After thoughts A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -152,7 +152,7 @@
 
 
 
-  <title>Pxmme</title>
+  <title>TJCTF - We Will Rock You | Pxmme</title>
   
 
 
@@ -177,7 +177,7 @@
   
   
 
-  <div class="container sidebar-position-left page-home ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -255,187 +255,9 @@
           <div id="content" class="content">
             
 
-
-
-<section id="posts" class="posts-expand">
-  
-    
-    
-
-  
-
+<div id="posts" class="posts-expand">
   
   
-  
-
-  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pxmme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pxmme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-                
-                <a class="post-title-link" href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/" itemprop="url">
-                TJCTF - Weird Logo
-              </a>
-            
-          
-        </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-12T00:00:00+02:00">
-                2018-08-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  <h2 id="challenge">Challenge</h2>
-
-<p>This company’s logo stands in contrast of those of other leading edge tech companies with its poor design</p>
-
-<p>[5 points]</p>
-
-<p><em>Written by jfrucht25</em></p>
-
-<h2 id="initial-thoughts">Initial thoughts</h2>
-
-<p>Having a static .png image with this little amount of points rewarded means it won’t be tough.</p>
-
-<h2 id="exploitation">Exploitation</h2>
-
-<p>Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve!</p>
-
-<p><a href="https://github.com/zardus/ctf-tools/blob/master/stegsolve/install">You can install it here.</a></p>
-
-<p>Here is our beautiful logo :</p>
-
-<p><img src="/imgs/before.png" alt="Before" class="img-responsive" /></p>
-
-<p>And here is what we can find with just a few switches to the right :</p>
-
-<p><img src="/imgs/after.png" alt="After" class="img-responsive" /></p>
-
-<p>Flag : <code class="highlighter-rouge">tjctf{in_plain_sight}</code></p>
-
-<h2 id="after-thoughts">After thoughts</h2>
-
-<p>Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.</p>
-
-
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-        
-        
-        
-        
-          <div class="post-eof"></div>
-        
-      
-    </footer>
-  </article>
-
-  
-    
-    
 
   
 
@@ -464,12 +286,7 @@
           <h1 class="post-title" itemprop="name headline">
           
           
-            
-                
-                <a class="post-title-link" href="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/" itemprop="url">
-                TJCTF - We Will Rock You
-              </a>
-            
+            TJCTF - We Will Rock You
           
         </h1>
         
@@ -507,6 +324,12 @@
           
 
           
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
 
         </div>
       </header>
@@ -519,7 +342,6 @@
 
       
         
-          
   
   
 
@@ -592,224 +414,84 @@ Password found: tinkerbell
 <p>A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!</p>
 
 
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-        
-        
-        
-        
-          <div class="post-eof"></div>
-        
-      
-    </footer>
-  </article>
-
-  
-    
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="/2018/08/12/TJCTF-Write-Up-Trippy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pxmme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="assets/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pxmme">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-          
+        <div class="post-tags">
           
             
-                
-                <a class="post-title-link" href="/2018/08/12/TJCTF-Write-Up-Trippy/" itemprop="url">
-                TJCTF - Trippy
+            <a href="/tag/#/tjctf-2018" rel="tag"># tjctf-2018</a>
+          
+            
+            <a href="/tag/#/write-up" rel="tag"># write-up</a>
+          
+            
+            <a href="/tag/#/forensics" rel="tag"># forensics</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/" rel="next" title="TJCTF - Weird Logo">
+                <i class="fa fa-chevron-left"></i> TJCTF - Weird Logo
               </a>
             
-          
-        </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-12T00:00:00+02:00">
-                2018-08-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  <h2 id="challenge">Challenge</h2>
-
-<p>No description</p>
-
-<p>[5 points]</p>
-
-<p><em>Written by Alaska47</em></p>
-
-<h2 id="initial-thoughts">Initial thoughts</h2>
-
-<p>So, we have no description and a gif file. All of this for little to no points. This should be quick.</p>
-
-<h2 id="exploitation">Exploitation</h2>
-
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code>~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif
- 
-~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctf
-tjctf{w0w}
-</code></pre></td></tr></tbody></table></div>
-</div>
-
-<p>Meh.</p>
-
-<p>Flag : <code class="highlighter-rouge">tjctf{w0w}</code></p>
-
-<h2 id="after-thoughts">After thoughts</h2>
-
-<p>Not much.</p>
-
-
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/12/TJCTF-Write-Up-Trippy/#more" rel="contents">
-              Read more &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/12/TJCTF-Write-Up-Trippy/" rel="prev" title="TJCTF - Trippy">
+                TJCTF - Trippy <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
       
 
-      
-
-      
-
-      
-        
-        
-        
-        
-          <div class="post-eof"></div>
-        
       
     </footer>
   </article>
 
-  
-</section>
-
-
-
+  <div class="post-spread">
+    
+  </div>
+</div>
 
 
           </div>
@@ -817,6 +499,10 @@ tjctf{w0w}
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -834,10 +520,30 @@ tjctf{w0w}
     <div class="sidebar-inner">
 
       
+        
+        
+        
+
+
+
+
+
+
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/images/avatar.gif"
@@ -892,6 +598,34 @@ tjctf{w0w}
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#the-challenge"> <span class="nav-number">1</span> <span class="nav-text">The challenge</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#initial-thoughts"> <span class="nav-number">2</span> <span class="nav-text">Initial thoughts</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#exploitation"> <span class="nav-number">3</span> <span class="nav-text">Exploitation</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#after-thoughts"> <span class="nav-number">4</span> <span class="nav-text">After thoughts</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
