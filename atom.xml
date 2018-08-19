@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-19T21:09:50+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Mirror Mirror</title><link href="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/" rel="alternate" type="text/html" title="TJCTF - Mirror Mirror" /><published>2018-08-12T02:00:05+02:00</published><updated>2018-08-12T02:00:05+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Mirror-Mirror</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/">&lt;!-- more --&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-19T21:14:25+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Mirror Mirror</title><link href="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/" rel="alternate" type="text/html" title="TJCTF - Mirror Mirror" /><published>2018-08-12T02:00:05+02:00</published><updated>2018-08-12T02:00:05+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Mirror-Mirror</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/">&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
@@ -26,7 +26,7 @@ Hi! Are you looking for the flag? Try get_flag() for free flags. Remember, wrap 
 
 &lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
 
-&lt;p&gt;At first, I needed to do a little bit of enumeration. I started to try random crap.&lt;/p&gt;
+&lt;p&gt;At first, I needed to do a little bit of enumeration. I started by trying random crap.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# nc problem1.tjctf.org 8004
 Hi! Are you looking for the flag? Try get_flag() for free flags. Remember, wrap your input in double quotes. Good luck!
@@ -65,7 +65,7 @@ Sorry, that's not allowed.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Fuck me. I forgot some characters aren’t allowed. If you look at the snippet a little up here, you’ll see, next to the super secret string value, some numbers : 48, 57, 65, 90, 97, 122, 44, 95. Ascii codes for 0, 9, A, Z, a, z, “,” and “_”. Those should be the forbidden characters.&lt;/p&gt;
+&lt;p&gt;Fuck me. I forgot some characters aren’t allowed. If you look at the previous snippet, you’ll see, next to the super secret string value, some numbers : 48, 57, 65, 90, 97, 122, 44, 95. Ascii codes for 0, 9, A, Z, a, z, “,” and “_”. Those must be the forbidden characters.&lt;/p&gt;
 
 &lt;p&gt;That’s where &lt;a href=&quot;http://wapiflapi.github.io/2013/04/22/plaidctf-pyjail-story-of-pythons-escape/&quot;&gt;Highsenburger’s link&lt;/a&gt; comes in handy. I can see that &lt;a href=&quot;https://twitter.com/wapiflapi/&quot;&gt;Wapiflapi&lt;/a&gt; managed to generate letters and numbers using special chars, abusing logical relations between True and False values.&lt;/p&gt;
 
