@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-19T21:14:25+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Mirror Mirror</title><link href="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/" rel="alternate" type="text/html" title="TJCTF - Mirror Mirror" /><published>2018-08-12T02:00:05+02:00</published><updated>2018-08-12T02:00:05+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Mirror-Mirror</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/">&lt;!-- more --&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-19T21:21:36+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Mirror Mirror</title><link href="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/" rel="alternate" type="text/html" title="TJCTF - Mirror Mirror" /><published>2018-08-12T02:00:05+02:00</published><updated>2018-08-12T02:00:05+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Mirror-Mirror</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/">&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
@@ -22,7 +22,7 @@ Hi! Are you looking for the flag? Try get_flag() for free flags. Remember, wrap 
 
 &lt;p&gt;To be really honest here, this was my first pyjail. Ever. I had never heard of this kind of challenge before. I knew about “bash jail” or whatever ; but didn’t know it was a thing.&lt;/p&gt;
 
-&lt;p&gt;Took me a lot of googling, trying stupid shit like “python console exploit” or “python console enum”, and I couldn’t find nothing. Hopefully, a good man called &lt;a href=&quot;https://twitter.com/highsenburger69&quot;&gt;Highsenburger&lt;/a&gt; told me “it’s a &lt;strong&gt;pyjail&lt;/strong&gt;” and sent me &lt;a href=&quot;http://wapiflapi.github.io/2013/04/22/plaidctf-pyjail-story-of-pythons-escape/&quot;&gt;this link&lt;/a&gt;. Game on.&lt;/p&gt;
+&lt;p&gt;Took me a lot of googling, trying stupid shit like “python console exploit” or “python console enum”, and I couldn’t find nothing. Hopefully, a good man called &lt;a href=&quot;https://twitter.com/highsenburger69&quot;&gt;Highsenburger69&lt;/a&gt; told me “it’s a &lt;strong&gt;pyjail&lt;/strong&gt;” and sent me &lt;a href=&quot;http://wapiflapi.github.io/2013/04/22/plaidctf-pyjail-story-of-pythons-escape/&quot;&gt;this link&lt;/a&gt;. Game on.&lt;/p&gt;
 
 &lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
 
@@ -67,7 +67,7 @@ Sorry, that's not allowed.
 
 &lt;p&gt;Fuck me. I forgot some characters aren’t allowed. If you look at the previous snippet, you’ll see, next to the super secret string value, some numbers : 48, 57, 65, 90, 97, 122, 44, 95. Ascii codes for 0, 9, A, Z, a, z, “,” and “_”. Those must be the forbidden characters.&lt;/p&gt;
 
-&lt;p&gt;That’s where &lt;a href=&quot;http://wapiflapi.github.io/2013/04/22/plaidctf-pyjail-story-of-pythons-escape/&quot;&gt;Highsenburger’s link&lt;/a&gt; comes in handy. I can see that &lt;a href=&quot;https://twitter.com/wapiflapi/&quot;&gt;Wapiflapi&lt;/a&gt; managed to generate letters and numbers using special chars, abusing logical relations between True and False values.&lt;/p&gt;
+&lt;p&gt;That’s where &lt;a href=&quot;http://wapiflapi.github.io/2013/04/22/plaidctf-pyjail-story-of-pythons-escape/&quot;&gt;Highsenburger69’s link&lt;/a&gt; comes in handy. I can see that &lt;a href=&quot;https://twitter.com/wapiflapi/&quot;&gt;Wapiflapi&lt;/a&gt; managed to generate letters and numbers using special chars, abusing logical relations between True and False values.&lt;/p&gt;
 
 &lt;p&gt;The interesting part was this :&lt;/p&gt;
 
@@ -184,7 +184,7 @@ tjctf{wh0_kn3w_pyth0n_w4s_s0_sl1pp3ry}
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;I maybe made it sound easy or quick writing this, but it actually took me a few hours to figure this all out. As it was my first time, I definitly needed some help and advices, and that’s where &lt;a href=&quot;https://twitter.com/highsenburger69&quot;&gt;Highsenburger&lt;/a&gt; came handy. Shout out to you, lovely bastard! :heart:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="misc" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Huuuuuge</title><link href="/2018/08/12/TJCTF-Write-Up-Huuuuuge/" rel="alternate" type="text/html" title="TJCTF - Huuuuuge" /><published>2018-08-12T02:00:04+02:00</published><updated>2018-08-12T02:00:04+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Huuuuuge</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Huuuuuge/">&lt;!-- more --&gt;
+&lt;p&gt;I maybe made it sound easy or quick writing this, but it actually took me a few hours to figure this all out. As it was my first time, I definitly needed some help and advices, and that’s where &lt;a href=&quot;https://twitter.com/highsenburger69&quot;&gt;Highsenburger69&lt;/a&gt; came handy. Shout out to you, lovely bastard! :heart:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="misc" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Huuuuuge</title><link href="/2018/08/12/TJCTF-Write-Up-Huuuuuge/" rel="alternate" type="text/html" title="TJCTF - Huuuuuge" /><published>2018-08-12T02:00:04+02:00</published><updated>2018-08-12T02:00:04+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Huuuuuge</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Huuuuuge/">&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
