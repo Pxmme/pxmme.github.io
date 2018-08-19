@@ -3,18 +3,18 @@
   
     <entry>
       <title><![CDATA[TJCTF - Trippy]]></title>
-      <url>/write-up/tjctf-2018/misc/2018/08/12/TJCTF-Write-Up-Trippy/</url>
+      <url>/2018/08/12/TJCTF-Write-Up-Trippy/</url>
       <content type="text"><![CDATA[An easy one about hiding text in .gif files.Challenge : TrippyNo description5 pointsWritten by Alaska47Initial thoughtsSo, we have no description and a gif file. All of this for little to no points. This should be quick.Exploitation~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif ~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctftjctf{w0w}Meh.Flag : tjctf{w0w}After thoughtsNot much.]]></content>
       <categories>
         
-          <category> write-up </category>
-        
-          <category> tjctf-2018 </category>
-        
-          <category> misc </category>
-        
       </categories>
       <tags>
+        
+          <tag> tjctf </tag>
+        
+          <tag> write-up </tag>
+        
+          <tag> forensics </tag>
         
       </tags>
       <tags></tags>

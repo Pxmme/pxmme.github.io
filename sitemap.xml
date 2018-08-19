@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>/write-up/tjctf-2018/misc/2018/08/12/TJCTF-Write-Up-Trippy/</loc>
+<loc>/2018/08/12/TJCTF-Write-Up-Trippy/</loc>
 <lastmod>2018-08-12T00:00:00+02:00</lastmod>
 </url>
 <url>
@@ -12,9 +12,6 @@
 </url>
 <url>
 <loc>/categories/</loc>
-</url>
-<url>
-<loc>/archives/</loc>
 </url>
 <url>
 <loc>/tag/</loc>
