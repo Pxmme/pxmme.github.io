@@ -1,34 +1,89 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-19T16:47:30+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Weird Logo</title><link href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/" rel="alternate" type="text/html" title="TJCTF - Weird Logo" /><published>2018-08-12T00:00:00+02:00</published><updated>2018-08-12T00:00:00+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Weird-Logo</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Weird-Logo/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-19T18:24:25+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">Huuuuuge</title><link href="/2018/08/12/TJCTF-Write-Up-Huuuuuge/" rel="alternate" type="text/html" title="Huuuuuge" /><published>2018-08-12T02:00:04+02:00</published><updated>2018-08-12T02:00:04+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Huuuuuge</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Huuuuuge/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
-&lt;p&gt;This company’s logo stands in contrast of those of other leading edge tech companies with its poor design&lt;/p&gt;
+&lt;p&gt;Don’t think too deep.&lt;/p&gt;
 
-&lt;p&gt;[5 points]&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;104.154.187.226/huuuuuge&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Written by jfrucht25&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;[25 points]&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Written by Alaska47&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
 
-&lt;p&gt;Having a static .png image with this little amount of points rewarded means it won’t be tough.&lt;/p&gt;
+&lt;p&gt;Uh. They’re giving us an IP address with an extension (/xxx) which probably means it’s web. But then, why classify this challenge as misc’?&lt;/p&gt;
+
+&lt;p&gt;Let’s find out.&lt;/p&gt;
 
 &lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
 
-&lt;p&gt;Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve!&lt;/p&gt;
+&lt;p&gt;First of all, let’s fire up nmap and gather information about 104.154.187.226.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/zardus/ctf-tools/blob/master/stegsolve/install&quot;&gt;You can install it here.&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PORT     STATE  SERVICE VERSION
+22/tcp   open   ssh     OpenSSH 7.4p1 Debian 10+deb9u3 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 25:97:23:e0:26:26:07:2e:f6:38:20:90:ce:39:44:96 (RSA)
+|   256 66:2e:64:31:21:83:68:03:2b:05:30:05:7a:59:72:df (ECDSA)
+|_  256 25:61:dd:51:b8:43:76:47:ba:96:16:fe:cd:09:e0:04 (ED25519)
+80/tcp   closed http
+5901/tcp closed vnc-1
+9418/tcp open   git?
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;Here is our beautiful logo :&lt;/p&gt;
+&lt;p&gt;Interesting. It’s not a web server after all. I immediately thought that this git opened port was looking weird. Well, let’s try to interact with it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/imgs/before.png&quot; alt=&quot;Before&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# git clone 104.154.187.226/huuuuuge
+fatal: repository '104.154.187.226/huuuuuge' does not exist
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;And here is what we can find with just a few switches to the right :&lt;/p&gt;
+&lt;p&gt;Err. Silly me. I forgot the extension, plus : it’s not a web server, so I gotta tell my git where to look and HOW to look.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/imgs/after.png&quot; alt=&quot;After&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# git clone git://104.154.187.226/huuuuuge
+Cloning into 'huuuuuge'...
+remote: Counting objects: 309, done.
+remote: warning: suboptimal pack - out of memory
+remote: fatal: Out of memory, malloc failed (tried to allocate 104857601 bytes)
+remote: aborting due to possible repository corruption on the remote side.
+fatal: early EOF
+fatal: index-pack failed
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;Flag : &lt;code class=&quot;highlighter-rouge&quot;&gt;tjctf{in_plain_sight}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;God damn, this thing is massive! Wait… Challenge name’s Huuuuuge… I see what they did here…&lt;/p&gt;
+
+&lt;p&gt;Let’s look at &lt;strong&gt;git clone&lt;/strong&gt;’s manual :&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;--depth &amp;lt;depth&amp;gt;
+Create a shallow clone with a history truncated to the specified number of commits. Implies --single-branch unless --no-single-branch is given to fetch the histories near the tips of all branches. If you want to clone submodules shallowly, also pass --shallow-submodules.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Interesting… Let’s try something then, just to see what comes out!&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# git clone --depth 1 git://104.154.187.226/huuuuuge
+Cloning into 'huuuuuge'...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (3/3), done.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Uh, uh! We got the first line. Let’s open it and see what lies for us there.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# cd huuuuuge/
+~/huuuuuge# ls
+flag.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;How nice of them to give us a flag like that! You gotta love TJCTF.&lt;/p&gt;
+
+&lt;p&gt;The flag was : &lt;code class=&quot;highlighter-rouge&quot;&gt;tjctf{this_fl4g_1s_huuuuuge}&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="forensics" /><summary type="html">Challenge This company’s logo stands in contrast of those of other leading edge tech companies with its poor design [5 points] Written by jfrucht25 Initial thoughts Having a static .png image with this little amount of points rewarded means it won’t be tough. Exploitation Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve! You can install it here. Here is our beautiful logo : And here is what we can find with just a few switches to the right : Flag : tjctf{in_plain_sight} After thoughts Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.</summary></entry><entry><title type="html">TJCTF - We Will Rock You</title><link href="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/" rel="alternate" type="text/html" title="TJCTF - We Will Rock You" /><published>2018-08-12T00:00:00+02:00</published><updated>2018-08-12T00:00:00+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/">&lt;h2 id=&quot;the-challenge&quot;&gt;The challenge&lt;/h2&gt;
+&lt;p&gt;Very interesting challenge as I never had encountered this case before of a “too big to clone” git repo. I really like challenges that make you learn new things, and this includes the ones that make you read a command’s manual.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="misc" /><summary type="html">Challenge</summary></entry><entry><title type="html">TJCTF - We Will Rock You</title><link href="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/" rel="alternate" type="text/html" title="TJCTF - We Will Rock You" /><published>2018-08-12T02:00:03+02:00</published><updated>2018-08-12T02:00:03+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/">&lt;h2 id=&quot;the-challenge&quot;&gt;The challenge&lt;/h2&gt;
 
 &lt;p&gt;Help! I lost the password to my Dogecoin wallet. I had like 10 Dogecoin in there. If you get the password, you’ll get the flag! Flag format: tjctf{password}&lt;/p&gt;
 
@@ -83,7 +138,37 @@ Password found: tinkerbell
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="forensics" /><summary type="html">The challenge Help! I lost the password to my Dogecoin wallet. I had like 10 Dogecoin in there. If you get the password, you’ll get the flag! Flag format: tjctf{password} [75 points] Written by Alaska47 Initial thoughts Seeing the name of the challenge, I immediately thought about the infamous rockyou.txt list of passwords. For those of you who don’t know it, it’s this huge list of passwords that was created out of real, leaked passwords. It’s natively present in Kali, check /usr/share/wordlists and you’ll find a rockyou.txt.gz :) So I assumed I’d have to bruteforce this wallet in order to retrieve the password. I googled for “wallet bruteforce” and found glv2’s Github magic thingy. Exploitation First off, let’s clone this github repo. ~# git clone https://github.com/glv2/bruteforce-wallet Let’s install the dependencies required : ~# apt install libdb-dev libssl-dev -y Let’s then try to install it following the README’s instructions. ~# cd bruteforce-wallet &amp;amp;&amp;amp; ./autogen.sh ./autogen.sh: 6: ./autogen.sh: autoreconf: not found Oops! Seems I need to install a package first. ~# apt-get install autoconf ~# ./autogen.sh configure.ac:6: installing './compile' configure.ac:2: installing './install-sh' configure.ac:2: installing './missing' Makefile.am: installing './depcomp' Then a ./configure, make and make install and we’re good! Now, let’s use our new little tool :3 ~# bruteforce-wallet -t 6 -f /root/Documents/rockyou.txt 9d7e6203fb6e2c14646c63bea94e48001b9317c86bec229c3e063904a168dfad_wallet.dat Warning: using dictionary mode, ignoring options -b, -e, -l, -m and -s. Tried passwords: 59 Tried passwords per second: 59,000000 Last tried password: samantha Password found: tinkerbell Got it! Password is “tinkerbell”, hereby flag is : tjctf{tinkerbell} After thoughts A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!</summary></entry><entry><title type="html">TJCTF - Trippy</title><link href="/2018/08/12/TJCTF-Write-Up-Trippy/" rel="alternate" type="text/html" title="TJCTF - Trippy" /><published>2018-08-12T00:00:00+02:00</published><updated>2018-08-12T00:00:00+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Trippy</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Trippy/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+&lt;p&gt;A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="forensics" /><summary type="html">The challenge Help! I lost the password to my Dogecoin wallet. I had like 10 Dogecoin in there. If you get the password, you’ll get the flag! Flag format: tjctf{password} [75 points] Written by Alaska47 Initial thoughts Seeing the name of the challenge, I immediately thought about the infamous rockyou.txt list of passwords. For those of you who don’t know it, it’s this huge list of passwords that was created out of real, leaked passwords. It’s natively present in Kali, check /usr/share/wordlists and you’ll find a rockyou.txt.gz :) So I assumed I’d have to bruteforce this wallet in order to retrieve the password. I googled for “wallet bruteforce” and found glv2’s Github magic thingy. Exploitation First off, let’s clone this github repo. ~# git clone https://github.com/glv2/bruteforce-wallet Let’s install the dependencies required : ~# apt install libdb-dev libssl-dev -y Let’s then try to install it following the README’s instructions. ~# cd bruteforce-wallet &amp;amp;&amp;amp; ./autogen.sh ./autogen.sh: 6: ./autogen.sh: autoreconf: not found Oops! Seems I need to install a package first. ~# apt-get install autoconf ~# ./autogen.sh configure.ac:6: installing './compile' configure.ac:2: installing './install-sh' configure.ac:2: installing './missing' Makefile.am: installing './depcomp' Then a ./configure, make and make install and we’re good! Now, let’s use our new little tool :3 ~# bruteforce-wallet -t 6 -f /root/Documents/rockyou.txt 9d7e6203fb6e2c14646c63bea94e48001b9317c86bec229c3e063904a168dfad_wallet.dat Warning: using dictionary mode, ignoring options -b, -e, -l, -m and -s. Tried passwords: 59 Tried passwords per second: 59,000000 Last tried password: samantha Password found: tinkerbell Got it! Password is “tinkerbell”, hereby flag is : tjctf{tinkerbell} After thoughts A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!</summary></entry><entry><title type="html">TJCTF - Weird Logo</title><link href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/" rel="alternate" type="text/html" title="TJCTF - Weird Logo" /><published>2018-08-12T02:00:02+02:00</published><updated>2018-08-12T02:00:02+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Weird-Logo</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Weird-Logo/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+
+&lt;p&gt;This company’s logo stands in contrast of those of other leading edge tech companies with its poor design&lt;/p&gt;
+
+&lt;p&gt;[5 points]&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Written by jfrucht25&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
+
+&lt;p&gt;Having a static .png image with this little amount of points rewarded means it won’t be tough.&lt;/p&gt;
+
+&lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
+
+&lt;p&gt;Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/zardus/ctf-tools/blob/master/stegsolve/install&quot;&gt;You can install it here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is our beautiful logo :&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/before.png&quot; alt=&quot;Before&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And here is what we can find with just a few switches to the right :&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/after.png&quot; alt=&quot;After&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Flag : &lt;code class=&quot;highlighter-rouge&quot;&gt;tjctf{in_plain_sight}&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
+
+&lt;p&gt;Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="forensics" /><summary type="html">Challenge This company’s logo stands in contrast of those of other leading edge tech companies with its poor design [5 points] Written by jfrucht25 Initial thoughts Having a static .png image with this little amount of points rewarded means it won’t be tough. Exploitation Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve! You can install it here. Here is our beautiful logo : And here is what we can find with just a few switches to the right : Flag : tjctf{in_plain_sight} After thoughts Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.</summary></entry><entry><title type="html">TJCTF - Trippy</title><link href="/2018/08/12/TJCTF-Write-Up-Trippy/" rel="alternate" type="text/html" title="TJCTF - Trippy" /><published>2018-08-12T02:00:01+02:00</published><updated>2018-08-12T02:00:01+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Trippy</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Trippy/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;No description&lt;/p&gt;
 
