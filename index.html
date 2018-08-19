@@ -14,7 +14,7 @@
 
 
 
-<html class="theme-next muse use-motion" lang="en">
+<html class="theme-next mist use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -126,7 +126,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '',
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -341,6 +341,12 @@
           
 
           
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
 
         </div>
       </header>
@@ -368,7 +374,7 @@
 
 
 
-  <h2 id="challenge">Challenge</h2>
+  <!-- more -->
 
 
 
@@ -487,6 +493,12 @@
           
 
           
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
 
         </div>
       </header>
@@ -514,62 +526,8 @@
 
 
 
-  <h2 id="challenge">Challenge</h2>
+  <!-- more -->
 
-<p>Help! I lost the password to my Dogecoin wallet. I had like 10 Dogecoin in there. If you get the password, you’ll get the flag! Flag format: tjctf{password}</p>
-
-<p>[75 points]</p>
-
-<p><em>Written by Alaska47</em></p>
-
-<h2 id="initial-thoughts">Initial thoughts</h2>
-
-<p>Seeing the name of the challenge, I immediately thought about the <em>infamous</em> rockyou.txt list of passwords. For those of you who don’t know it, it’s this huge list of passwords that was created out of real, leaked passwords.</p>
-
-<p>It’s natively present in Kali, check <em>/usr/share/wordlists</em> and you’ll find a <em>rockyou.txt.gz</em> :)</p>
-
-<p>So I assumed I’d have to bruteforce this wallet in order to retrieve the password. I googled for “wallet bruteforce” and found glv2’s <a href="https://github.com/glv2/bruteforce-wallet" title="Click here to learn more!">Github magic thingy</a>.</p>
-
-<h2 id="exploitation">Exploitation</h2>
-
-<p>First off, let’s clone this github repo.</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>~# git clone https://github.com/glv2/bruteforce-wallet
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Let’s install the dependencies required :</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>~# apt install libdb-dev libssl-dev -y
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Let’s then try to install it following the README’s instructions.</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>~# cd bruteforce-wallet &amp;&amp; ./autogen.sh
-./autogen.sh: 6: ./autogen.sh: autoreconf: not found
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Oops! Seems I need to install a package first.</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code>~# apt-get install autoconf
-~# ./autogen.sh
-configure.ac:6: installing './compile'
-configure.ac:2: installing './install-sh'
-configure.ac:2: installing './missing'
-Makefile.am: installing './depcomp'
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Then a ./configure, make and make install and we’re good! Now, let’s use our new little tool :3</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code>~# bruteforce-wallet -t 6 -f /root/Documents/rockyou.txt 9d7e6203fb6e2c14646c63bea94e48001b9317c86bec229c3e063904a168dfad_wallet.dat
-Warning: using dictionary mode, ignoring options -b, -e, -l, -m and -s.
- 
-Tried passwords: 59
-Tried passwords per second: 59,000000
-Last tried password: samantha
- 
-Password found: tinkerbell
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Got it! Password is “tinkerbell”, hereby flag is : <code class="highlighter-rouge">tjctf{tinkerbell}</code></p>
-
-<h2 id="after-thoughts">After thoughts</h2>
-
-<p>A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!</p>
 
 
           <!--noindex-->
@@ -687,6 +645,12 @@ Password found: tinkerbell
           
 
           
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
 
         </div>
       </header>
@@ -714,37 +678,8 @@ Password found: tinkerbell
 
 
 
-  <h2 id="challenge">Challenge</h2>
+  <!-- more -->
 
-<p>This company’s logo stands in contrast of those of other leading edge tech companies with its poor design</p>
-
-<p>[5 points]</p>
-
-<p><em>Written by jfrucht25</em></p>
-
-<h2 id="initial-thoughts">Initial thoughts</h2>
-
-<p>Having a static .png image with this little amount of points rewarded means it won’t be tough.</p>
-
-<h2 id="exploitation">Exploitation</h2>
-
-<p>Let’s start with the basics. The “file” command tells us it is indeed a .png. The “binwalk” and “strings” commands give us nothing interesting. Next step? Stegsolve!</p>
-
-<p><a href="https://github.com/zardus/ctf-tools/blob/master/stegsolve/install">You can install it here.</a></p>
-
-<p>Here is our beautiful logo :</p>
-
-<p><img src="/imgs/before.png" alt="Before" class="img-responsive" /></p>
-
-<p>And here is what we can find with just a few switches to the right :</p>
-
-<p><img src="/imgs/after.png" alt="After" class="img-responsive" /></p>
-
-<p>Flag : <code class="highlighter-rouge">tjctf{in_plain_sight}</code></p>
-
-<h2 id="after-thoughts">After thoughts</h2>
-
-<p>Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.</p>
 
 
           <!--noindex-->
@@ -862,6 +797,12 @@ Password found: tinkerbell
           
 
           
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
 
         </div>
       </header>
@@ -889,34 +830,8 @@ Password found: tinkerbell
 
 
 
-  <h2 id="challenge">Challenge</h2>
+  <!-- more -->
 
-<p>No description</p>
-
-<p>[5 points]</p>
-
-<p><em>Written by Alaska47</em></p>
-
-<h2 id="initial-thoughts">Initial thoughts</h2>
-
-<p>So, we have no description and a gif file. All of this for little to no points. This should be quick.</p>
-
-<h2 id="exploitation">Exploitation</h2>
-
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code>~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif
- 
-~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctf
-tjctf{w0w}
-</code></pre></td></tr></tbody></table></div>
-</div>
-
-<p>Meh.</p>
-
-<p>Flag : <code class="highlighter-rouge">tjctf{w0w}</code></p>
-
-<h2 id="after-thoughts">After thoughts</h2>
-
-<p>Not much.</p>
 
 
           <!--noindex-->
