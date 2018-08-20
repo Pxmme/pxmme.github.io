@@ -83,7 +83,7 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Pxmme, blog" />
+  <meta name="keywords" content="tjctf-2018,write-up,crypto," />
 
 
 
@@ -109,17 +109,17 @@
 
 
 
-<meta name="description" content="Cybersec enthusiast.">
-<meta name="keywords" content="Pxmme, blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pxmme">
-<meta property="og:url" content="/tags/">
+<meta name="description" content="">
+<meta name="keywords" content="tjctf-2018, write-up, crypto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TJCTF - RC4 took an L">
+<meta property="og:url" content="/2018/08/12/TJCTF-Write-Up-RC4-took-an-L/">
 <meta property="og:site_name" content="Pxmme">
-<meta property="og:description" content="Cybersec enthusiast.">
+<meta property="og:description" content="">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pxmme">
-<meta name="twitter:description" content="Cybersec enthusiast.">
+<meta name="twitter:title" content="TJCTF - RC4 took an L">
+<meta name="twitter:description" content="">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -152,7 +152,7 @@
 
 
 
-  <title>              Tags | Pxmme      </title>
+  <title>TJCTF - RC4 took an L | Pxmme</title>
   
 
 
@@ -263,42 +263,243 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+
 <div id="posts" class="posts-expand">
-<header class="post-header">
+  
+  
 
-	<h1 class="post-title" itemprop="name headline">
-    
-      Tags
-    
-  </h1>
-
-
-
-</header>
+  
 
   
   
-    <div class="tag-cloud">
-      <div class="tag-cloud-title">
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="/2018/08/12/TJCTF-Write-Up-RC4-took-an-L/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pxmme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pxmme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
           
-            6 tags in total
           
-      </div>
-      <div class="tag-cloud-tags">
+            TJCTF - RC4 took an L
+          
+        </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-12T02:00:11+02:00">
+                2018-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
-        
-        
-        
-        
-        
+  
+  
 
 
 
-        <a href="/tag/#/tjctf-2018" style="font-size: 30.0px;color: rgb(17,17,17)">tjctf-2018</a> <a href="/tag/#/write-up" style="font-size: 30.0px;color: rgb(17,17,17)">write-up</a> <a href="/tag/#/misc" style="font-size: 21.0px;color: rgb(111,111,111)">misc</a> <a href="/tag/#/forensics" style="font-size: 16.5px;color: rgb(157,157,157)">forensics</a> <a href="/tag/#/web" style="font-size: 25.5px;color: rgb(64,64,64)">web</a> <a href="/tag/#/crypto" style="font-size: 12.0px;color: rgb(204,204,204)">crypto</a>
-      </div>
+
+
+
+
+
+
+
+
+
+  <!-- more -->
+
+<h2 id="challenge">Challenge</h2>
+
+<p>Alphabet: #_23456789abcdefghijklmnopqrstuvwxyz</p>
+
+<p>Key: pq_xc589r3nb#mgjtkh7w2dlfvy4eaoi6uzs</p>
+
+<p>Ciphertext: wpwt#5ng4_qbitp#8mq59r_g866c4t59c6vy6tisj4af6bprfnbd_wrq2wjmr4ld_s26a7i#biiyqjolq8lus_wfusfkj8xv2qrrv3etab_marovc#uuoueyl</p>
+
+<p>[40 points]</p>
+
+<p><em>Written by evanyeyeye</em></p>
+
+<h2 id="initial-thoughts">Initial thoughts</h2>
+
+<p>RC4 isn’t new to me. I already had a few challenges about <a href="https://en.wikipedia.org/wiki/RC4">this encryption cipher</a>. What bugged me is the “took an L” part, but I found out why pretty quickly (and luckily).</p>
+
+<h2 id="exploitation">Exploitation</h2>
+
+<p>I really thought this wasn’t “classic RC4” so I didn’t bother trying to decipher it that way. I started google’ing immediately. And what I found by google’ing the alphabet used for the encryption got me where I needed to be : <a href="https://gist.github.com/snarkbait66/4f412354dc394036cdb7e053aab09b9d">it was LC4</a>, not RC4.</p>
+
+<p>From here, it was pretty straight forward. Let’s first install the LC4 lib for Python (because <strong>Python &gt; all</strong> of course).</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10</pre></td><td class="code"><pre class="highlight"><code>~# pip install lc4
+Collecting lc4
+  Downloading https://files.pythonhosted.org/packages/84/41/d7aeb7fe68b7aef2bb6a8dfce3b158ffee9440acf87e3ffbd13d75395991/lc4-0.1.6.tar.gz
+Requirement already satisfied: numpy in /usr/lib/python2.7/dist-packages (from lc4)
+Building wheels for collected packages: lc4
+  Running setup.py bdist_wheel for lc4 ... done
+  Stored in directory: /root/.cache/pip/wheels/8a/87/08/c1dca3b084636fed4c03040599ed6d7bfda70a20938b448b00
+Successfully built lc4
+Installing collected packages: lc4
+Successfully installed lc4-0.1.6
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>Let’s then simply decrypt the flag out…:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</pre></td><td class="code"><pre class="highlight"><code>~# python
+Python 2.7.14+ (default, Mar 13 2018, 15:23:44) 
+[GCC 7.3.0] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import lc4
+&gt;&gt;&gt; key = "pq_xc589r3nb#mgjtkh7w2dlfvy4eaoi6uzs"
+&gt;&gt;&gt; enc = "wpwt#5ng4_qbitp#8mq59r_g866c4t59c6vy6tisj4af6bprfnbd_wrq2wjmr4ld_s26a7i#biiyqjolq8lus_wfusfkj8xv2qrrv3etab_marovc#uuoueyl"
+&gt;&gt;&gt; print("Flag : " + lc4.decrypt(key, enc))
+Flag : i_hope_that_by_making_this_long_you_will_assume_substitution_cipher_and_go_to_quip_qiup_the_flag_is#elsie_four_is_not_rc4
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>Booya! And the flag is : <code class="highlighter-rouge">tjctf{elsie_four_is_not_rc4}</code></p>
+
+<h2 id="after-thoughts">After thoughts</h2>
+
+<p>I could’ve spend hours trying to figure this challenge out, writing python scripts, looking web-pages… But I got lucky and googled first the string I needed to google. All in all, this challenge took me at most ten minutes, where it could have taken me hours if I didn’t have this hunch about the alphabet. Pretty fun though!</p>
+
+
+      
     </div>
-  
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/tjctf-2018" rel="tag"># tjctf-2018</a>
+          
+            
+            <a href="/tag/#/write-up" rel="tag"># write-up</a>
+          
+            
+            <a href="/tag/#/crypto" rel="tag"># crypto</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/12/TJCTF-Write-Up-Central-Saving-Account/" rel="next" title="TJCTF - Central Saving Account">
+                <i class="fa fa-chevron-left"></i> TJCTF - Central Saving Account
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/12/TJCTF-Write-Up-Ess-Kyoo-Ell/" rel="prev" title="TJCTF - Ess Kyoo Ell">
+                TJCTF - Ess Kyoo Ell <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
 </div>
 
 
@@ -307,6 +508,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -324,10 +529,30 @@
     <div class="sidebar-inner">
 
       
+        
+        
+        
+
+
+
+
+
+
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/images/avatar.gif"
@@ -406,6 +631,34 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#challenge"> <span class="nav-number">1</span> <span class="nav-text">Challenge</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#initial-thoughts"> <span class="nav-number">2</span> <span class="nav-text">Initial thoughts</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#exploitation"> <span class="nav-number">3</span> <span class="nav-text">Exploitation</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#after-thoughts"> <span class="nav-number">4</span> <span class="nav-text">After thoughts</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

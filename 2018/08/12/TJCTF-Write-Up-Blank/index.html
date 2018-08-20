@@ -83,7 +83,7 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Pxmme, blog" />
+  <meta name="keywords" content="tjctf-2018,write-up,web," />
 
 
 
@@ -109,17 +109,17 @@
 
 
 
-<meta name="description" content="Cybersec enthusiast.">
-<meta name="keywords" content="Pxmme, blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pxmme">
-<meta property="og:url" content="/tags/">
+<meta name="description" content="">
+<meta name="keywords" content="tjctf-2018, write-up, web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TJCTF - Blank">
+<meta property="og:url" content="/2018/08/12/TJCTF-Write-Up-Blank/">
 <meta property="og:site_name" content="Pxmme">
-<meta property="og:description" content="Cybersec enthusiast.">
+<meta property="og:description" content="">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pxmme">
-<meta name="twitter:description" content="Cybersec enthusiast.">
+<meta name="twitter:title" content="TJCTF - Blank">
+<meta name="twitter:description" content="">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -152,7 +152,7 @@
 
 
 
-  <title>              Tags | Pxmme      </title>
+  <title>TJCTF - Blank | Pxmme</title>
   
 
 
@@ -263,42 +263,250 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+
 <div id="posts" class="posts-expand">
-<header class="post-header">
+  
+  
 
-	<h1 class="post-title" itemprop="name headline">
-    
-      Tags
-    
-  </h1>
-
-
-
-</header>
+  
 
   
   
-    <div class="tag-cloud">
-      <div class="tag-cloud-title">
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="/2018/08/12/TJCTF-Write-Up-Blank/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pxmme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pxmme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
           
-            6 tags in total
           
-      </div>
-      <div class="tag-cloud-tags">
+            TJCTF - Blank
+          
+        </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-12T02:00:09+02:00">
+                2018-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
-        
-        
-        
-        
-        
+  
+  
 
 
 
-        <a href="/tag/#/tjctf-2018" style="font-size: 30.0px;color: rgb(17,17,17)">tjctf-2018</a> <a href="/tag/#/write-up" style="font-size: 30.0px;color: rgb(17,17,17)">write-up</a> <a href="/tag/#/misc" style="font-size: 21.0px;color: rgb(111,111,111)">misc</a> <a href="/tag/#/forensics" style="font-size: 16.5px;color: rgb(157,157,157)">forensics</a> <a href="/tag/#/web" style="font-size: 25.5px;color: rgb(64,64,64)">web</a> <a href="/tag/#/crypto" style="font-size: 12.0px;color: rgb(204,204,204)">crypto</a>
-      </div>
+
+
+
+
+
+
+
+
+
+  <!-- more -->
+
+<h2 id="challenge">Challenge</h2>
+
+<p>Someone told me there was a flag on this site, so why is it that I can only see blank?</p>
+
+<p>[5 points]</p>
+
+<p><em>Written by evanyeyeye</em></p>
+
+<h2 id="initial-thoughts">Initial thoughts</h2>
+
+<p>Not much.</p>
+
+<h2 id="exploitation">Exploitation</h2>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></td><td class="code"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;title&gt;</span>Blank<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;style </span><span class="na">type=</span><span class="s">"text/css"</span><span class="nt">&gt;</span>
+<span class="nt">p</span> <span class="p">{</span>
+<span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+<span class="nl">top</span><span class="p">:</span> <span class="m">35%</span><span class="p">;</span>
+<span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+<span class="nl">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="m">-50%</span><span class="p">,</span> <span class="m">-50%</span><span class="p">);</span>
+<span class="nl">font-size</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;p&gt;</span>『　　』<span class="nt">&lt;/p&gt;</span>
+<span class="c">&lt;!-- flag: tjctf{50urc3_c0d3_n3v3r_l0535} --&gt;</span>
+<span class="nt">&lt;/body&gt;</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>&lt;/html&gt;
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h2 id="after-thoughts">After thoughts</h2>
+
+<p>Err… Not much.</p>
+
+
+      
     </div>
-  
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/tjctf-2018" rel="tag"># tjctf-2018</a>
+          
+            
+            <a href="/tag/#/write-up" rel="tag"># write-up</a>
+          
+            
+            <a href="/tag/#/web" rel="tag"># web</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/12/TJCTF-Write-Up-Ess-Kyoo-Ell/" rel="next" title="TJCTF - Ess Kyoo Ell">
+                <i class="fa fa-chevron-left"></i> TJCTF - Ess Kyoo Ell
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/12/TJCTF-Write-Up-Cookie-Monster/" rel="prev" title="TJCTF - Cookie Monster">
+                TJCTF - Cookie Monster <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
 </div>
 
 
@@ -307,6 +515,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -324,10 +536,30 @@
     <div class="sidebar-inner">
 
       
+        
+        
+        
+
+
+
+
+
+
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/images/avatar.gif"
@@ -406,6 +638,34 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#challenge"> <span class="nav-number">1</span> <span class="nav-text">Challenge</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#initial-thoughts"> <span class="nav-number">2</span> <span class="nav-text">Initial thoughts</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#exploitation"> <span class="nav-number">3</span> <span class="nav-text">Exploitation</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#after-thoughts"> <span class="nav-number">4</span> <span class="nav-text">After thoughts</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
