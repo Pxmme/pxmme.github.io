@@ -61,7 +61,7 @@
     <entry>
       <title><![CDATA[TJCTF - Blank]]></title>
       <url>/2018/08/12/TJCTF-Write-Up-Blank/</url>
-      <content type="text"><![CDATA[ChallengeSomeone told me there was a flag on this site, so why is it that I can only see blank?[5 points]Written by evanyeyeyeInitial thoughtsNot much.Exploitation1234567891011121314151617181920&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Blank&lt;/title&gt;&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;&lt;style type="text/css"&gt;p {position: absolute;top: 35%;left: 50%;transform: translate(-50%, -50%);font-size: 100px;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;『　　』&lt;/p&gt;&lt;!-- flag: tjctf{50urc3_c0d3_n3v3r_l0535} --&gt;&lt;/body&gt;&lt;/html&gt;After thoughtsErr… Not much.]]></content>
+      <content type="text"><![CDATA[ChallengeSomeone told me there was a flag on this site, so why is it that I can only see blank?[5 points]Written by evanyeyeyeInitial thoughtsNot much.Exploitation12345678910111213141516171819202122&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Blank&lt;/title&gt;&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;&lt;style type="text/css"&gt;p {position: absolute;top: 35%;left: 50%;transform: translate(-50%, -50%);font-size: 100px;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;『　　』&lt;/p&gt;&lt;!-- flag: tjctf{50urc3_c0d3_n3v3r_l0535} --&gt;&lt;/body&gt;&lt;/html&gt;After thoughtsErr… Not much.]]></content>
       <categories>
         
       </categories>
