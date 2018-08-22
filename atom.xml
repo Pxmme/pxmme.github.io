@@ -1,4 +1,187 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-22T17:45:16+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">NIHWK training CTF - WordPress</title><link href="/2018/08/22/NIHWK-Write-Up-Wordpress/" rel="alternate" type="text/html" title="NIHWK training CTF - WordPress" /><published>2018-08-22T07:00:00+02:00</published><updated>2018-08-22T07:00:00+02:00</updated><id>/2018/08/22/NIHWK-Write-Up-Wordpress</id><content type="html" xml:base="/2018/08/22/NIHWK-Write-Up-Wordpress/">&lt;!--more--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-22T17:47:20+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Programmable Hyperlinked Pasta</title><link href="/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta/" rel="alternate" type="text/html" title="TJCTF - Programmable Hyperlinked Pasta" /><published>2018-08-22T17:30:00+02:00</published><updated>2018-08-22T17:30:00+02:00</updated><id>/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta</id><content type="html" xml:base="/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta/">&lt;!-- more --&gt;
+
+&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+
+&lt;p&gt;Check out my new site! PHP is so cool!&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;programmable_hyperlinked_pasta.tjctf.org&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;[60 points]&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Written by nthistle&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/pasta.png&quot; alt=&quot;PHPasta&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I mean… Cmon, it’s pretty funny, right?&lt;/p&gt;
+
+&lt;p&gt;Probably have to deal with PHP anyway, so… Better laugh about it!&lt;/p&gt;
+
+&lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
+
+&lt;p&gt;Let’s take a look at this website.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/pastahome.png&quot; alt=&quot;Pastahome&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;What a nice web page! Oh, and look : we can display it… In spanish! How nice of them.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/pastahomespan.png&quot; alt=&quot;Pastahomespan&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When we display it in spanish, we can see that something gets added to the URL :&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;https://programmable_hyperlinked_pasta.tjctf.org/?lang=es.php&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Interesting. Let’s take a look at the source code now.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt; El Sitio de Neil! &lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;style&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#99ccff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nf&quot;&gt;#main-block&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;fixed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;56%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;20%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding-right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;15px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#ffffff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nf&quot;&gt;#footer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;fixed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding-right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding-bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;20px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#cccccc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.center&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;margin-right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;text-align&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main-block&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt; El Sitio de Neil! &lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;
+        Mi nombre es Neil, y esto es mi sitio. Trabajo aqui con mis amigos Evan y Aneesh. Todo aquí tiene un cuento y un precio. Una cosa que he aprendido después de 18 años - nunca sabe que necesita hacer para obtener esa bandera.    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- &amp;lt;a href=&quot;flag.txt&quot;&amp;gt;Here's a flag!&amp;lt;/a&amp;gt; --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;center&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;evanshi-es.png&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;center&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;100&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    Esto es Evan.    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;footer&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    Ahora en &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;?lang=en-us.php&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Inglés!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see line 53, there is a flag.txt somewhere on this web server.&lt;/p&gt;
+
+&lt;p&gt;Maybe, as we have seen before, we could get &lt;a href=&quot;https://www.owasp.org/index.php/Testing_for_Local_File_Inclusion&quot;&gt;LFI&lt;/a&gt; using the lang parameter, since it calls for a .php file…&lt;/p&gt;
+
+&lt;p&gt;Let’s try &lt;code class=&quot;highlighter-rouge&quot;&gt;https://programmable_hyperlinked_pasta.tjctf.org/?lang=flag.txt&lt;/code&gt; :&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/pastanoflag.png&quot; alt=&quot;Pasta&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;No luck. Well, let’s try &lt;code class=&quot;highlighter-rouge&quot;&gt;https://programmable_hyperlinked_pasta.tjctf.org/?lang=../flag.txt&lt;/code&gt; then!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/pastaflag.png&quot; alt=&quot;Pasta&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hey-ho! Success. Flag is : &lt;code class=&quot;highlighter-rouge&quot;&gt;tjctf{l0c4l_f1l3_wh4t?}&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
+
+&lt;p&gt;Even if basic, it took me a few tries and a few extra-minutes to figure this one out. I had already used LFI exploitation before, so I wasn’t lost here. On a sidenote, I must admit that the whole “pasta” joke still makes me laugh today. You gotta love the PHP hatred. :heart:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="web" /><summary type="html"></summary></entry><entry><title type="html">NIHWK training CTF - WordPress</title><link href="/2018/08/22/NIHWK-Write-Up-Wordpress/" rel="alternate" type="text/html" title="NIHWK training CTF - WordPress" /><published>2018-08-22T07:00:00+02:00</published><updated>2018-08-22T07:00:00+02:00</updated><id>/2018/08/22/NIHWK-Write-Up-Wordpress</id><content type="html" xml:base="/2018/08/22/NIHWK-Write-Up-Wordpress/">&lt;!--more--&gt;
 
 &lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
@@ -1051,61 +1234,4 @@ flag.txt
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;Very interesting challenge as I never had encountered this case before of a “too big to clone” git repo. I really like challenges that make you learn new things, and this includes the ones that make you read a command’s manual.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="misc" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - We Will Rock You</title><link href="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/" rel="alternate" type="text/html" title="TJCTF - We Will Rock You" /><published>2018-08-12T02:00:03+02:00</published><updated>2018-08-12T02:00:03+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/">&lt;!-- more --&gt;
-
-&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
-
-&lt;p&gt;Help! I lost the password to my Dogecoin wallet. I had like 10 Dogecoin in there. If you get the password, you’ll get the flag! Flag format: tjctf{password}&lt;/p&gt;
-
-&lt;p&gt;[75 points]&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Written by Alaska47&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
-
-&lt;p&gt;Seeing the name of the challenge, I immediately thought about the &lt;em&gt;infamous&lt;/em&gt; rockyou.txt list of passwords. For those of you who don’t know it, it’s this huge list of passwords that was created out of real, leaked passwords.&lt;/p&gt;
-
-&lt;p&gt;It’s natively present in Kali, check &lt;em&gt;/usr/share/wordlists&lt;/em&gt; and you’ll find a &lt;em&gt;rockyou.txt.gz&lt;/em&gt; :)&lt;/p&gt;
-
-&lt;p&gt;So I assumed I’d have to bruteforce this wallet in order to retrieve the password. I googled for “wallet bruteforce” and found glv2’s &lt;a href=&quot;https://github.com/glv2/bruteforce-wallet&quot; title=&quot;Click here to learn more!&quot;&gt;Github magic thingy&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
-
-&lt;p&gt;First off, let’s clone this github repo.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# git clone https://github.com/glv2/bruteforce-wallet
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Let’s install the dependencies required :&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# apt install libdb-dev libssl-dev -y
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Let’s then try to install it following the README’s instructions.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# cd bruteforce-wallet &amp;amp;&amp;amp; ./autogen.sh
-./autogen.sh: 6: ./autogen.sh: autoreconf: not found
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Oops! Seems I need to install a package first.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# apt-get install autoconf
-~# ./autogen.sh
-configure.ac:6: installing './compile'
-configure.ac:2: installing './install-sh'
-configure.ac:2: installing './missing'
-Makefile.am: installing './depcomp'
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Then a ./configure, make and make install and we’re good! Now, let’s use our new little tool :3&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# bruteforce-wallet -t 6 -f /root/Documents/rockyou.txt 9d7e6203fb6e2c14646c63bea94e48001b9317c86bec229c3e063904a168dfad_wallet.dat
-Warning: using dictionary mode, ignoring options -b, -e, -l, -m and -s.
- 
-Tried passwords: 59
-Tried passwords per second: 59,000000
-Last tried password: samantha
- 
-Password found: tinkerbell
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Got it! Password is “tinkerbell”, hereby flag is : &lt;code class=&quot;highlighter-rouge&quot;&gt;tjctf{tinkerbell}&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
-
-&lt;p&gt;A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="forensics" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;Very interesting challenge as I never had encountered this case before of a “too big to clone” git repo. I really like challenges that make you learn new things, and this includes the ones that make you read a command’s manual.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="misc" /><summary type="html"></summary></entry></feed>
