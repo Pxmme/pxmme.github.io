@@ -412,7 +412,7 @@ wpscan --url http://jordpress.herokuapp.com/ --enumerate u
 <td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11</pre></td>
 <td class="code"><pre class="highlight"><code>
 [+] Starting the password brute forcer
-  [+] [SUCCESS] Login : admin Password : 12345678                                                                                                                        
+  [+] [SUCCESS] Login : admin Password : 12345678
 
   Brute Forcing 'admin' Time: 00:00:23
   +----+-------+------+----------+
@@ -632,7 +632,7 @@ MySQL [ado77oc5a8ntg8qf]&gt;
 
 <p>And then I saw the light.</p>
 
-<p><code class="highlighter-rouge">Wait a minute... I didn't even fucking look around! As soon as I landed this shell, I started doing wp-config.php and MySQL enumeration without even doing a proper ls -al in the landing dir!</code></p>
+<p><em>Wait a minute… I didn’t even fucking look around! As soon as I landed this shell, I started doing wp-config.php and MySQL enumeration without even doing a proper ls -al in the landing dir!</em></p>
 
 <p>Long story short, there was indeed a stupid dir in /app, with the flag in it.</p>
 
