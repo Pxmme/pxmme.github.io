@@ -1,4 +1,106 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-23T10:02:59+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Programmable Hyperlinked Pasta</title><link href="/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta/" rel="alternate" type="text/html" title="TJCTF - Programmable Hyperlinked Pasta" /><published>2018-08-22T17:30:00+02:00</published><updated>2018-08-22T17:30:00+02:00</updated><id>/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta</id><content type="html" xml:base="/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta/">&lt;!-- more --&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-23T14:50:58+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Ssleepy</title><link href="/2018/08/23/TJCTF-Write-Up-Ssleepy/" rel="alternate" type="text/html" title="TJCTF - Ssleepy" /><published>2018-08-23T12:00:00+02:00</published><updated>2018-08-23T12:00:00+02:00</updated><id>/2018/08/23/TJCTF-Write-Up-Ssleepy</id><content type="html" xml:base="/2018/08/23/TJCTF-Write-Up-Ssleepy/">&lt;!-- more --&gt;
+
+&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+
+&lt;p&gt;I found this super suspicious transmission lying around on the floor. What could be in it?&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Written by Alaska47&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
+
+&lt;p&gt;We found ourselves with a .pcapng file. Let’s dig in and see if we can find the needle in the haystack. PCAP-based challenges can be either very fun or very boring and discouraging… As forensics in general.&lt;/p&gt;
+
+&lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/sleepyhome.png&quot; alt=&quot;Wiresharkhome&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As soon as we fire up Wireshark, we see a clear communication between a client and a FTP server. Line after line, we know everything they do.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/ssleepykey.png&quot; alt=&quot;Keyzip&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And so we know the client retrieved a file called key.zip from the FTP server. Well… Let’s get it.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/export.png&quot; alt=&quot;Export&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select the packet, select the sub-section &lt;em&gt;FTP DATA&lt;/em&gt; and right click on it. Then select “Export Packet bytes…” and save it as whatever.zip. Wireshark magic, uh? :smile:&lt;/p&gt;
+
+&lt;p&gt;Alright now. Let’s unzip this baby and see what’s inside.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# file key.zip 
+key.zip: Zip archive data, at least v2.0 to extract
+# unzip key.zip 
+Archive:  key.zip
+warning:  skipped &quot;../&quot; path component(s) in ../user/ftp/files/private/server_key.pem
+  inflating: user/ftp/files/private/server_key.pem  
+# cat user/ftp/files/private/server_key.pem 
+-----BEGIN RSA PRIVATE KEY-----
+MIICXQIBAAKBgQDJ3egkT4J5h4klOdnXiPB8wra4dFMZXPYZk3NWBYmlu5ImhMg7
+Iao7qrv/rNe4SNN/vbTLmuo/BJ0/L5O1QDYaZMFt63tFnhTjMWPAtx7uUGBJ+JZk
+PobNutrv463/tlTV0yvncL0x6Epapgtrur1b8vAl60nqcBFLxQ6EUGEUpQIDAQAB
+AoGBAIywHnkn/MwMPPX30q4Xn1ukLMpzL/MuScpbbHeYVm1uQ5aa1h34AXeiL3Iq
+mRGzl8uggF+icP1IjvsZgn1A6jLOATCKhmaoEldHj4OciaGpys3InFkY8sqlgjV+
+OHwbYYVt7a3hrcphN6I5nUAbK8VXz7ne3r3PwN6DIubqfeMhAkEA/nPdOGK3Cgdx
+vpTHnEK39XwWHOjDJURTsW78KNo1sqQbDYhGQAAlvXNoClz4dpjoVCxkIuHZ3zMC
++5IrKW0KaQJBAMsYLSGyM2WCl9NAcQ2l9lFQ1matTNy6cFmZckRv15nrF/X2mrtM
+BqyxJAY/rw/FjEoQde30kWr4ZrpbI7DzWN0CQQD8Km7t1kZ3VfFPYbqADU6ppZN0
+iuf6IsCectLK2ZWluCRnQMn92yeLnLdardA+GEMGSAfk2dZE8BTgo3bK0xkhAkBU
+X9/oHtuBcabXye7t56QUlkvsblT/YqloX/p7+icNOAFFW0VfSK+BMTqxKeX13HFz
+F7GWwUNkuHwdMd37Fq41AkBJC0pZtkbzdUzwZre8XylK8rI62xJUUdOmyowaSmi/
+vEJTGtlc2+b5ztlsYjzsPFaI49fw8QNawtZj1e3CRc7w
+-----END RSA PRIVATE KEY-----
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We’ve got a private RSA key! Useful for, let’s say… Decrypt SSL? What was the name of this challenge again? Sleepy? Or… &lt;strong&gt;SSL&lt;/strong&gt;eepy&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/isee.jpg&quot; alt=&quot;Isee&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s take a look at what went on after this FTP transaction in the pcapng. Uh, unfortunately, it’s all encrypted by SSL. Luckily, we have the key to the dungeon now.&lt;/p&gt;
+
+&lt;p&gt;Let’s click Edit on Wireshark’s menu, then Preferences, then Protocols, then SSL, then RSA keys list, and add one, shall we?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/ssleepyrsa.png&quot; alt=&quot;ssleepyrsa&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Set the IP to 10.142.0.3 as seen in the pcap, set the server_key.pem we extracted earlier, and port 443. Save and quit.&lt;/p&gt;
+
+&lt;p&gt;Oh, look! We can now see decrypted SSL data on some new tabs at the bottom of Wireshark! &lt;strong&gt;Magic intensifies&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/ssleepyhttp.png&quot; alt=&quot;ssleepyhttp&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Seems like a flag.jpg was requested over a web server. Let’s follow the SSL stream to get our flag!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/followssl.png&quot; alt=&quot;followssl&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Just save it as raw data to a file called, let’s say, &lt;em&gt;wu.jpg&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/ssleepysaving.png&quot; alt=&quot;saving&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Err… We have a problem now :&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# file wu.jpg 
+wu.jpg: data
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/ssleepybyteswrong.png&quot; alt=&quot;bytes&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s not recognized as a jpeg file because there is some shit before the &lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_file_signatures&quot;&gt;magic bytes&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;We shall erase everything that stands before FF D8 FF DB.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/sleepybytesright.png&quot; alt=&quot;noice&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Save it, now open the jpeg with your favourite software that can open images.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/ssleepyflag.png&quot; alt=&quot;flagged&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Got it! Flag is : &lt;code class=&quot;highlighter-rouge&quot;&gt;tjctf{wireshark_or_sharkwire?}&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
+
+&lt;p&gt;This was one of the few forensics challenges I actually enjoyed. It wasn’t quick and easy, it wasn’t overcomplicated, but overall, it taught me things about Wireshark. And that’s priceless. Also reminded me to always look for magic bytes, so… Yeah, there’s that.&lt;/p&gt;
+
+&lt;p&gt;Special mention for Alaska47 who made it so an HTTP request to /sharkwire_or_wireshark was made a little before the flag.jpg request, the loomy bastard! :heart:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="forensics" /><summary type="html">Challenge I found this super suspicious transmission lying around on the floor. What could be in it? Written by Alaska47 Initial thoughts We found ourselves with a .pcapng file. Let’s dig in and see if we can find the needle in the haystack. PCAP-based challenges can be either very fun or very boring and discouraging… As forensics in general. Exploitation As soon as we fire up Wireshark, we see a clear communication between a client and a FTP server. Line after line, we know everything they do. And so we know the client retrieved a file called key.zip from the FTP server. Well… Let’s get it. Select the packet, select the sub-section FTP DATA and right click on it. Then select “Export Packet bytes…” and save it as whatever.zip. Wireshark magic, uh? :smile: Alright now. Let’s unzip this baby and see what’s inside. # file key.zip key.zip: Zip archive data, at least v2.0 to extract # unzip key.zip Archive: key.zip warning: skipped &quot;../&quot; path component(s) in ../user/ftp/files/private/server_key.pem inflating: user/ftp/files/private/server_key.pem # cat user/ftp/files/private/server_key.pem -----BEGIN RSA PRIVATE KEY----- MIICXQIBAAKBgQDJ3egkT4J5h4klOdnXiPB8wra4dFMZXPYZk3NWBYmlu5ImhMg7 Iao7qrv/rNe4SNN/vbTLmuo/BJ0/L5O1QDYaZMFt63tFnhTjMWPAtx7uUGBJ+JZk PobNutrv463/tlTV0yvncL0x6Epapgtrur1b8vAl60nqcBFLxQ6EUGEUpQIDAQAB AoGBAIywHnkn/MwMPPX30q4Xn1ukLMpzL/MuScpbbHeYVm1uQ5aa1h34AXeiL3Iq mRGzl8uggF+icP1IjvsZgn1A6jLOATCKhmaoEldHj4OciaGpys3InFkY8sqlgjV+ OHwbYYVt7a3hrcphN6I5nUAbK8VXz7ne3r3PwN6DIubqfeMhAkEA/nPdOGK3Cgdx vpTHnEK39XwWHOjDJURTsW78KNo1sqQbDYhGQAAlvXNoClz4dpjoVCxkIuHZ3zMC +5IrKW0KaQJBAMsYLSGyM2WCl9NAcQ2l9lFQ1matTNy6cFmZckRv15nrF/X2mrtM BqyxJAY/rw/FjEoQde30kWr4ZrpbI7DzWN0CQQD8Km7t1kZ3VfFPYbqADU6ppZN0 iuf6IsCectLK2ZWluCRnQMn92yeLnLdardA+GEMGSAfk2dZE8BTgo3bK0xkhAkBU X9/oHtuBcabXye7t56QUlkvsblT/YqloX/p7+icNOAFFW0VfSK+BMTqxKeX13HFz F7GWwUNkuHwdMd37Fq41AkBJC0pZtkbzdUzwZre8XylK8rI62xJUUdOmyowaSmi/ vEJTGtlc2+b5ztlsYjzsPFaI49fw8QNawtZj1e3CRc7w -----END RSA PRIVATE KEY----- We’ve got a private RSA key! Useful for, let’s say… Decrypt SSL? What was the name of this challenge again? Sleepy? Or… SSLeepy Let’s take a look at what went on after this FTP transaction in the pcapng. Uh, unfortunately, it’s all encrypted by SSL. Luckily, we have the key to the dungeon now. Let’s click Edit on Wireshark’s menu, then Preferences, then Protocols, then SSL, then RSA keys list, and add one, shall we? Set the IP to 10.142.0.3 as seen in the pcap, set the server_key.pem we extracted earlier, and port 443. Save and quit. Oh, look! We can now see decrypted SSL data on some new tabs at the bottom of Wireshark! Magic intensifies Seems like a flag.jpg was requested over a web server. Let’s follow the SSL stream to get our flag! Just save it as raw data to a file called, let’s say, wu.jpg. Err… We have a problem now : # file wu.jpg wu.jpg: data It’s not recognized as a jpeg file because there is some shit before the magic bytes! We shall erase everything that stands before FF D8 FF DB. Save it, now open the jpeg with your favourite software that can open images. Got it! Flag is : tjctf{wireshark_or_sharkwire?} After thoughts This was one of the few forensics challenges I actually enjoyed. It wasn’t quick and easy, it wasn’t overcomplicated, but overall, it taught me things about Wireshark. And that’s priceless. Also reminded me to always look for magic bytes, so… Yeah, there’s that. Special mention for Alaska47 who made it so an HTTP request to /sharkwire_or_wireshark was made a little before the flag.jpg request, the loomy bastard! :heart:</summary></entry><entry><title type="html">TJCTF - Programmable Hyperlinked Pasta</title><link href="/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta/" rel="alternate" type="text/html" title="TJCTF - Programmable Hyperlinked Pasta" /><published>2018-08-22T17:30:00+02:00</published><updated>2018-08-22T17:30:00+02:00</updated><id>/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta</id><content type="html" xml:base="/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta/">&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
@@ -1147,91 +1249,4 @@ tjctf{wh0_kn3w_pyth0n_w4s_s0_sl1pp3ry}
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;I maybe made it sound easy or quick writing this, but it actually took me a few hours to figure this all out. As it was my first time, I definitly needed some help and advices, and that’s where &lt;a href=&quot;https://twitter.com/highsenburger69&quot;&gt;Highsenburger69&lt;/a&gt; came handy. Shout out to you, lovely bastard! :heart:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="misc" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Huuuuuge</title><link href="/2018/08/12/TJCTF-Write-Up-Huuuuuge/" rel="alternate" type="text/html" title="TJCTF - Huuuuuge" /><published>2018-08-12T02:00:04+02:00</published><updated>2018-08-12T02:00:04+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Huuuuuge</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Huuuuuge/">&lt;!-- more --&gt;
-
-&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
-
-&lt;p&gt;Don’t think too deep.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;104.154.187.226/huuuuuge&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;[25 points]&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Written by Alaska47&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
-
-&lt;p&gt;Uh. They’re giving us an IP address with an extension (/xxx) which probably means it’s web. But then, why classify this challenge as misc’?&lt;/p&gt;
-
-&lt;p&gt;Let’s find out.&lt;/p&gt;
-
-&lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
-
-&lt;p&gt;First of all, let’s fire up nmap and gather information about 104.154.187.226.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PORT     STATE  SERVICE VERSION
-22/tcp   open   ssh     OpenSSH 7.4p1 Debian 10+deb9u3 (protocol 2.0)
-| ssh-hostkey: 
-|   2048 25:97:23:e0:26:26:07:2e:f6:38:20:90:ce:39:44:96 (RSA)
-|   256 66:2e:64:31:21:83:68:03:2b:05:30:05:7a:59:72:df (ECDSA)
-|_  256 25:61:dd:51:b8:43:76:47:ba:96:16:fe:cd:09:e0:04 (ED25519)
-80/tcp   closed http
-5901/tcp closed vnc-1
-9418/tcp open   git?
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Interesting. It’s not a web server after all. I immediately thought that this git opened port was looking weird. Well, let’s try to interact with it.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# git clone 104.154.187.226/huuuuuge
-fatal: repository '104.154.187.226/huuuuuge' does not exist
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Err. Silly me. I forgot the extension, plus : it’s not a web server, so I gotta tell my git where to look and HOW to look.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# git clone git://104.154.187.226/huuuuuge
-Cloning into 'huuuuuge'...
-remote: Counting objects: 309, done.
-remote: warning: suboptimal pack - out of memory
-remote: fatal: Out of memory, malloc failed (tried to allocate 104857601 bytes)
-remote: aborting due to possible repository corruption on the remote side.
-fatal: early EOF
-fatal: index-pack failed
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;God damn, this thing is massive! Wait… Challenge name’s Huuuuuge… I see what they did here…&lt;/p&gt;
-
-&lt;p&gt;Let’s look at &lt;strong&gt;git clone&lt;/strong&gt;’s manual :&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;--depth &amp;lt;depth&amp;gt;
-Create a shallow clone with a history truncated to the specified number of commits. Implies --single-branch unless --no-single-branch is given to fetch the histories near the tips of all branches. If you want to clone submodules shallowly, also pass --shallow-submodules.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Interesting… Let’s try something then, just to see what comes out!&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# git clone --depth 1 git://104.154.187.226/huuuuuge
-Cloning into 'huuuuuge'...
-remote: Counting objects: 3, done.
-remote: Total 3 (delta 0), reused 0 (delta 0)
-Receiving objects: 100% (3/3), done.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Uh, uh! We got the first line. Let’s open it and see what lies for us there.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~# cd huuuuuge/
-~/huuuuuge# ls
-flag.txt
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;How nice of them to give us a flag like that! You gotta love TJCTF.&lt;/p&gt;
-
-&lt;p&gt;The flag was : &lt;code class=&quot;highlighter-rouge&quot;&gt;tjctf{this_fl4g_1s_huuuuuge}&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
-
-&lt;p&gt;Very interesting challenge as I never had encountered this case before of a “too big to clone” git repo. I really like challenges that make you learn new things, and this includes the ones that make you read a command’s manual.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="misc" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;I maybe made it sound easy or quick writing this, but it actually took me a few hours to figure this all out. As it was my first time, I definitly needed some help and advices, and that’s where &lt;a href=&quot;https://twitter.com/highsenburger69&quot;&gt;Highsenburger69&lt;/a&gt; came handy. Shout out to you, lovely bastard! :heart:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="misc" /><summary type="html"></summary></entry></feed>
