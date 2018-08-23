@@ -375,13 +375,13 @@
 
 <h2 id="initial-thoughts">Initial thoughts</h2>
 
-<p>We found ourselves with a .pcapng file. Let’s dig in and see if we can find the needle in the haystack. PCAP-based challenges can be either very fun or very boring and discouraging… As forensics in general.</p>
+<p>We find ourselves alone with a .pcapng file. Let’s dig in and see if we can find the needle in the haystack. PCAP-based challenges can be either very fun or very boring and discouraging… As with forensics in general.</p>
 
 <h2 id="exploitation">Exploitation</h2>
 
 <p><img src="/imgs/sleepyhome.png" alt="Wiresharkhome" class="img-responsive"></p>
 
-<p>As soon as we fire up Wireshark, we see a clear communication between a client and a FTP server. Line after line, we know everything they do.</p>
+<p>As soon as we fire up Wireshark, we see a clear communication between a client and an FTP server. Wireshark lets us see everything that’s happening.</p>
 
 <p><img src="/imgs/ssleepykey.png" alt="Keyzip" class="img-responsive"></p>
 
@@ -389,7 +389,7 @@
 
 <p><img src="/imgs/export.png" alt="Export" class="img-responsive"></p>
 
-<p>Select the packet, select the sub-section <em>FTP DATA</em> and right click on it. Then select “Export Packet bytes…” and save it as whatever.zip. Wireshark magic, uh? <img class="emoji" title=":smile:" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" height="20" width="20" align="absmiddle"></p>
+<p>Select the packet, select the sub-section <em>FTP DATA</em> and right click on it. Then select “Export Packet bytes…” and save it as whatever.zip. Wireshark magic, eh? <img class="emoji" title=":smile:" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" height="20" width="20" align="absmiddle"></p>
 
 <p>Alright now. Let’s unzip this baby and see what’s inside.</p>
 
@@ -461,7 +461,7 @@ wu.jpg: data
 
 <p>It’s not recognized as a jpeg file because there is some shit before the <a href="https://en.wikipedia.org/wiki/List_of_file_signatures">magic bytes</a>!</p>
 
-<p>We shall erase everything that stands before FF D8 FF DB.</p>
+<p>We shall erase every byte that precedes FF D8 FF DB.</p>
 
 <p><img src="/imgs/ssleepybytesright.png" alt="noice" class="img-responsive"></p>
 
@@ -473,7 +473,7 @@ wu.jpg: data
 
 <h2 id="after-thoughts">After thoughts</h2>
 
-<p>This was one of the few forensics challenges I actually enjoyed. It wasn’t quick and easy, it wasn’t overcomplicated, but overall, it taught me things about Wireshark. And that’s priceless. Also reminded me to always look for magic bytes, so… Yeah, there’s that.</p>
+<p>This was one of the few forensics challenges I actually enjoyed. It wasn’t quick and easy, it wasn’t overly complicated, but overall, it taught me things about Wireshark. And that’s priceless. Also reminded me to always look for magic bytes, so… Yeah, there’s that.</p>
 
 <p>Special mention for Alaska47 who made it so an HTTP request to /sharkwire_or_wireshark was made a little before the flag.jpg request, the loomy bastard! <img class="emoji" title=":heart:" alt=":heart:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2764.png" height="20" width="20" align="absmiddle"></p>
 

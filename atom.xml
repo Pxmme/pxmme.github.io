@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-23T17:40:36+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Ssleepy</title><link href="/2018/08/23/TJCTF-Write-Up-Ssleepy/" rel="alternate" type="text/html" title="TJCTF - Ssleepy" /><published>2018-08-23T12:00:00+02:00</published><updated>2018-08-23T12:00:00+02:00</updated><id>/2018/08/23/TJCTF-Write-Up-Ssleepy</id><content type="html" xml:base="/2018/08/23/TJCTF-Write-Up-Ssleepy/">&lt;!-- more --&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-23T18:01:36+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Ssleepy</title><link href="/2018/08/23/TJCTF-Write-Up-Ssleepy/" rel="alternate" type="text/html" title="TJCTF - Ssleepy" /><published>2018-08-23T12:00:00+02:00</published><updated>2018-08-23T12:00:00+02:00</updated><id>/2018/08/23/TJCTF-Write-Up-Ssleepy</id><content type="html" xml:base="/2018/08/23/TJCTF-Write-Up-Ssleepy/">&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
@@ -10,13 +10,13 @@
 
 &lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
 
-&lt;p&gt;We found ourselves with a .pcapng file. Let’s dig in and see if we can find the needle in the haystack. PCAP-based challenges can be either very fun or very boring and discouraging… As forensics in general.&lt;/p&gt;
+&lt;p&gt;We find ourselves alone with a .pcapng file. Let’s dig in and see if we can find the needle in the haystack. PCAP-based challenges can be either very fun or very boring and discouraging… As with forensics in general.&lt;/p&gt;
 
 &lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&quot;/imgs/sleepyhome.png&quot; alt=&quot;Wiresharkhome&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;As soon as we fire up Wireshark, we see a clear communication between a client and a FTP server. Line after line, we know everything they do.&lt;/p&gt;
+&lt;p&gt;As soon as we fire up Wireshark, we see a clear communication between a client and an FTP server. Wireshark lets us see everything that’s happening.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/imgs/ssleepykey.png&quot; alt=&quot;Keyzip&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 
@@ -24,7 +24,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/imgs/export.png&quot; alt=&quot;Export&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Select the packet, select the sub-section &lt;em&gt;FTP DATA&lt;/em&gt; and right click on it. Then select “Export Packet bytes…” and save it as whatever.zip. Wireshark magic, uh? :smile:&lt;/p&gt;
+&lt;p&gt;Select the packet, select the sub-section &lt;em&gt;FTP DATA&lt;/em&gt; and right click on it. Then select “Export Packet bytes…” and save it as whatever.zip. Wireshark magic, eh? :smile:&lt;/p&gt;
 
 &lt;p&gt;Alright now. Let’s unzip this baby and see what’s inside.&lt;/p&gt;
 
@@ -88,7 +88,7 @@ wu.jpg: data
 
 &lt;p&gt;It’s not recognized as a jpeg file because there is some shit before the &lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_file_signatures&quot;&gt;magic bytes&lt;/a&gt;!&lt;/p&gt;
 
-&lt;p&gt;We shall erase everything that stands before FF D8 FF DB.&lt;/p&gt;
+&lt;p&gt;We shall erase every byte that precedes FF D8 FF DB.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/imgs/ssleepybytesright.png&quot; alt=&quot;noice&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 
@@ -100,7 +100,7 @@ wu.jpg: data
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;This was one of the few forensics challenges I actually enjoyed. It wasn’t quick and easy, it wasn’t overcomplicated, but overall, it taught me things about Wireshark. And that’s priceless. Also reminded me to always look for magic bytes, so… Yeah, there’s that.&lt;/p&gt;
+&lt;p&gt;This was one of the few forensics challenges I actually enjoyed. It wasn’t quick and easy, it wasn’t overly complicated, but overall, it taught me things about Wireshark. And that’s priceless. Also reminded me to always look for magic bytes, so… Yeah, there’s that.&lt;/p&gt;
 
 &lt;p&gt;Special mention for Alaska47 who made it so an HTTP request to /sharkwire_or_wireshark was made a little before the flag.jpg request, the loomy bastard! :heart:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="forensics" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Programmable Hyperlinked Pasta</title><link href="/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta/" rel="alternate" type="text/html" title="TJCTF - Programmable Hyperlinked Pasta" /><published>2018-08-22T17:30:00+02:00</published><updated>2018-08-22T17:30:00+02:00</updated><id>/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta</id><content type="html" xml:base="/2018/08/22/TJCTF-Programmable-Hyperlinked-Pasta/">&lt;!-- more --&gt;
 
