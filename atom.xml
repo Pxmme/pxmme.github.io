@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-23T20:35:34+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Ssleepy</title><link href="/2018/08/23/TJCTF-Write-Up-Ssleepy/" rel="alternate" type="text/html" title="TJCTF - Ssleepy" /><published>2018-08-23T12:00:00+02:00</published><updated>2018-08-23T12:00:00+02:00</updated><id>/2018/08/23/TJCTF-Write-Up-Ssleepy</id><content type="html" xml:base="/2018/08/23/TJCTF-Write-Up-Ssleepy/">&lt;!-- more --&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-23T20:38:58+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Ssleepy</title><link href="/2018/08/23/TJCTF-Write-Up-Ssleepy/" rel="alternate" type="text/html" title="TJCTF - Ssleepy" /><published>2018-08-23T12:00:00+02:00</published><updated>2018-08-23T12:00:00+02:00</updated><id>/2018/08/23/TJCTF-Write-Up-Ssleepy</id><content type="html" xml:base="/2018/08/23/TJCTF-Write-Up-Ssleepy/">&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
@@ -759,7 +759,9 @@ flag{wordpress_1s_vulnerable!!!!!!!}
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;Took me quite a lot of time because I’m still a python beginner, and all those functions and transformations kept making my brain suffer, but I got it eventually!&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="reversing" /><category term="python" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Central Saving Account</title><link href="/2018/08/12/TJCTF-Write-Up-Central-Saving-Account/" rel="alternate" type="text/html" title="TJCTF - Central Saving Account" /><published>2018-08-12T02:00:15+02:00</published><updated>2018-08-12T02:00:15+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Central-Saving-Account</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Central-Saving-Account/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+&lt;p&gt;Took me quite a lot of time because I’m still a python beginner, and all those functions and transformations kept making my brain suffer, but I got it eventually!&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="reversing" /><category term="python" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Central Saving Account</title><link href="/2018/08/12/TJCTF-Write-Up-Central-Saving-Account/" rel="alternate" type="text/html" title="TJCTF - Central Saving Account" /><published>2018-08-12T02:00:15+02:00</published><updated>2018-08-12T02:00:15+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Central-Saving-Account</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Central-Saving-Account/">&lt;!-- more --&gt;
+
+&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;I seem to have forgotten the password for my savings account. What am I gonna do?&lt;/p&gt;
 
@@ -768,8 +770,6 @@ flag{wordpress_1s_vulnerable!!!!!!!}
 &lt;p&gt;[10 points]&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Written by evanyeyeye&lt;/em&gt;&lt;/p&gt;
-
-&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
 
@@ -865,7 +865,7 @@ flag{wordpress_1s_vulnerable!!!!!!!}
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;Kinda basic, still enjoyable.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="web" /><summary type="html">Challenge</summary></entry><entry><title type="html">TJCTF - RC4 took an L</title><link href="/2018/08/12/TJCTF-Write-Up-RC4-took-an-L/" rel="alternate" type="text/html" title="TJCTF - RC4 took an L" /><published>2018-08-12T02:00:11+02:00</published><updated>2018-08-12T02:00:11+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-RC4-took-an-L</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-RC4-took-an-L/">&lt;!-- more --&gt;
+&lt;p&gt;Kinda basic, still enjoyable.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="web" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - RC4 took an L</title><link href="/2018/08/12/TJCTF-Write-Up-RC4-took-an-L/" rel="alternate" type="text/html" title="TJCTF - RC4 took an L" /><published>2018-08-12T02:00:11+02:00</published><updated>2018-08-12T02:00:11+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-RC4-took-an-L</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-RC4-took-an-L/">&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
@@ -920,15 +920,15 @@ Flag : i_hope_that_by_making_this_long_you_will_assume_substitution_cipher_and_g
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;I could’ve spend hours trying to figure this challenge out, writing python scripts, looking web-pages… But I got lucky and googled first the string I needed to google. All in all, this challenge took me at most ten minutes, where it could have taken me hours if I didn’t have this hunch about the alphabet. Pretty fun though!&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="crypto" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Ess Kyoo Ell</title><link href="/2018/08/12/TJCTF-Write-Up-Ess-Kyoo-Ell/" rel="alternate" type="text/html" title="TJCTF - Ess Kyoo Ell" /><published>2018-08-12T02:00:10+02:00</published><updated>2018-08-12T02:00:10+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Ess-Kyoo-Ell</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Ess-Kyoo-Ell/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+&lt;p&gt;I could’ve spend hours trying to figure this challenge out, writing python scripts, looking web-pages… But I got lucky and googled first the string I needed to google. All in all, this challenge took me at most ten minutes, where it could have taken me hours if I didn’t have this hunch about the alphabet. Pretty fun though!&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="crypto" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Ess Kyoo Ell</title><link href="/2018/08/12/TJCTF-Write-Up-Ess-Kyoo-Ell/" rel="alternate" type="text/html" title="TJCTF - Ess Kyoo Ell" /><published>2018-08-12T02:00:10+02:00</published><updated>2018-08-12T02:00:10+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Ess-Kyoo-Ell</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Ess-Kyoo-Ell/">&lt;!-- more --&gt;
+
+&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;Find the IP address of the admin user! (flag is tjctf{[ip]})&lt;/p&gt;
 
 &lt;p&gt;[40 points]&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Written by okulkarni&lt;/em&gt;&lt;/p&gt;
-
-&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
 
@@ -978,15 +978,15 @@ Flag : i_hope_that_by_making_this_long_you_will_assume_substitution_cipher_and_g
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;A pretty basic web challenge to be honest but still refreshing and nice to complete. I already had encountered such challenges in the past but it took me a little while to get back to it and figure it out, so… All in all, it was worth it!&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="web" /><summary type="html">Challenge</summary></entry><entry><title type="html">TJCTF - Blank</title><link href="/2018/08/12/TJCTF-Write-Up-Blank/" rel="alternate" type="text/html" title="TJCTF - Blank" /><published>2018-08-12T02:00:09+02:00</published><updated>2018-08-12T02:00:09+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Blank</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Blank/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+&lt;p&gt;A pretty basic web challenge to be honest but still refreshing and nice to complete. I already had encountered such challenges in the past but it took me a little while to get back to it and figure it out, so… All in all, it was worth it!&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="web" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Blank</title><link href="/2018/08/12/TJCTF-Write-Up-Blank/" rel="alternate" type="text/html" title="TJCTF - Blank" /><published>2018-08-12T02:00:09+02:00</published><updated>2018-08-12T02:00:09+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Blank</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Blank/">&lt;!-- more --&gt;
+
+&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;Someone told me there was a flag on this site, so why is it that I can only see blank?&lt;/p&gt;
 
 &lt;p&gt;[5 points]&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Written by evanyeyeye&lt;/em&gt;&lt;/p&gt;
-
-&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
 
@@ -1041,15 +1041,15 @@ Flag : i_hope_that_by_making_this_long_you_will_assume_substitution_cipher_and_g
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;Err… Not much.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="web" /><summary type="html">Challenge</summary></entry><entry><title type="html">TJCTF - Cookie Monster</title><link href="/2018/08/12/TJCTF-Write-Up-Cookie-Monster/" rel="alternate" type="text/html" title="TJCTF - Cookie Monster" /><published>2018-08-12T02:00:08+02:00</published><updated>2018-08-12T02:00:08+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Cookie-Monster</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Cookie-Monster/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+&lt;p&gt;Err… Not much.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="web" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Cookie Monster</title><link href="/2018/08/12/TJCTF-Write-Up-Cookie-Monster/" rel="alternate" type="text/html" title="TJCTF - Cookie Monster" /><published>2018-08-12T02:00:08+02:00</published><updated>2018-08-12T02:00:08+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Cookie-Monster</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Cookie-Monster/">&lt;!-- more --&gt;
+
+&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;The Cookie Monster is not a fan of horses&lt;/p&gt;
 
 &lt;p&gt;[10 points]&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Written by okulkarni&lt;/em&gt;&lt;/p&gt;
-
-&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
 
@@ -1063,7 +1063,9 @@ Flag : i_hope_that_by_making_this_long_you_will_assume_substitution_cipher_and_g
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;Err… Not much.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="web" /><summary type="html">Challenge</summary></entry><entry><title type="html">TJCTF - Mirror Mirror</title><link href="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/" rel="alternate" type="text/html" title="TJCTF - Mirror Mirror" /><published>2018-08-12T02:00:05+02:00</published><updated>2018-08-12T02:00:05+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Mirror-Mirror</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+&lt;p&gt;Err… Not much.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="web" /><summary type="html"></summary></entry><entry><title type="html">TJCTF - Mirror Mirror</title><link href="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/" rel="alternate" type="text/html" title="TJCTF - Mirror Mirror" /><published>2018-08-12T02:00:05+02:00</published><updated>2018-08-12T02:00:05+02:00</updated><id>/2018/08/12/TJCTF-Write-Up-Mirror-Mirror</id><content type="html" xml:base="/2018/08/12/TJCTF-Write-Up-Mirror-Mirror/">&lt;!-- more --&gt;
+
+&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;If you look closely, you can see a reflection.&lt;/p&gt;
 
@@ -1072,8 +1074,6 @@ Flag : i_hope_that_by_making_this_long_you_will_assume_substitution_cipher_and_g
 &lt;p&gt;[100 points]&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Written by Alaska47&lt;/em&gt;&lt;/p&gt;
-
-&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
 
@@ -1249,4 +1249,4 @@ tjctf{wh0_kn3w_pyth0n_w4s_s0_sl1pp3ry}
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;I maybe made it sound easy or quick writing this, but it actually took me a few hours to figure this all out. As it was my first time, I definitly needed some help and advices, and that’s where &lt;a href=&quot;https://twitter.com/highsenburger69&quot;&gt;Highsenburger69&lt;/a&gt; came handy. Shout out to you, lovely bastard! :heart:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="misc" /><summary type="html">Challenge</summary></entry></feed>
+&lt;p&gt;I maybe made it sound easy or quick writing this, but it actually took me a few hours to figure this all out. As it was my first time, I definitly needed some help and advices, and that’s where &lt;a href=&quot;https://twitter.com/highsenburger69&quot;&gt;Highsenburger69&lt;/a&gt; came handy. Shout out to you, lovely bastard! :heart:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="tjctf-2018" /><category term="write-up" /><category term="misc" /><summary type="html"></summary></entry></feed>
