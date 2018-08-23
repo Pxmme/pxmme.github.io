@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-23T17:33:34+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Ssleepy</title><link href="/2018/08/23/TJCTF-Write-Up-Ssleepy/" rel="alternate" type="text/html" title="TJCTF - Ssleepy" /><published>2018-08-23T12:00:00+02:00</published><updated>2018-08-23T12:00:00+02:00</updated><id>/2018/08/23/TJCTF-Write-Up-Ssleepy</id><content type="html" xml:base="/2018/08/23/TJCTF-Write-Up-Ssleepy/">&lt;!-- more --&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-23T17:40:36+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">TJCTF - Ssleepy</title><link href="/2018/08/23/TJCTF-Write-Up-Ssleepy/" rel="alternate" type="text/html" title="TJCTF - Ssleepy" /><published>2018-08-23T12:00:00+02:00</published><updated>2018-08-23T12:00:00+02:00</updated><id>/2018/08/23/TJCTF-Write-Up-Ssleepy</id><content type="html" xml:base="/2018/08/23/TJCTF-Write-Up-Ssleepy/">&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
@@ -621,9 +621,7 @@ MySQL [ado77oc5a8ntg8qf]&amp;gt;
 
 &lt;p&gt;I started to think about the SMTP password then.&lt;/p&gt;
 
-&lt;p&gt;Hopefully, I had a full bladder by then and had to take a weewee break. While my bladder was unloading itself, I got time to think.&lt;/p&gt;
-
-&lt;p&gt;And then I saw the light.&lt;/p&gt;
+&lt;p&gt;With my bladder full, and my energy low, I decided to take a break to unburden myself. It was during midstream that it came to me, an insight from the pee-gods.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Wait a minute… I didn’t even fucking look around! As soon as I landed this shell, I started doing wp-config.php and MySQL enumeration without even doing a proper ls -al in the landing dir!&lt;/em&gt;&lt;/p&gt;
 
@@ -1089,7 +1087,7 @@ Hi! Are you looking for the flag? Try get_flag() for free flags. Remember, wrap 
 
 &lt;p&gt;To be really honest here, this was my first pyjail. Ever. I had never heard of this kind of challenge before. I knew about “bash jail” or whatever ; but didn’t know it was a thing.&lt;/p&gt;
 
-&lt;p&gt;Took me a lot of googling, trying stupid shit like “python console exploit” or “python console enum”, and I couldn’t find nothing. Hopefully, a good man called &lt;a href=&quot;https://twitter.com/highsenburger69&quot;&gt;Highsenburger69&lt;/a&gt; told me “it’s a &lt;strong&gt;pyjail&lt;/strong&gt;” and sent me &lt;a href=&quot;http://wapiflapi.github.io/2013/04/22/plaidctf-pyjail-story-of-pythons-escape/&quot;&gt;this link&lt;/a&gt;. Game on.&lt;/p&gt;
+&lt;p&gt;Took me a lot of googling, trying stupid shit like “python console exploit” or “python console enum”, and I couldn’t find nothing. Luckily, a good man called &lt;a href=&quot;https://twitter.com/highsenburger69&quot;&gt;Highsenburger69&lt;/a&gt; told me “it’s a &lt;strong&gt;pyjail&lt;/strong&gt;” and sent me &lt;a href=&quot;http://wapiflapi.github.io/2013/04/22/plaidctf-pyjail-story-of-pythons-escape/&quot;&gt;this link&lt;/a&gt;. Game on.&lt;/p&gt;
 
 &lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
 
