@@ -1,4 +1,0 @@
-AuthName "Please enter root md5 hash to access this writeup as this box is not retired yet"
-AuthType Basic
-AuthUserFile "/absolute/path/to/writeup/dir/.htpasswd"
-Require valid-user
