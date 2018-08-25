@@ -597,7 +597,7 @@ Nmap done: 1 IP address (1 host up) scanned in 34.08 seconds
 </tr></tbody></table></div>
 </div>
 
-<p>Quite a few informations there already. Unfortunately, after a few minutes spent trying to get into that Tomcat, with no success, I tried a gobuster, which also found /manager but with something maybe more interesting.</p>
+<p>Quite a few information there already. Unfortunately, after spending a few minutes spent trying to get into that Tomcat, with no success, I tried a gobuster, which also found /manager but with something maybe more interesting.</p>
 
 <div class="highlighter-rouge">
 <div class="highlight"><table style="margin: 0px"><tbody><tr>
@@ -688,7 +688,7 @@ pass=admin
 </tr></tbody></table></div>
 </div>
 
-<p>Looks nice! After I tried getting in through SSH with those creds (and with no luck), I thought that maybe that’s some creds for some kind of mysql db, since apache struts needs it?</p>
+<p>Looks nice! After I tried getting in through SSH with those creds (and with no luck), I thought that maybe they are some creds for some kind of mysql db, since apache struts needs it?</p>
 
 <div class="highlighter-rouge">
 <div class="highlight"><table style="margin: 0px"><tbody><tr>
@@ -898,7 +898,7 @@ d41d8cd98f00b204e9800998ecf8427e
 
 <h2 id="after-thoughts">After thoughts</h2>
 
-<p>Very nice box with new elements in it such as Apache Struts exploitation. I already did a few libraries hijacking and the rest of it (enumeration, gobuster) was pretty easy. If I need to really be honest, what took me the more time on this machine was actually the MySql fucked up syntax!</p>
+<p>Very nice box with new elements in it such as the Apache Struts exploitation. I already did a few libraries hijacking and the rest of it (enumeration, gobuster, sudo -l) was pretty easy. If I need to be really honest, what took me the most time on this machine was actually MySql’s fucked up syntax!</p>
 
 
       
