@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-25T11:55:57+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">HTB - Stratosphere</title><link href="/2018/08/25/HTB-Stratosphere/" rel="alternate" type="text/html" title="HTB - Stratosphere" /><published>2018-08-25T07:00:00+02:00</published><updated>2018-08-25T07:00:00+02:00</updated><id>/2018/08/25/HTB-Stratosphere</id><content type="html" xml:base="/2018/08/25/HTB-Stratosphere/">&lt;!-- more --&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-25T12:18:02+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">HTB - Stratosphere</title><link href="/2018/08/25/HTB-Stratosphere/" rel="alternate" type="text/html" title="HTB - Stratosphere" /><published>2018-08-25T07:00:00+02:00</published><updated>2018-08-25T07:00:00+02:00</updated><id>/2018/08/25/HTB-Stratosphere</id><content type="html" xml:base="/2018/08/25/HTB-Stratosphere/">&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;target&quot;&gt;Target&lt;/h2&gt;
 
@@ -467,7 +467,7 @@ User richard may run the following commands on stratosphere:
 
 &lt;p&gt;Yeah, no… I ain’t going to answer all those questions, pal. I’d rather hijack this pretty hashlib library of yours.&lt;/p&gt;
 
-&lt;p&gt;For those of you who don’t know how this whole hijacking works, check this out.&lt;/p&gt;
+&lt;p&gt;For those of you who don’t know how this whole hijacking works, &lt;a href=&quot;https://rastating.github.io/privilege-escalation-via-python-library-hijacking/&quot;&gt;check this out&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Let’s continue : I created a hashlib.py file in the same directory as this test.py script and added a single line in it.&lt;/p&gt;
 
