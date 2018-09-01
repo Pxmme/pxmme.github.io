@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-01T09:40:50+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">CODEFESTCTF18 - Typing Master</title><link href="/2018/09/01/CODEFEST-Typing-Master/" rel="alternate" type="text/html" title="CODEFESTCTF18 - Typing Master" /><published>2018-09-01T07:00:00+02:00</published><updated>2018-09-01T07:00:00+02:00</updated><id>/2018/09/01/CODEFEST-Typing-Master</id><content type="html" xml:base="/2018/09/01/CODEFEST-Typing-Master/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-01T09:42:39+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">CODEFESTCTF18 - Typing Master</title><link href="/2018/09/01/CODEFEST-Typing-Master/" rel="alternate" type="text/html" title="CODEFESTCTF18 - Typing Master" /><published>2018-09-01T07:00:00+02:00</published><updated>2018-09-01T07:00:00+02:00</updated><id>/2018/09/01/CODEFEST-Typing-Master</id><content type="html" xml:base="/2018/09/01/CODEFEST-Typing-Master/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;If you think you have it in you, connect now to 34.216.132.109 9093 and prove your mettle.&lt;/p&gt;
 
@@ -217,7 +217,7 @@ The flag is: CodefestCTF{1_s33_y0u_4r3_a_m4n_0f_sp33d}
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;I understand this is considered a very basic challenge for many of you, but as you’ll be able to tell from my Python code, I’m a beginner at this. In fact, I know my code is far from perfect after having shared it with other members of the &lt;strong&gt;rawsec&lt;/strong&gt; CTF team, and got to see their own codes.&lt;/p&gt;
+&lt;p&gt;I understand this is considered a very basic challenge for many of you, but as you’ll be able to tell from my Python code, I’m a beginner at this. In fact, I know my code is far from perfect after having shared it with other members of the &lt;strong&gt;rawsec&lt;/strong&gt; CTF team, and getting to see their codes.&lt;/p&gt;
 
 &lt;p&gt;In any case, I think it’s important to start somewhere, and I didn’t expect to write perfect code the first time. I’m just glad it worked out and I was able to get some satisfaction from this challenge!&lt;/p&gt;
 
