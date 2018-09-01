@@ -383,9 +383,9 @@
 
 <h2 id="initial-thoughts">Initial thoughts</h2>
 
-<p>I was very glad this CTF had a challenge like this because I was really looking forward to write my first Python (3) script that would have to read text from an incoming connection, do some operations on it and then return another text.</p>
+<p>I was very glad that CODEFESTCTF18 had this kind of challenge because I was really looking forward to writing my first Python (3) script. A script that would have to read text from an incoming connection, complete some  operations on it and then return another text.</p>
 
-<p>It was clearly the case here, so without further do, let’s dive in!</p>
+<p>It was clearly the case here, so without further ado, let’s dive in!</p>
 
 <h2 id="exploitation">Exploitation</h2>
 
@@ -397,7 +397,7 @@ This connection will close in 10 secs ;) You gotta be fassssssssst :D
 </code></pre></td></tr></tbody></table></div>
 </div>
 
-<p>Let’s now wait ten seconds to see if the connection really closes up, and if it tells us something when doing so.</p>
+<p>Now let’s wait ten seconds to see if the connection really closes up, and if it tells us something when doing so.</p>
 
 <p><img src="/imgs/tenlater.png" alt="Tensecondslater" class="img-responsive" /></p>
 
@@ -408,7 +408,7 @@ Take help from your typewriter friend :) You seem too slow
 </code></pre></td></tr></tbody></table></div>
 </div>
 
-<p>Yes it does! Let’s now try to give it some wrong input to see if we have something yelling at us.</p>
+<p>Yes it does! Now let’s try to give it a wrong input to see if anything yells at us.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5</pre></td><td class="code"><pre class="highlight"><code># nc 34.216.132.109 9093
 Can you type 'W' 410 times followed by 'q' 221 times, along with the sum of their ASCII values.
@@ -418,7 +418,7 @@ Looks like you make mistakes!
 </code></pre></td></tr></tbody></table></div>
 </div>
 
-<p>Alright. We can see that the letter and numbers are changing from on connection to another, but the sentences doesn’t seem to, which will make our string work easier. Let’s send a couple more requests just to get sure.</p>
+<p>Alright. We can see that the letters and numbers are changing from one connection to another, but the sentences doesn’t seem to, which will make our string work easier. Let’s send a couple more requests just to be sure.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code># nc 34.216.132.109 9093
 I want 'P' 339 times followed by 'z' 151 times, followed by the sum of their ASCII values.
@@ -439,7 +439,7 @@ This connection will close in 10 secs ;) You gotta be fassssssssst :D
 <span class="n">data</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">))</span><span class="w">
 </span></pre></td></tr></tbody></table></code></pre></figure>
 
-<p>This bit connects to the distant server and stores the data it gives us in the <em>data</em> variable. Now, I need to chech for the <code class="highlighter-rouge">'</code> character in it and go on from there.</p>
+<p>This bit connects to the distant server and stores the data it gives us in the <em>data</em> variable. Now, I need to check for the <code class="highlighter-rouge">'</code> character and go on from there.</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
 2
@@ -464,9 +464,9 @@ This connection will close in 10 secs ;) You gotta be fassssssssst :D
 	<span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span><span class="w">
 </span></pre></td></tr></tbody></table></code></pre></figure>
 
-<p>This little piece of code returns us just what we want inside the <code class="highlighter-rouge">conteneur</code> variable : i.e. <code class="highlighter-rouge">['N', '364', 'r', '296']</code>.</p>
+<p>This little piece of code returns just what we want inside the <code class="highlighter-rouge">conteneur</code> variable : i.e. <code class="highlighter-rouge">['N', '364', 'r', '296']</code>.</p>
 
-<p>Now, we need to assign each of conteneur’s values to variables, then we need to make the multiplications as asked in the sentence, and then, we need to append the ASCII value of character one plus character two.</p>
+<p>Now, we need to assign each conteneur value to variables, and then we need to make the multiplications as asked in the sentence. Finally, we need to append the ASCII value of character one plus character two.</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
 2
@@ -485,11 +485,11 @@ This connection will close in 10 secs ;) You gotta be fassssssssst :D
 <span class="n">back</span> <span class="o">=</span> <span class="n">lettreun</span><span class="o">*</span><span class="n">chiffreun</span><span class="o">+</span><span class="n">lettredeux</span><span class="o">*</span><span class="n">chiffredeux</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">somme</span><span class="p">)</span><span class="o">+</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="w">
 </span></pre></td></tr></tbody></table></code></pre></figure>
 
-<p>That’s it! Back takes the value we need it to, as you can see if I print back i.e. : <code class="highlighter-rouge">DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo179</code></p>
+<p>That’s it! Back takes the value we need it to. Here is what is printed i.e. : <code class="highlighter-rouge">DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo179</code></p>
 
-<p><strong>Note :</strong> I added <code class="highlighter-rouge">\n</code> at the end of the string because in order to trigger the server to take our input I had to simulate a “press enter” action.</p>
+<p><strong>Note :</strong> I added <code class="highlighter-rouge">\n</code> at the end of the string in order to trigger the server to take our input I had to simulate a “press enter” action.</p>
 
-<p>Now what’s left for us is to send back this data, after we encoded it back to bytes, and read for any return we might get!</p>
+<p>Now what’s left for us is to send this data back, after we had encoded it back to bytes, and read any return we might get!</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
 2
@@ -586,11 +586,11 @@ The flag is: CodefestCTF{1_s33_y0u_4r3_a_m4n_0f_sp33d}
 
 <h2 id="after-thoughts">After thoughts</h2>
 
-<p>I understand this is considered a very basic challenge for many of you, but as you’ll be able to tell from my Python code, I’m such a beginner at this. In fact, I know my code is far from perfect after I shared it with other members of <strong>rawsec</strong> CTF team, and saw their codes.</p>
+<p>I understand this is considered a very basic challenge for many of you, but as you’ll be able to tell from my Python code, I’m a beginner at this. In fact, I know my code is far from perfect after having shared it with other members of the <strong>rawsec</strong> CTF team, and read their codes.</p>
 
-<p>In any case, I think it’s important to start somewhere, and I didn’t expect to make the perfect code the first time. I’m just glad it worked out and I was able to get some satisfaction from this challenge!</p>
+<p>In any case, I think it’s important to start somewhere, and I didn’t expect to write perfect code the first time. I’m just glad it worked out and I was able to get some satisfaction from this challenge!</p>
 
-<p>I also need to get familiar with the Python’s <em>pwn</em> library, as I saw a lot of members use it for a lot of challenges, and it seems to make things much easier when it comes to sockets, network connections, and more.</p>
+<p>I also need to get familiar with Python’s <em>pwn</em> library. I saw a lot of members using it for many challenges, and it seems to make things much easier when it comes to sockets, network connections, and more.</p>
 
 
       

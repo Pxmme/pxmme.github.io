@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-01T09:10:36+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">CODEFESTCTF18 - Typing Master</title><link href="/2018/09/01/CODEFEST-Typing-Master/" rel="alternate" type="text/html" title="CODEFESTCTF18 - Typing Master" /><published>2018-09-01T07:00:00+02:00</published><updated>2018-09-01T07:00:00+02:00</updated><id>/2018/09/01/CODEFEST-Typing-Master</id><content type="html" xml:base="/2018/09/01/CODEFEST-Typing-Master/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-01T09:38:48+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">CODEFESTCTF18 - Typing Master</title><link href="/2018/09/01/CODEFEST-Typing-Master/" rel="alternate" type="text/html" title="CODEFESTCTF18 - Typing Master" /><published>2018-09-01T07:00:00+02:00</published><updated>2018-09-01T07:00:00+02:00</updated><id>/2018/09/01/CODEFEST-Typing-Master</id><content type="html" xml:base="/2018/09/01/CODEFEST-Typing-Master/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;If you think you have it in you, connect now to 34.216.132.109 9093 and prove your mettle.&lt;/p&gt;
 
@@ -14,9 +14,9 @@
 
 &lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
 
-&lt;p&gt;I was very glad this CTF had a challenge like this because I was really looking forward to write my first Python (3) script that would have to read text from an incoming connection, do some operations on it and then return another text.&lt;/p&gt;
+&lt;p&gt;I was very glad that CODEFESTCTF18 had this kind of challenge because I was really looking forward to writing my first Python (3) script. A script that would have to read text from an incoming connection, complete some  operations on it and then return another text.&lt;/p&gt;
 
-&lt;p&gt;It was clearly the case here, so without further do, let’s dive in!&lt;/p&gt;
+&lt;p&gt;It was clearly the case here, so without further ado, let’s dive in!&lt;/p&gt;
 
 &lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
 
@@ -28,7 +28,7 @@ This connection will close in 10 secs ;) You gotta be fassssssssst :D
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Let’s now wait ten seconds to see if the connection really closes up, and if it tells us something when doing so.&lt;/p&gt;
+&lt;p&gt;Now let’s wait ten seconds to see if the connection really closes up, and if it tells us something when doing so.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/imgs/tenlater.png&quot; alt=&quot;Tensecondslater&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 
@@ -39,7 +39,7 @@ Take help from your typewriter friend :) You seem too slow
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Yes it does! Let’s now try to give it some wrong input to see if we have something yelling at us.&lt;/p&gt;
+&lt;p&gt;Yes it does! Now let’s try to give it a wrong input to see if anything yells at us.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# nc 34.216.132.109 9093
 Can you type 'W' 410 times followed by 'q' 221 times, along with the sum of their ASCII values.
@@ -49,7 +49,7 @@ Looks like you make mistakes!
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Alright. We can see that the letter and numbers are changing from on connection to another, but the sentences doesn’t seem to, which will make our string work easier. Let’s send a couple more requests just to get sure.&lt;/p&gt;
+&lt;p&gt;Alright. We can see that the letters and numbers are changing from one connection to another, but the sentences doesn’t seem to, which will make our string work easier. Let’s send a couple more requests just to be sure.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# nc 34.216.132.109 9093
 I want 'P' 339 times followed by 'z' 151 times, followed by the sum of their ASCII values.
@@ -70,7 +70,7 @@ This connection will close in 10 secs ;) You gotta be fassssssssst :D
 &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;This bit connects to the distant server and stores the data it gives us in the &lt;em&gt;data&lt;/em&gt; variable. Now, I need to chech for the &lt;code class=&quot;highlighter-rouge&quot;&gt;'&lt;/code&gt; character in it and go on from there.&lt;/p&gt;
+&lt;p&gt;This bit connects to the distant server and stores the data it gives us in the &lt;em&gt;data&lt;/em&gt; variable. Now, I need to check for the &lt;code class=&quot;highlighter-rouge&quot;&gt;'&lt;/code&gt; character and go on from there.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
@@ -95,9 +95,9 @@ This connection will close in 10 secs ;) You gotta be fassssssssst :D
 	&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;This little piece of code returns us just what we want inside the &lt;code class=&quot;highlighter-rouge&quot;&gt;conteneur&lt;/code&gt; variable : i.e. &lt;code class=&quot;highlighter-rouge&quot;&gt;['N', '364', 'r', '296']&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This little piece of code returns just what we want inside the &lt;code class=&quot;highlighter-rouge&quot;&gt;conteneur&lt;/code&gt; variable : i.e. &lt;code class=&quot;highlighter-rouge&quot;&gt;['N', '364', 'r', '296']&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Now, we need to assign each of conteneur’s values to variables, then we need to make the multiplications as asked in the sentence, and then, we need to append the ASCII value of character one plus character two.&lt;/p&gt;
+&lt;p&gt;Now, we need to assign each conteneur value to variables, and then we need to make the multiplications as asked in the sentence. Finally, we need to append the ASCII value of character one plus character two.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
@@ -116,11 +116,11 @@ This connection will close in 10 secs ;) You gotta be fassssssssst :D
 &lt;span class=&quot;n&quot;&gt;back&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lettreun&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chiffreun&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lettredeux&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chiffredeux&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;somme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;That’s it! Back takes the value we need it to, as you can see if I print back i.e. : &lt;code class=&quot;highlighter-rouge&quot;&gt;DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo179&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;That’s it! Back takes the value we need it to. Here is what is printed i.e. : &lt;code class=&quot;highlighter-rouge&quot;&gt;DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo179&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Note :&lt;/strong&gt; I added &lt;code class=&quot;highlighter-rouge&quot;&gt;\n&lt;/code&gt; at the end of the string because in order to trigger the server to take our input I had to simulate a “press enter” action.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note :&lt;/strong&gt; I added &lt;code class=&quot;highlighter-rouge&quot;&gt;\n&lt;/code&gt; at the end of the string in order to trigger the server to take our input I had to simulate a “press enter” action.&lt;/p&gt;
 
-&lt;p&gt;Now what’s left for us is to send back this data, after we encoded it back to bytes, and read for any return we might get!&lt;/p&gt;
+&lt;p&gt;Now what’s left for us is to send this data back, after we had encoded it back to bytes, and read any return we might get!&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
@@ -217,11 +217,11 @@ The flag is: CodefestCTF{1_s33_y0u_4r3_a_m4n_0f_sp33d}
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;I understand this is considered a very basic challenge for many of you, but as you’ll be able to tell from my Python code, I’m such a beginner at this. In fact, I know my code is far from perfect after I shared it with other members of &lt;strong&gt;rawsec&lt;/strong&gt; CTF team, and saw their codes.&lt;/p&gt;
+&lt;p&gt;I understand this is considered a very basic challenge for many of you, but as you’ll be able to tell from my Python code, I’m a beginner at this. In fact, I know my code is far from perfect after having shared it with other members of the &lt;strong&gt;rawsec&lt;/strong&gt; CTF team, and read their codes.&lt;/p&gt;
 
-&lt;p&gt;In any case, I think it’s important to start somewhere, and I didn’t expect to make the perfect code the first time. I’m just glad it worked out and I was able to get some satisfaction from this challenge!&lt;/p&gt;
+&lt;p&gt;In any case, I think it’s important to start somewhere, and I didn’t expect to write perfect code the first time. I’m just glad it worked out and I was able to get some satisfaction from this challenge!&lt;/p&gt;
 
-&lt;p&gt;I also need to get familiar with the Python’s &lt;em&gt;pwn&lt;/em&gt; library, as I saw a lot of members use it for a lot of challenges, and it seems to make things much easier when it comes to sockets, network connections, and more.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="codefestctf18" /><category term="programming" /><category term="python" /><summary type="html">As this was considered a very simple challenge by many, I still had to think hard to do it because it actually was my very first time using sockets with Python.</summary></entry><entry><title type="html">TJCTF - Ssleepy</title><link href="/2018/08/23/TJCTF-Write-Up-Ssleepy/" rel="alternate" type="text/html" title="TJCTF - Ssleepy" /><published>2018-08-23T12:00:00+02:00</published><updated>2018-08-23T12:00:00+02:00</updated><id>/2018/08/23/TJCTF-Write-Up-Ssleepy</id><content type="html" xml:base="/2018/08/23/TJCTF-Write-Up-Ssleepy/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+&lt;p&gt;I also need to get familiar with Python’s &lt;em&gt;pwn&lt;/em&gt; library. I saw a lot of members using it for many challenges, and it seems to make things much easier when it comes to sockets, network connections, and more.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="codefestctf18" /><category term="programming" /><category term="python" /><summary type="html">As this was considered a very simple challenge by many, I still had to think hard to do it because it actually was my very first time using sockets with Python.</summary></entry><entry><title type="html">TJCTF - Ssleepy</title><link href="/2018/08/23/TJCTF-Write-Up-Ssleepy/" rel="alternate" type="text/html" title="TJCTF - Ssleepy" /><published>2018-08-23T12:00:00+02:00</published><updated>2018-08-23T12:00:00+02:00</updated><id>/2018/08/23/TJCTF-Write-Up-Ssleepy</id><content type="html" xml:base="/2018/08/23/TJCTF-Write-Up-Ssleepy/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;I found this super suspicious transmission lying around on the floor. What could be in it?&lt;/p&gt;
 
