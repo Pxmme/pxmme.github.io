@@ -1,4 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-09T17:07:29+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">noxCTF - MyFileUploader</title><link href="/2018/09/09/noxCTF-Write-Up-MyFileUploader/" rel="alternate" type="text/html" title="noxCTF - MyFileUploader" /><published>2018-09-09T07:00:00+02:00</published><updated>2018-09-09T07:00:00+02:00</updated><id>/2018/09/09/noxCTF-Write-Up-MyFileUploader</id><content type="html" xml:base="/2018/09/09/noxCTF-Write-Up-MyFileUploader/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-09T17:19:21+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">ICECTF - garfeld</title><link href="/2018/09/09/ICECTF-Write-Up-garfeld/" rel="alternate" type="text/html" title="ICECTF - garfeld" /><published>2018-09-09T08:00:00+02:00</published><updated>2018-09-09T08:00:00+02:00</updated><id>/2018/09/09/ICECTF-Write-Up-garfeld</id><content type="html" xml:base="/2018/09/09/ICECTF-Write-Up-garfeld/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+
+&lt;p&gt;You found the marketing campaign for a brand new sitcom. Garfeld! It has a secret message engraved on it. Do you think you can figure out what they’re trying to say?&lt;/p&gt;
+
+&lt;p&gt;[100 points]&lt;/p&gt;
+
+&lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
+
+&lt;p&gt;We are given this image :&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/garfeld.png&quot; alt=&quot;Nope&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can clearly see that on the bottom is the encrypted flag, and in the top-right corner is what seems to be a decryption key.&lt;/p&gt;
+
+&lt;p&gt;I immediately thought about some kind of Caesar cipher, but letter by letter, using the special key we had.&lt;/p&gt;
+
+&lt;p&gt;So the first letter wouldn’t change, the second would go up (or down) 7 times, the third 2 times, etc.&lt;/p&gt;
+
+&lt;p&gt;I took a sheet of paper and tried my theory on the first six characters, as I already knew what the output should give : &lt;em&gt;ICECTF&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;And, guess what?&lt;/p&gt;
+
+&lt;p&gt;I - 0 = &lt;strong&gt;I&lt;/strong&gt;
+j - 7 = &lt;strong&gt;c&lt;/strong&gt;
+g - 2 = &lt;strong&gt;e&lt;/strong&gt;
+J - 7 = &lt;strong&gt;C&lt;/strong&gt;
+U - 1 = &lt;strong&gt;T&lt;/strong&gt;
+O - 9 = &lt;strong&gt;F&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Yep, I’m definitly on the right track. Let’s write some Python code now.&lt;/p&gt;
+
+&lt;h2 id=&quot;exploitation&quot;&gt;Exploitation&lt;/h2&gt;
+
+&lt;p&gt;Let’s first import string and create our needed variables :&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/python3&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;string&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;enc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;IjgJUO{P_LOUV_AIRUS_GYQUTOLTD_SKRFB_TWNKCFT}&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;alph&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;printable&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;07271978&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;liste&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now let’s craft the loop that will go through each of &lt;em&gt;enc&lt;/em&gt;’s letters and move them down accordingly to the key we were given.&lt;/p&gt;
+
+&lt;p&gt;Once the end of the key is reached, let’s go back to its beginning.&lt;/p&gt;
+
+&lt;p&gt;Oh, and if our script encounters any odd character like &lt;em&gt;{, } or _&lt;/em&gt; (as we can already see in the encrypted flag), let’s just add them to our &lt;em&gt;liste&lt;/em&gt; without trying to change them and without skipping to the key’s next number.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;enc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;{&quot;&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;}&quot;&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;_&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alph&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;enc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;numb&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;liste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;liste&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;enc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Looks good enough. Finally, let’s join our list’s characters and print them out in uppercase.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;n&quot;&gt;flag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;liste&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flag&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now for the moment of truth…&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# ./script.py 
+ICECTF{I_DONT_THINK_GRONSFELD_LIKES_MONDAYS}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Flagged! &lt;code class=&quot;highlighter-rouge&quot;&gt;IjgJUO{P_LOUV_AIRUS_GYQUTOLTD_SKRFB_TWNKCFT}&lt;/code&gt; turned into &lt;code class=&quot;highlighter-rouge&quot;&gt;ICECTF{I_DONT_THINK_GRONSFELD_LIKES_MONDAYS}&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
+
+&lt;p&gt;It’s always a good feeling when I’m able to figure out something on my own, write the script to automate it and see that it works in the end.&lt;/p&gt;
+
+&lt;p&gt;To be honest, I could have just done it by hand, but it’d have taken me much more time than by writing a script. And it’d have been far less interesting. :smile:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="write-up" /><category term="icectf-2018" /><category term="crypto" /><category term="python" /><summary type="html">Who'd have thought Garfield didn't like mondays?</summary></entry><entry><title type="html">noxCTF - MyFileUploader</title><link href="/2018/09/09/noxCTF-Write-Up-MyFileUploader/" rel="alternate" type="text/html" title="noxCTF - MyFileUploader" /><published>2018-09-09T07:00:00+02:00</published><updated>2018-09-09T07:00:00+02:00</updated><id>/2018/09/09/noxCTF-Write-Up-MyFileUploader</id><content type="html" xml:base="/2018/09/09/noxCTF-Write-Up-MyFileUploader/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;This is my new file uploader server. I bet you can’t hack it!&lt;/p&gt;
 
@@ -57,7 +158,7 @@ AddType application/x-httpd-php .cyb3r
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;Interesting use of .htaccess which I never heard about before. Also, felt nice to use Arrexel’s script again.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="write-up" /><category term="noxctf-2018" /><category term="web" /><summary type="html">Yet another image-upload server where Arrexel's phpbash came in handy!</summary></entry><entry><title type="html">Icectf Write Up Garfeld</title><link href="/2018/09/09/ICECTF-Write-Up-garfeld/" rel="alternate" type="text/html" title="Icectf Write Up Garfeld" /><published>2018-09-09T00:00:00+02:00</published><updated>2018-09-09T00:00:00+02:00</updated><id>/2018/09/09/ICECTF-Write-Up-garfeld</id><content type="html" xml:base="/2018/09/09/ICECTF-Write-Up-garfeld/">&lt;p&gt;a&lt;/p&gt;</content><author><name>Pxmme</name></author><summary type="html">a</summary></entry><entry><title type="html">HTB - Stratosphere</title><link href="/2018/09/01/HTB-Stratosphere/" rel="alternate" type="text/html" title="HTB - Stratosphere" /><published>2018-09-01T18:00:00+02:00</published><updated>2018-09-01T18:00:00+02:00</updated><id>/2018/09/01/HTB-Stratosphere</id><content type="html" xml:base="/2018/09/01/HTB-Stratosphere/">&lt;h2 id=&quot;target&quot;&gt;Target&lt;/h2&gt;
+&lt;p&gt;Interesting use of .htaccess which I never heard about before. Also, felt nice to use Arrexel’s script again.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="write-up" /><category term="noxctf-2018" /><category term="web" /><summary type="html">Yet another image-upload server where Arrexel's phpbash came in handy!</summary></entry><entry><title type="html">HTB - Stratosphere</title><link href="/2018/09/01/HTB-Stratosphere/" rel="alternate" type="text/html" title="HTB - Stratosphere" /><published>2018-09-01T18:00:00+02:00</published><updated>2018-09-01T18:00:00+02:00</updated><id>/2018/09/01/HTB-Stratosphere</id><content type="html" xml:base="/2018/09/01/HTB-Stratosphere/">&lt;h2 id=&quot;target&quot;&gt;Target&lt;/h2&gt;
 
 &lt;p&gt;10.10.10.64&lt;/p&gt;
 

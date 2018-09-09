@@ -1,24 +1,10 @@
-
-<!doctype html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!DOCTYPE html>
 <html class="theme-next mist use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
@@ -28,8 +14,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -47,7 +33,7 @@
 
   
   
-  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -70,7 +56,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -78,23 +64,21 @@
 
 
 
-<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="" />
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="write-up,icectf-2018,crypto,python,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
 
 
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
 
 
 
@@ -109,17 +93,21 @@
 
 
 
-<meta name="description" content="a">
-<meta name="keywords" content="Pxmme, blog">
+
+
+<meta name="description" content="Who'd have thought Garfield didn't like mondays?">
+<meta name="keywords" content="write-up, icectf-2018, crypto, python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Icectf Write Up Garfeld">
+<meta property="og:title" content="ICECTF - garfeld">
 <meta property="og:url" content="/2018/09/09/ICECTF-Write-Up-garfeld/">
 <meta property="og:site_name" content="Pxmme">
-<meta property="og:description" content="a">
+<meta property="og:description" content="Who'd have thought Garfield didn't like mondays?">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="/imgs/garfeld.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Icectf Write Up Garfeld">
-<meta name="twitter:description" content="a">
+<meta name="twitter:title" content="ICECTF - garfeld">
+<meta name="twitter:description" content="Who'd have thought Garfield didn't like mondays?">
+<meta name="twitter:image" content="/imgs/garfeld.png">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -146,13 +134,13 @@
 
 
 
-  <link rel="canonical" href=""/>
+  <link rel="canonical" href="">
 
 
 
 
 
-  <title>Icectf Write Up Garfeld | Pxmme</title>
+  <title>ICECTF - garfeld | Pxmme</title>
   
 
 
@@ -195,7 +183,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Pxmme</span>
         <span class="logo-line-after"><i></i></span>
@@ -227,7 +215,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -239,7 +227,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             Tags
           </a>
@@ -295,7 +283,7 @@
           <h1 class="post-title" itemprop="name headline">
           
           
-            Icectf Write Up Garfeld
+            ICECTF - garfeld
           
         </h1>
         
@@ -309,7 +297,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-09T00:00:00+02:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-09T08:00:00+02:00">
                 2018-09-09
               </time>
             
@@ -365,7 +353,121 @@
 
 
 
-  <p>a</p>
+  <h2 id="challenge">Challenge</h2>
+
+<p>You found the marketing campaign for a brand new sitcom. Garfeld! It has a secret message engraved on it. Do you think you can figure out what they’re trying to say?</p>
+
+<p>[100 points]</p>
+
+<h2 id="initial-thoughts">Initial thoughts</h2>
+
+<p>We are given this image :</p>
+
+<p><img src="/imgs/garfeld.png" alt="Nope" class="img-responsive"></p>
+
+<p>We can clearly see that on the bottom is the encrypted flag, and in the top-right corner is what seems to be a decryption key.</p>
+
+<p>I immediately thought about some kind of Caesar cipher, but letter by letter, using the special key we had.</p>
+
+<p>So the first letter wouldn’t change, the second would go up (or down) 7 times, the third 2 times, etc.</p>
+
+<p>I took a sheet of paper and tried my theory on the first six characters, as I already knew what the output should give : <em>ICECTF</em>.</p>
+
+<p>And, guess what?</p>
+
+<p>I - 0 = <strong>I</strong>
+j - 7 = <strong>c</strong>
+g - 2 = <strong>e</strong>
+J - 7 = <strong>C</strong>
+U - 1 = <strong>T</strong>
+O - 9 = <strong>F</strong></p>
+
+<p>Yep, I’m definitly on the right track. Let’s write some Python code now.</p>
+
+<h2 id="exploitation">Exploitation</h2>
+
+<p>Let’s first import string and create our needed variables :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr>
+<td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td>
+<td class="code"><pre><span class="c">#!/usr/bin/python3</span>
+
+<span class="kn">import</span> <span class="nn">string</span>
+
+<span class="n">enc</span> <span class="o">=</span> <span class="s">"IjgJUO{P_LOUV_AIRUS_GYQUTOLTD_SKRFB_TWNKCFT}"</span>
+<span class="n">alph</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">printable</span>
+<span class="n">key</span> <span class="o">=</span> <span class="s">"07271978"</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">liste</span> <span class="o">=</span> <span class="p">[]</span><span class="w">
+</span></pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<p>Now let’s craft the loop that will go through each of <em>enc</em>’s letters and move them down accordingly to the key we were given.</p>
+
+<p>Once the end of the key is reached, let’s go back to its beginning.</p>
+
+<p>Oh, and if our script encounters any odd character like <em>{, } or _</em> (as we can already see in the encrypted flag), let’s just add them to our <em>liste</em> without trying to change them and without skipping to the key’s next number.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr>
+<td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td>
+<td class="code"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">enc</span><span class="p">)):</span>
+	<span class="k">if</span> <span class="n">enc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"{"</span> <span class="ow">and</span> <span class="n">enc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"}"</span> <span class="ow">and</span> <span class="n">enc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"_"</span><span class="p">:</span>
+		<span class="n">temp</span> <span class="o">=</span> <span class="n">alph</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+		<span class="n">numb</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+		<span class="n">liste</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alph</span><span class="p">[</span><span class="n">temp</span><span class="o">-</span><span class="n">numb</span><span class="p">])</span>
+		<span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+		<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+			<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="n">liste</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w">
+</span></pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<p>Looks good enough. Finally, let’s join our list’s characters and print them out in uppercase.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr>
+<td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td>
+<td class="code"><pre><span class="n">flag</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">liste</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span><span class="w">
+</span></pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<p>Now for the moment of truth…</p>
+
+<div class="highlighter-rouge">
+<div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2</pre></td>
+<td class="code"><pre class="highlight"><code># ./script.py 
+ICECTF{I_DONT_THINK_GRONSFELD_LIKES_MONDAYS}
+</code></pre></td>
+</tr></tbody></table></div>
+</div>
+
+<p>Flagged! <code class="highlighter-rouge">IjgJUO{P_LOUV_AIRUS_GYQUTOLTD_SKRFB_TWNKCFT}</code> turned into <code class="highlighter-rouge">ICECTF{I_DONT_THINK_GRONSFELD_LIKES_MONDAYS}</code>.</p>
+
+<h2 id="after-thoughts">After thoughts</h2>
+
+<p>It’s always a good feeling when I’m able to figure out something on my own, write the script to automate it and see that it works in the end.</p>
+
+<p>To be honest, I could have just done it by hand, but it’d have taken me much more time than by writing a script. And it’d have been far less interesting. <img class="emoji" title=":smile:" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" height="20" width="20" align="absmiddle"></p>
 
 
       
@@ -394,6 +496,22 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/write-up" rel="tag"># write-up</a>
+          
+            
+            <a href="/tag/#/icectf-2018" rel="tag"># icectf-2018</a>
+          
+            
+            <a href="/tag/#/crypto" rel="tag"># crypto</a>
+          
+            
+            <a href="/tag/#/python" rel="tag"># python</a>
+          
+        </div>
+      
 
       
       
@@ -406,18 +524,14 @@
         <div class="post-nav" id="post-nav-id">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/09/noxCTF-Write-Up-MyFileUploader/" rel="next" title="noxCTF - MyFileUploader">
-                <i class="fa fa-chevron-left"></i> noxCTF - MyFileUploader
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/01/HTB-Stratosphere/" rel="prev" title="HTB - Stratosphere">
-                HTB - Stratosphere <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/09/noxCTF-Write-Up-MyFileUploader/" rel="prev" title="noxCTF - MyFileUploader">
+                noxCTF - MyFileUploader <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -474,12 +588,19 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/assets/images/avatar.gif"
-               alt="Pxmme" />
+          <img class="site-author-image" itemprop="image" src="/assets/images/avatar.gif" alt="Pxmme">
           <p class="site-author-name" itemprop="name">Pxmme</p>
            
               <p class="site-description motion-element" itemprop="description">Cybersec enthusiast.</p>
@@ -503,7 +624,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -566,6 +687,34 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class="nav">
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#challenge"> <span class="nav-number">1</span> <span class="nav-text">Challenge</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#initial-thoughts"> <span class="nav-number">2</span> <span class="nav-text">Initial thoughts</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#exploitation"> <span class="nav-number">3</span> <span class="nav-text">Exploitation</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#after-thoughts"> <span class="nav-number">4</span> <span class="nav-text">After thoughts</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -578,10 +727,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   
-  &copy; 
+  © 
   <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -766,4 +915,3 @@
 
 </body>
 </html>
-

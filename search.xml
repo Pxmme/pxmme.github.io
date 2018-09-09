@@ -2,6 +2,27 @@
 <search>
   
     <entry>
+      <title><![CDATA[ICECTF - garfeld]]></title>
+      <url>/2018/09/09/ICECTF-Write-Up-garfeld/</url>
+      <content type="text"><![CDATA[ChallengeYou found the marketing campaign for a brand new sitcom. Garfeld! It has a secret message engraved on it. Do you think you can figure out what they’re trying to say?[100 points]Initial thoughtsWe are given this image :We can clearly see that on the bottom is the encrypted flag, and in the top-right corner is what seems to be a decryption key.I immediately thought about some kind of Caesar cipher, but letter by letter, using the special key we had.So the first letter wouldn’t change, the second would go up (or down) 7 times, the third 2 times, etc.I took a sheet of paper and tried my theory on the first six characters, as I already knew what the output should give : ICECTF.And, guess what?I - 0 = Ij - 7 = cg - 2 = eJ - 7 = CU - 1 = TO - 9 = FYep, I’m definitly on the right track. Let’s write some Python code now.ExploitationLet’s first import string and create our needed variables :123456789#!/usr/bin/python3import stringenc = "IjgJUO{P_LOUV_AIRUS_GYQUTOLTD_SKRFB_TWNKCFT}"alph = string.printablekey = "07271978"x = 0liste = []Now let’s craft the loop that will go through each of enc’s letters and move them down accordingly to the key we were given.Once the end of the key is reached, let’s go back to its beginning.Oh, and if our script encounters any odd character like {, } or _ (as we can already see in the encrypted flag), let’s just add them to our liste without trying to change them and without skipping to the key’s next number.12345678910for i in range(len(enc)):	if enc[i] != "{" and enc[i] != "}" and enc[i] != "_":		temp = alph.find(enc[i])		numb = int(key[x])		liste.append(alph[temp-numb])		x += 1		if x == 8:			x = 0	else:		liste.append(enc[i])Looks good enough. Finally, let’s join our list’s characters and print them out in uppercase.12flag = str("".join(liste))print(flag.upper())Now for the moment of truth…# ./script.py ICECTF{I_DONT_THINK_GRONSFELD_LIKES_MONDAYS}Flagged! IjgJUO{P_LOUV_AIRUS_GYQUTOLTD_SKRFB_TWNKCFT} turned into ICECTF{I_DONT_THINK_GRONSFELD_LIKES_MONDAYS}.After thoughtsIt’s always a good feeling when I’m able to figure out something on my own, write the script to automate it and see that it works in the end.To be honest, I could have just done it by hand, but it’d have taken me much more time than by writing a script. And it’d have been far less interesting. :smile:]]></content>
+      <categories>
+        
+      </categories>
+      <tags>
+        
+          <tag> write-up </tag>
+        
+          <tag> icectf-2018 </tag>
+        
+          <tag> crypto </tag>
+        
+          <tag> python </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
       <title><![CDATA[noxCTF - MyFileUploader]]></title>
       <url>/2018/09/09/noxCTF-Write-Up-MyFileUploader/</url>
       <content type="text"><![CDATA[ChallengeThis is my new file uploader server. I bet you can’t hack it!http://chal.noxale.com:8079[200 points]Initial thoughtsWell, I bet I can. We are presented with a very basic uploading webpage as you can see :Let’s go ahead and try to upload this very cute, basic .jpg picture :Works. And as we can see, it also gives us the path where we can find this picture on the server : http://chal.noxale.com:8079/uploads/kittens.jpgBefore exploring this path, let’s try to upload a very simple webshell named shell.php. It is actually Arrexel’s script, as I find it very handy.Nope. Doesn’t want it, not surprisingly. After I tried different things, I understood I only needed to put .png, .jpg or .gif anywhere in the name of the file. So the server would still take evilshell.jpg.php as a valid input, but it would automatically erase .php if present at the end of the filename. That was a problem.Then I went to explore the path /uploads and I found a directory called “Don’t open”. Guess what? I opened it.Inside was lying a .htaccess file with a very interesting content :Options +IndexesAddType application/x-httpd-php .cyb3rThis means that any file ending with the home-made extension .cyb3r will be processed by the server as php code. Nice.It was actually pretty straight forward after that.ExploitationLet’s take our phpbash shell and rename it to shell.png.cyb3r, then upload it.Worked! The moment of truth now… Let’s navigate to our upload’s path and…Yep! Got a webshell, thanks to Arrexel. :smile:Now let’s just list what’s inside this exciting “7H3-FL4G-1S-H3r3” folder :Flagged : noxCTF{N3V3R_7RU57_07H3R5}After thoughtsInteresting use of .htaccess which I never heard about before. Also, felt nice to use Arrexel’s script again.]]></content>
@@ -15,19 +36,6 @@
           <tag> noxctf-2018 </tag>
         
           <tag> web </tag>
-        
-      </tags>
-      <tags></tags>
-    </entry>
-  
-    <entry>
-      <title><![CDATA[Icectf Write Up Garfeld]]></title>
-      <url>/2018/09/09/ICECTF-Write-Up-garfeld/</url>
-      <content type="text"><![CDATA[a]]></content>
-      <categories>
-        
-      </categories>
-      <tags>
         
       </tags>
       <tags></tags>
