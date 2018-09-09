@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-09T16:57:37+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">noxCTF - MyFileUploader</title><link href="/2018/09/09/noxCTF-Write-Up-MyFileUploader/" rel="alternate" type="text/html" title="noxCTF - MyFileUploader" /><published>2018-09-09T07:00:00+02:00</published><updated>2018-09-09T07:00:00+02:00</updated><id>/2018/09/09/noxCTF-Write-Up-MyFileUploader</id><content type="html" xml:base="/2018/09/09/noxCTF-Write-Up-MyFileUploader/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-09T17:00:56+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">noxCTF - MyFileUploader</title><link href="/2018/09/09/noxCTF-Write-Up-MyFileUploader/" rel="alternate" type="text/html" title="noxCTF - MyFileUploader" /><published>2018-09-09T07:00:00+02:00</published><updated>2018-09-09T07:00:00+02:00</updated><id>/2018/09/09/noxCTF-Write-Up-MyFileUploader</id><content type="html" xml:base="/2018/09/09/noxCTF-Write-Up-MyFileUploader/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;This is my new file uploader server. I bet you can’t hack it!&lt;/p&gt;
 
@@ -22,9 +22,9 @@
 
 &lt;p&gt;&lt;img src=&quot;/imgs/filenope.png&quot; alt=&quot;Nope&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Nope. Doesn’t want it, not surprinsingly. After I tried different things, I understood I only needed to put &lt;em&gt;.png, .jpg or .gif&lt;/em&gt; anywhere in the name of the file. So the server would still take evilshell.jpg.php as a valid input, &lt;strong&gt;but&lt;/strong&gt; it would automatically erase &lt;em&gt;.php&lt;/em&gt; if present at the end of the filename. That was a problem.&lt;/p&gt;
+&lt;p&gt;Nope. Doesn’t want it, not surprisingly. After I tried different things, I understood I only needed to put &lt;em&gt;.png, .jpg or .gif&lt;/em&gt; anywhere in the name of the file. So the server would still take evilshell.jpg.php as a valid input, &lt;strong&gt;but&lt;/strong&gt; it would automatically erase &lt;em&gt;.php&lt;/em&gt; if present at the end of the filename. That was a problem.&lt;/p&gt;
 
-&lt;p&gt;Then I went to explore the path /uploads and I found a directory called “Don’t open”. Guess what? Opened it.&lt;/p&gt;
+&lt;p&gt;Then I went to explore the path /uploads and I found a directory called “Don’t open”. Guess what? I opened it.&lt;/p&gt;
 
 &lt;p&gt;Inside was lying a .htaccess file with a very interesting content :&lt;/p&gt;
 
@@ -33,7 +33,7 @@ AddType application/x-httpd-php .cyb3r
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;This means that any file ending with the home-made extension .cyb3r will be processed by the server as php code. Nice.&lt;/p&gt;
+&lt;p&gt;This means that any file ending with the home-made extension &lt;em&gt;.cyb3r&lt;/em&gt; will be processed by the server &lt;strong&gt;as php code&lt;/strong&gt;. Nice.&lt;/p&gt;
 
 &lt;p&gt;It was actually pretty straight forward after that.&lt;/p&gt;
 
@@ -41,7 +41,7 @@ AddType application/x-httpd-php .cyb3r
 
 &lt;p&gt;Let’s take our phpbash shell and rename it to &lt;em&gt;shell.png.cyb3r&lt;/em&gt;, then upload it.&lt;/p&gt;
 
-&lt;p&gt;Worked! The moment of truth now… Let’s navigate to our upload and…&lt;/p&gt;
+&lt;p&gt;Worked! The moment of truth now… Let’s navigate to our upload’s path and…&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/imgs/fileyep.png&quot; alt=&quot;Yep&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 

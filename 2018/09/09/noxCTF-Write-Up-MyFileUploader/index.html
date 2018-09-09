@@ -382,9 +382,9 @@
 
 <p><img src="/imgs/filenope.png" alt="Nope" class="img-responsive"></p>
 
-<p>Nope. Doesn’t want it, not surprinsingly. After I tried different things, I understood I only needed to put <em>.png, .jpg or .gif</em> anywhere in the name of the file. So the server would still take evilshell.jpg.php as a valid input, <strong>but</strong> it would automatically erase <em>.php</em> if present at the end of the filename. That was a problem.</p>
+<p>Nope. Doesn’t want it, not surprisingly. After I tried different things, I understood I only needed to put <em>.png, .jpg or .gif</em> anywhere in the name of the file. So the server would still take evilshell.jpg.php as a valid input, <strong>but</strong> it would automatically erase <em>.php</em> if present at the end of the filename. That was a problem.</p>
 
-<p>Then I went to explore the path /uploads and I found a directory called “Don’t open”. Guess what? Opened it.</p>
+<p>Then I went to explore the path /uploads and I found a directory called “Don’t open”. Guess what? I opened it.</p>
 
 <p>Inside was lying a .htaccess file with a very interesting content :</p>
 
@@ -397,7 +397,7 @@ AddType application/x-httpd-php .cyb3r
 </tr></tbody></table></div>
 </div>
 
-<p>This means that any file ending with the home-made extension .cyb3r will be processed by the server as php code. Nice.</p>
+<p>This means that any file ending with the home-made extension <em>.cyb3r</em> will be processed by the server <strong>as php code</strong>. Nice.</p>
 
 <p>It was actually pretty straight forward after that.</p>
 
@@ -405,7 +405,7 @@ AddType application/x-httpd-php .cyb3r
 
 <p>Let’s take our phpbash shell and rename it to <em>shell.png.cyb3r</em>, then upload it.</p>
 
-<p>Worked! The moment of truth now… Let’s navigate to our upload and…</p>
+<p>Worked! The moment of truth now… Let’s navigate to our upload’s path and…</p>
 
 <p><img src="/imgs/fileyep.png" alt="Yep" class="img-responsive"></p>
 
