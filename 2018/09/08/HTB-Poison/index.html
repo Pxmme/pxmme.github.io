@@ -83,7 +83,7 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="tjctf-2018,write-up,forensics," />
+  <meta name="keywords" content="hackthebox,write-up,freebsd-box," />
 
 
 
@@ -109,17 +109,17 @@
 
 
 
-<meta name="description" content="First time in my newbie life I had to bruteforce a cryptocurrency wallet. Interesting. And it might come in handy someday...">
-<meta name="keywords" content="tjctf-2018, write-up, forensics">
+<meta name="description" content="Hacking this machine made me go over the basis again, like SSH tunneling or VNC. And I enjoyed it.">
+<meta name="keywords" content="hackthebox, write-up, freebsd-box">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TJCTF - We Will Rock You">
-<meta property="og:url" content="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/">
+<meta property="og:title" content="HTB - Poison">
+<meta property="og:url" content="/2018/09/08/HTB-Poison/">
 <meta property="og:site_name" content="Pxmme">
-<meta property="og:description" content="First time in my newbie life I had to bruteforce a cryptocurrency wallet. Interesting. And it might come in handy someday...">
+<meta property="og:description" content="Hacking this machine made me go over the basis again, like SSH tunneling or VNC. And I enjoyed it.">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TJCTF - We Will Rock You">
-<meta name="twitter:description" content="First time in my newbie life I had to bruteforce a cryptocurrency wallet. Interesting. And it might come in handy someday...">
+<meta name="twitter:title" content="HTB - Poison">
+<meta name="twitter:description" content="Hacking this machine made me go over the basis again, like SSH tunneling or VNC. And I enjoyed it.">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -152,7 +152,7 @@
 
 
 
-  <title>TJCTF - We Will Rock You | Pxmme</title>
+  <title>HTB - Poison | Pxmme</title>
   
 
 
@@ -275,7 +275,7 @@
   
 
   <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="/2018/08/12/TJCTF-Write-Up-We-Will-Rock-You/">
+    <link itemprop="mainEntityOfPage" href="/2018/09/08/HTB-Poison/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pxmme">
@@ -295,7 +295,7 @@
           <h1 class="post-title" itemprop="name headline">
           
           
-            TJCTF - We Will Rock You
+            HTB - Poison
           
         </h1>
         
@@ -309,8 +309,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-12T02:00:03+02:00">
-                2018-08-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-08T18:00:00+02:00">
+                2018-09-08
               </time>
             
 
@@ -365,62 +365,18 @@
 
 
 
-  <h2 id="challenge">Challenge</h2>
+  <h2 id="target">Target</h2>
 
-<p>Help! I lost the password to my Dogecoin wallet. I had like 10 Dogecoin in there. If you get the password, you’ll get the flag! Flag format: tjctf{password}</p>
+<p>10.10.10.84</p>
 
-<p>[75 points]</p>
+<p><strong>Freebsd</strong></p>
 
-<p><em>Written by Alaska47</em></p>
+<p><em>User : 15 points</em></p>
 
-<h2 id="initial-thoughts">Initial thoughts</h2>
+<p><em>Root : 30 points</em></p>
 
-<p>Seeing the name of the challenge, I immediately thought about the <em>infamous</em> rockyou.txt list of passwords. For those of you who don’t know it, it’s this huge list of passwords that was created out of real, leaked passwords.</p>
+<h2 id="enumeration">Enumeration</h2>
 
-<p>It’s natively present in Kali, check <em>/usr/share/wordlists</em> and you’ll find a <em>rockyou.txt.gz</em> :)</p>
-
-<p>So I assumed I’d have to bruteforce this wallet in order to retrieve the password. I googled for “wallet bruteforce” and found glv2’s <a href="https://github.com/glv2/bruteforce-wallet" title="Click here to learn more!">Github magic thingy</a>.</p>
-
-<h2 id="exploitation">Exploitation</h2>
-
-<p>First off, let’s clone this github repo.</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>~# git clone https://github.com/glv2/bruteforce-wallet
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Let’s install the dependencies required :</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1</pre></td><td class="code"><pre class="highlight"><code>~# apt install libdb-dev libssl-dev -y
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Let’s then try to install it following the README’s instructions.</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>~# cd bruteforce-wallet &amp;&amp; ./autogen.sh
-./autogen.sh: 6: ./autogen.sh: autoreconf: not found
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Oops! Seems I need to install a package first.</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6</pre></td><td class="code"><pre class="highlight"><code>~# apt-get install autoconf
-~# ./autogen.sh
-configure.ac:6: installing './compile'
-configure.ac:2: installing './install-sh'
-configure.ac:2: installing './missing'
-Makefile.am: installing './depcomp'
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Then a ./configure, make and make install and we’re good! Now, let’s use our new little tool :3</p>
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code>~# bruteforce-wallet -t 6 -f /root/Documents/rockyou.txt 9d7e6203fb6e2c14646c63bea94e48001b9317c86bec229c3e063904a168dfad_wallet.dat
-Warning: using dictionary mode, ignoring options -b, -e, -l, -m and -s.
- 
-Tried passwords: 59
-Tried passwords per second: 59,000000
-Last tried password: samantha
- 
-Password found: tinkerbell
-</code></pre></td></tr></tbody></table></div>
-</div>
-<p>Got it! Password is “tinkerbell”, hereby flag is : <code class="highlighter-rouge">tjctf{tinkerbell}</code></p>
-
-<h2 id="after-thoughts">After thoughts</h2>
-
-<p>A very basic challenge worth a lot of points compared to other ones in this TJCTF. Still, I enjoyed the five minutes it took me, as I never had to bruteforce a coin-wallet before. Valuable experience!</p>
 
 
       
@@ -452,13 +408,13 @@ Password found: tinkerbell
         <div class="post-tags">
           
             
-            <a href="/tag/#/tjctf-2018" rel="tag"># tjctf-2018</a>
+            <a href="/tag/#/hackthebox" rel="tag"># hackthebox</a>
           
             
             <a href="/tag/#/write-up" rel="tag"># write-up</a>
           
             
-            <a href="/tag/#/forensics" rel="tag"># forensics</a>
+            <a href="/tag/#/freebsd-box" rel="tag"># freebsd-box</a>
           
         </div>
       
@@ -474,8 +430,8 @@ Password found: tinkerbell
         <div class="post-nav" id="post-nav-id">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/12/TJCTF-Write-Up-Huuuuuge/" rel="next" title="TJCTF - Huuuuuge">
-                <i class="fa fa-chevron-left"></i> TJCTF - Huuuuuge
+              <a href="/2018/09/09/noxCTF-Write-Up-MyFileUploader/" rel="next" title="noxCTF - MyFileUploader">
+                <i class="fa fa-chevron-left"></i> noxCTF - MyFileUploader
               </a>
             
           </div>
@@ -484,8 +440,8 @@ Password found: tinkerbell
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/12/TJCTF-Write-Up-Weird-Logo/" rel="prev" title="TJCTF - Weird Logo">
-                TJCTF - Weird Logo <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/01/HTB-Stratosphere/" rel="prev" title="HTB - Stratosphere">
+                HTB - Stratosphere <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -662,7 +618,7 @@ Password found: tinkerbell
             
               <div class="post-toc-content">
     <ol class=nav>
-      <li class="nav-item nav-level-2"> <a class="nav-link" href="#challenge"> <span class="nav-number">1</span> <span class="nav-text">Challenge</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#initial-thoughts"> <span class="nav-number">2</span> <span class="nav-text">Initial thoughts</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#exploitation"> <span class="nav-number">3</span> <span class="nav-text">Exploitation</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#after-thoughts"> <span class="nav-number">4</span> <span class="nav-text">After thoughts</span> </a> </li>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#target"> <span class="nav-number">1</span> <span class="nav-text">Target</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#enumeration"> <span class="nav-number">2</span> <span class="nav-text">Enumeration</span> </a> </li>
     </ol>
   </div>
             
