@@ -4,7 +4,7 @@
     <entry>
       <title><![CDATA[noxCTF - MyFileUploader]]></title>
       <url>/2018/09/09/noxCTF-Write-Up-MyFileUploader/</url>
-      <content type="text"><![CDATA[ChallengeThis is my new file uploader server. I bet you can’t hack it!http://chal.noxale.com:8079Initial thoughtsWell, I bet I can. We are presented with a very basic uploading webpage as you can see :Let’s go ahead and try to upload this very cute, basic .jpg picture :Works. And as we can see, it also gives us the path where we can find this picture on the server : http://chal.noxale.com:8079/uploads/kittens.jpgBefore exploring this path, let’s try to upload a very simple webshell named shell.php. It is actually Arrexel’s script, as I find it very handy.Nope. Doesn’t want it, not surprisingly. After I tried different things, I understood I only needed to put .png, .jpg or .gif anywhere in the name of the file. So the server would still take evilshell.jpg.php as a valid input, but it would automatically erase .php if present at the end of the filename. That was a problem.Then I went to explore the path /uploads and I found a directory called “Don’t open”. Guess what? I opened it.Inside was lying a .htaccess file with a very interesting content :Options +IndexesAddType application/x-httpd-php .cyb3rThis means that any file ending with the home-made extension .cyb3r will be processed by the server as php code. Nice.It was actually pretty straight forward after that.ExploitationLet’s take our phpbash shell and rename it to shell.png.cyb3r, then upload it.Worked! The moment of truth now… Let’s navigate to our upload’s path and…Yep! Got a webshell, thanks to Arrexel. :smile:Now let’s just list what’s inside this exciting “7H3-FL4G-1S-H3r3” folder :Flagged : noxCTF{N3V3R_7RU57_07H3R5}After thoughtsInteresting use of .htaccess which I never heard about before. Also, felt nice to use Arrexel’s script again.]]></content>
+      <content type="text"><![CDATA[ChallengeThis is my new file uploader server. I bet you can’t hack it!http://chal.noxale.com:8079[200 points]Initial thoughtsWell, I bet I can. We are presented with a very basic uploading webpage as you can see :Let’s go ahead and try to upload this very cute, basic .jpg picture :Works. And as we can see, it also gives us the path where we can find this picture on the server : http://chal.noxale.com:8079/uploads/kittens.jpgBefore exploring this path, let’s try to upload a very simple webshell named shell.php. It is actually Arrexel’s script, as I find it very handy.Nope. Doesn’t want it, not surprisingly. After I tried different things, I understood I only needed to put .png, .jpg or .gif anywhere in the name of the file. So the server would still take evilshell.jpg.php as a valid input, but it would automatically erase .php if present at the end of the filename. That was a problem.Then I went to explore the path /uploads and I found a directory called “Don’t open”. Guess what? I opened it.Inside was lying a .htaccess file with a very interesting content :Options +IndexesAddType application/x-httpd-php .cyb3rThis means that any file ending with the home-made extension .cyb3r will be processed by the server as php code. Nice.It was actually pretty straight forward after that.ExploitationLet’s take our phpbash shell and rename it to shell.png.cyb3r, then upload it.Worked! The moment of truth now… Let’s navigate to our upload’s path and…Yep! Got a webshell, thanks to Arrexel. :smile:Now let’s just list what’s inside this exciting “7H3-FL4G-1S-H3r3” folder :Flagged : noxCTF{N3V3R_7RU57_07H3R5}After thoughtsInteresting use of .htaccess which I never heard about before. Also, felt nice to use Arrexel’s script again.]]></content>
       <categories>
         
       </categories>
@@ -21,19 +21,13 @@
     </entry>
   
     <entry>
-      <title><![CDATA[HTB - Poison]]></title>
-      <url>/2018/09/08/HTB-Poison/</url>
-      <content type="text"><![CDATA[Target10.10.10.84FreebsdUser : 15 pointsRoot : 30 pointsEnumeration]]></content>
+      <title><![CDATA[Icectf Write Up Garfeld]]></title>
+      <url>/2018/09/09/ICECTF-Write-Up-garfeld/</url>
+      <content type="text"><![CDATA[a]]></content>
       <categories>
         
       </categories>
       <tags>
-        
-          <tag> hackthebox </tag>
-        
-          <tag> write-up </tag>
-        
-          <tag> freebsd-box </tag>
         
       </tags>
       <tags></tags>

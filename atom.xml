@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-09T17:00:56+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">noxCTF - MyFileUploader</title><link href="/2018/09/09/noxCTF-Write-Up-MyFileUploader/" rel="alternate" type="text/html" title="noxCTF - MyFileUploader" /><published>2018-09-09T07:00:00+02:00</published><updated>2018-09-09T07:00:00+02:00</updated><id>/2018/09/09/noxCTF-Write-Up-MyFileUploader</id><content type="html" xml:base="/2018/09/09/noxCTF-Write-Up-MyFileUploader/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-09T17:07:29+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">noxCTF - MyFileUploader</title><link href="/2018/09/09/noxCTF-Write-Up-MyFileUploader/" rel="alternate" type="text/html" title="noxCTF - MyFileUploader" /><published>2018-09-09T07:00:00+02:00</published><updated>2018-09-09T07:00:00+02:00</updated><id>/2018/09/09/noxCTF-Write-Up-MyFileUploader</id><content type="html" xml:base="/2018/09/09/noxCTF-Write-Up-MyFileUploader/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;This is my new file uploader server. I bet you can’t hack it!&lt;/p&gt;
 
 &lt;p&gt;http://chal.noxale.com:8079&lt;/p&gt;
+
+&lt;p&gt;[200 points]&lt;/p&gt;
 
 &lt;h2 id=&quot;initial-thoughts&quot;&gt;Initial thoughts&lt;/h2&gt;
 
@@ -55,17 +57,7 @@ AddType application/x-httpd-php .cyb3r
 
 &lt;h2 id=&quot;after-thoughts&quot;&gt;After thoughts&lt;/h2&gt;
 
-&lt;p&gt;Interesting use of .htaccess which I never heard about before. Also, felt nice to use Arrexel’s script again.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="write-up" /><category term="noxctf-2018" /><category term="web" /><summary type="html">Yet another image-upload server where Arrexel's phpbash came in handy!</summary></entry><entry><title type="html">HTB - Poison</title><link href="/2018/09/08/HTB-Poison/" rel="alternate" type="text/html" title="HTB - Poison" /><published>2018-09-08T18:00:00+02:00</published><updated>2018-09-08T18:00:00+02:00</updated><id>/2018/09/08/HTB-Poison</id><content type="html" xml:base="/2018/09/08/HTB-Poison/">&lt;h2 id=&quot;target&quot;&gt;Target&lt;/h2&gt;
-
-&lt;p&gt;10.10.10.84&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Freebsd&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;User : 15 points&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Root : 30 points&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;enumeration&quot;&gt;Enumeration&lt;/h2&gt;</content><author><name>Pxmme</name></author><category term="hackthebox" /><category term="write-up" /><category term="freebsd-box" /><summary type="html">Hacking this machine made me go over the basis again, like SSH tunneling or VNC. And I enjoyed it.</summary></entry><entry><title type="html">HTB - Stratosphere</title><link href="/2018/09/01/HTB-Stratosphere/" rel="alternate" type="text/html" title="HTB - Stratosphere" /><published>2018-09-01T18:00:00+02:00</published><updated>2018-09-01T18:00:00+02:00</updated><id>/2018/09/01/HTB-Stratosphere</id><content type="html" xml:base="/2018/09/01/HTB-Stratosphere/">&lt;h2 id=&quot;target&quot;&gt;Target&lt;/h2&gt;
+&lt;p&gt;Interesting use of .htaccess which I never heard about before. Also, felt nice to use Arrexel’s script again.&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="write-up" /><category term="noxctf-2018" /><category term="web" /><summary type="html">Yet another image-upload server where Arrexel's phpbash came in handy!</summary></entry><entry><title type="html">Icectf Write Up Garfeld</title><link href="/2018/09/09/ICECTF-Write-Up-garfeld/" rel="alternate" type="text/html" title="Icectf Write Up Garfeld" /><published>2018-09-09T00:00:00+02:00</published><updated>2018-09-09T00:00:00+02:00</updated><id>/2018/09/09/ICECTF-Write-Up-garfeld</id><content type="html" xml:base="/2018/09/09/ICECTF-Write-Up-garfeld/">&lt;p&gt;a&lt;/p&gt;</content><author><name>Pxmme</name></author><summary type="html">a</summary></entry><entry><title type="html">HTB - Stratosphere</title><link href="/2018/09/01/HTB-Stratosphere/" rel="alternate" type="text/html" title="HTB - Stratosphere" /><published>2018-09-01T18:00:00+02:00</published><updated>2018-09-01T18:00:00+02:00</updated><id>/2018/09/01/HTB-Stratosphere</id><content type="html" xml:base="/2018/09/01/HTB-Stratosphere/">&lt;h2 id=&quot;target&quot;&gt;Target&lt;/h2&gt;
 
 &lt;p&gt;10.10.10.64&lt;/p&gt;
 
