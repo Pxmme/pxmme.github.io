@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-09T17:26:32+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">ICECTF - garfeld</title><link href="/2018/09/09/ICECTF-Write-Up-garfeld/" rel="alternate" type="text/html" title="ICECTF - garfeld" /><published>2018-09-09T08:00:00+02:00</published><updated>2018-09-09T08:00:00+02:00</updated><id>/2018/09/09/ICECTF-Write-Up-garfeld</id><content type="html" xml:base="/2018/09/09/ICECTF-Write-Up-garfeld/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-09T18:01:16+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">ICECTF - garfeld</title><link href="/2018/09/09/ICECTF-Write-Up-garfeld/" rel="alternate" type="text/html" title="ICECTF - garfeld" /><published>2018-09-09T08:00:00+02:00</published><updated>2018-09-09T08:00:00+02:00</updated><id>/2018/09/09/ICECTF-Write-Up-garfeld</id><content type="html" xml:base="/2018/09/09/ICECTF-Write-Up-garfeld/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;You found the marketing campaign for a brand new sitcom. Garfeld! It has a secret message engraved on it. Do you think you can figure out what they’re trying to say?&lt;/p&gt;
 
@@ -54,11 +54,11 @@ O - 9 = F
 &lt;span class=&quot;n&quot;&gt;liste&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Now let’s craft the loop that will go through each of &lt;em&gt;enc&lt;/em&gt;’s letters and move them down accordingly to the key we were given.&lt;/p&gt;
+&lt;p&gt;Now let’s craft the loop that will go through each of &lt;em&gt;enc&lt;/em&gt;’s letters and move them down according to the key we were given.&lt;/p&gt;
 
 &lt;p&gt;Once the end of the key is reached, let’s go back to its beginning.&lt;/p&gt;
 
-&lt;p&gt;Oh, and if our script encounters any odd character like &lt;em&gt;{, } or _&lt;/em&gt; (as we can already see in the encrypted flag), let’s just add them to our &lt;em&gt;liste&lt;/em&gt; without trying to change them and without skipping to the key’s next number.&lt;/p&gt;
+&lt;p&gt;Oh, and if our script encounters any odd characters like &lt;em&gt;{, } or _&lt;/em&gt; (as we can already see in the encrypted flag), let’s just add them to our &lt;em&gt;liste&lt;/em&gt; without trying to change them and without skipping to the key’s next number.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
@@ -101,7 +101,7 @@ ICECTF{I_DONT_THINK_GRONSFELD_LIKES_MONDAYS}
 
 &lt;p&gt;It’s always a good feeling when I’m able to figure out something on my own, write the script to automate it and see that it works in the end.&lt;/p&gt;
 
-&lt;p&gt;To be honest, I could have just done it by hand, but it’d have taken me much more time than by writing a script. And it’d have been far less interesting. :smile:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="write-up" /><category term="icectf-2018" /><category term="crypto" /><category term="python" /><summary type="html">Who'd have thought Garfield didn't like mondays?</summary></entry><entry><title type="html">noxCTF - MyFileUploader</title><link href="/2018/09/09/noxCTF-Write-Up-MyFileUploader/" rel="alternate" type="text/html" title="noxCTF - MyFileUploader" /><published>2018-09-09T07:00:00+02:00</published><updated>2018-09-09T07:00:00+02:00</updated><id>/2018/09/09/noxCTF-Write-Up-MyFileUploader</id><content type="html" xml:base="/2018/09/09/noxCTF-Write-Up-MyFileUploader/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
+&lt;p&gt;To be honest, I could have just done it by hand, but it’d have taken me much more time than writing a script. And it’d have been far less interesting. :smile:&lt;/p&gt;</content><author><name>Pxmme</name></author><category term="write-up" /><category term="icectf-2018" /><category term="crypto" /><category term="python" /><summary type="html">Who'd have thought Garfield didn't like mondays?</summary></entry><entry><title type="html">noxCTF - MyFileUploader</title><link href="/2018/09/09/noxCTF-Write-Up-MyFileUploader/" rel="alternate" type="text/html" title="noxCTF - MyFileUploader" /><published>2018-09-09T07:00:00+02:00</published><updated>2018-09-09T07:00:00+02:00</updated><id>/2018/09/09/noxCTF-Write-Up-MyFileUploader</id><content type="html" xml:base="/2018/09/09/noxCTF-Write-Up-MyFileUploader/">&lt;h2 id=&quot;challenge&quot;&gt;Challenge&lt;/h2&gt;
 
 &lt;p&gt;This is my new file uploader server. I bet you can’t hack it!&lt;/p&gt;
 
