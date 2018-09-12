@@ -556,7 +556,7 @@ __________________________________________
         <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
         <span class="n">basek</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">alphabet</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="n">y</span><span class="p">]))</span>
         <span class="n">basesub</span> <span class="o">=</span> <span class="n">base</span> <span class="o">-</span> <span class="n">basek</span>
-        <span class="k">if</span> <span class="n">basesub</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">basesub</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># As we saw while theorising, gotta make em positive numbers!</span>
             <span class="n">basesub</span> <span class="o">+=</span> <span class="mi">26</span>
         <span class="n">basefin</span> <span class="o">=</span> <span class="n">basesub</span> <span class="o">%</span> <span class="mi">26</span>
         <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alphabet</span><span class="p">[</span><span class="n">basefin</span><span class="p">])</span>
