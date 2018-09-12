@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html class="theme-next mist use-motion" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="blogging,crypto,python,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="In this post, I will review how the Vigenère cipher works and I will write a homemade script to experience it. Yeah, I was bored, and I thought it'd never hurt to go through the basics again.">
+<meta name="keywords" content="blogging, crypto, python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vigenère">
+<meta property="og:url" content="/2018/09/12/Vigenere/">
+<meta property="og:site_name" content="Pxmme">
+<meta property="og:description" content="In this post, I will review how the Vigenère cipher works and I will write a homemade script to experience it. Yeah, I was bored, and I thought it'd never hurt to go through the basics again.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="/imgs/fraud.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vigenère">
+<meta name="twitter:description" content="In this post, I will review how the Vigenère cipher works and I will write a homemade script to experience it. Yeah, I was bored, and I thought it'd never hurt to go through the basics again.">
+<meta name="twitter:image" content="/imgs/fraud.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="">
+
+
+
+
+
+  <title>Vigenère | Pxmme</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-124206072-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pxmme</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Please take off your shoes.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="/2018/09/12/Vigenere/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pxmme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="assets/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pxmme">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            Vigenère
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T22:00:00+02:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="a-little-history">A little history</h2>
+
+<p><img src="/imgs/fraud.png" alt="Fraud" class="img-responsive"></p>
+
+<p>The Vigenère cipher is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers, based on the letters of a keyword. It is a form of polyalphabetic substitution.</p>
+
+<p>The cipher is easy to understand and implement, but it resisted all attempts to break it for three centuries, which earned it the description <strong>le chiffre indéchiffrable</strong> (<em>French for ‘the indecipherable cipher’</em>). Many people have tried to implement encryption schemes that are essentially Vigenère ciphers. In 1863, Friedrich Kasiski was the first to publish a general method of deciphering Vigenère ciphers.</p>
+
+<p>The Vigenère cipher was originally described by Giovan Battista Bellaso in his 1553 book <em>“La cifra del. Sig. Giovan Battista Bellaso”</em>, but the scheme was later misattributed to Blaise de Vigenère (1523–1596) in the 19th century and so acquired its present name.</p>
+
+<p>Yeah, I just quoted <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher">Wikipedia</a>. So what?!</p>
+
+<h2 id="theory">Theory</h2>
+
+<p>I hope y’all know about Caesar ciphers by now. You know, take “hello”, shift each letter three times, get “khoor”. Vigenère is basically like if you applied a different Caesar cipher on each letter of your plaintext.</p>
+
+<p>It is particularly strong because it can’t be deciphered using “matching letters”, like, for example, the letter <strong>e</strong> encrypted the first time in the plaintext won’t likely be encrypted as the same letter the second time.</p>
+
+<p>This works by choosing a keyword. This keyword has letters. Each letter represents a position in the alphabet. In example, A equals 0. B equals 1. C equals 2. In the end, Z equals 25, which seems logical, seeing we’re using a 26 letters alphabet.</p>
+
+<p>Let’s take the plaintext “hello” again, but let’s try to apply Vigenère’s cipher this time : we’re going to choose the keyword <strong>sex</strong> (don’t ask me why).</p>
+
+<p>So : in the word <strong>sex</strong>, the letter S means 18th position in the alphabet. E means 4th, and X means… 23rd.</p>
+
+<p>We have keyword_codes[18, 4, 23].</p>
+
+<p>Now, for the plaintext : H means 7th position, E means (again) 4th, both L<em>s</em> mean 11th and O means 14th.</p>
+
+<p>We then have plaintext_codes[7, 4, 11, 11, 14].</p>
+
+<p>Let’s add them up!</p>
+
+<div class="highlighter-rouge">
+<div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1</pre></td>
+<td class="code"><pre class="highlight"><code>      keyword  s  e   x   keyword_codes  [18, 4, 23] + plaintext_codes[ 7, 4, 11, 11, 14] ______________________________________    encrypted_text[25, 8, 34...]
+</code></pre></td>
+</tr></tbody></table></div>
+</div>
+
+<p>Alrighty, first problem here. Key seems to short. Well, Vigenère cipher just says that we should “repeat the key” until the plaintext is fully encrypted. By logic, since the plaintext is 5 characters long, the key (which was 3 characters long, as in <strong>sex</strong>) should become : <strong>sexse</strong> (yup, nice pronunciation).</p>
+
+<div class="highlighter-rouge">
+<div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1</pre></td>
+<td class="code"><pre class="highlight"><code>      keyword  s  e   x   s   e   keyword_codes  [18, 4, 23, 18,  4] + plaintext_codes[ 7, 4, 11, 11, 14] ______________________________________    encrypted_text[25, 8, 34, 29, 18]
+</code></pre></td>
+</tr></tbody></table></div>
+</div>
+
+<p>We’ve got our encrypted text! But, wait… There’s a problem… Some of the numbers are higher than 26 which is the maximum letters of the alphabet we’re using!</p>
+
+<p>Well, no biggies here my good friend, we’ll just do some basic maths to get ourselves out of this mess. <img class="emoji" title=":smile:" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" height="20" width="20" align="absmiddle"></p>
+
+<p>It’s an operation called “modulo” : you take a car, try to get as many full people as you can inside, then say “I could put 7 full people in this car, and one’s legs only!” and keep the legs. I don’t know if I’m being clear.</p>
+
+<p>Let’s take 20. Now let’s take 5. Now let’s take five and go pee. Now let’s divide 20 with 5. There’s anything left, right? Because 5*4 = 20. You could fit just about 4 people in that car.</p>
+
+<p>Now let’s take 21, and let’s keep 5. Let’s divide 21 with 5… Like we were two year-olds. 21 minus 5 is 16, minus 5 is 11, minus 5 is 6, minus five is 1. We’ve got 1 left, and that’s called “modulo”.</p>
+
+<p>Anyway, getting back to our encrypted text : encrypted_text[25, 8, 34, 29, 18]</p>
+
+<p>We know our alphabet is 26 long, so having a 34 value would actually be like doing a full round of 26 steps in order to come back to our initial position… Then do 8 more to get to the 34 value. Well, son, that’s called a modulo. More specifically, <strong>34 % 26 = 8</strong>.</p>
+
+<p>Our encrypted_text[25, 8, 34, 29, 18] needs to get “moduled” on every value that’s above 25, and there is two : 34 and 29.</p>
+
+<p>As we said, <strong>34 % 26 = 8</strong>, and <strong>29 % 26 = 3</strong>.</p>
+
+<p>Our new encrypted_text becomes…: [25, 8, 8, 3, 18] !</p>
+
+<p>Now, let’s find the corresponding values in the alphabet, shall we?</p>
+
+<p><strong>25 is Z. 8 is I. 3 is D. 18 is S.</strong></p>
+
+<p>Our final encrypted plaintext must then be : <strong>ziids</strong>! Amazing! Notice how the first L got encrypted to I, and the second L got encrypted to D? Pretty nice, uh? <img class="emoji" title=":smiley:" alt=":smiley:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f603.png" height="20" width="20" align="absmiddle"></p>
+
+<p>Decrypting process is actually quite the same as it follows the same logic. We’ll of course need the secret key :</p>
+
+<p>encrypted_text_letters   z  i   i    d   s
+encrypted_text         [25, 8,  8,   3, 18]</p>
+<ul>
+  <li>keyword_codes        [18, 4, 23,  18,  4]
+<strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong>
+       decrypted_text[ 7, 4,-15, -15, 14]</li>
+</ul>
+
+<p>Same problem with negative values, but inversed : we need to add them 26s in order to make them positive again, do bring us full circle back to their original values if I may say so.</p>
+
+<p>Decrypted text then become [ 7, 4, 11, 11, 14] which oddly reminds me of something… Let’s see what’s matching to these values in the alphabet…</p>
+
+<p>“hello”</p>
+
+<p>Success! We’ve now understood and theorised Vigenère’s cipher!</p>
+
+<h2 id="the-code">The code</h2>
+
+<p>Using <code class="highlighter-rouge">import string</code> and <code class="highlighter-rouge">alphabet = string.ascii_letters</code>…</p>
+
+<p>Encode a plaintext…:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr>
+<td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></td>
+<td class="code"><pre><span class="n">p</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"p?"</span><span class="p">))</span>
+<span class="n">k</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"k?"</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)):</span> <span class="c"># no weird chars in the key plz</span>
+    <span class="k">if</span> <span class="n">k</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+        <span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="n">z</span><span class="p">],</span><span class="s">""</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">alphabet</span> <span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span> <span class="c"># Don't use a key's letter for a non-letter char</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">alphabet</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">]))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="c"># This is actually how we do to "repeat" the key, if shorter than the plaintext, using modulo again. </span>
+        <span class="c">#If x is less than our key's length, then it'll just stay the same. </span>
+        <span class="c"># But if it grows bigger, like, x = 15 for a key length of 10, we'll need to tell the script it has made a full circle </span>
+        <span class="c">#of 10 and should take the 5th letter</span>
+        <span class="n">basek</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">alphabet</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="n">y</span><span class="p">]))</span>
+        <span class="n">baseadd</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="n">basek</span>
+        <span class="n">basefin</span> <span class="o">=</span> <span class="n">baseadd</span> <span class="o">%</span> <span class="mi">26</span> <span class="c"># Modulo right here fam</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alphabet</span><span class="p">[</span><span class="n">basefin</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">))</span><span class="w">
+</span></pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<p>Then decode it :</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr>
+<td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></td>
+<td class="code"><pre><span class="n">enc</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"enc?"</span><span class="p">))</span>
+<span class="n">k</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"k?"</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">k</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+        <span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="n">z</span><span class="p">],</span><span class="s">""</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">enc</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">enc</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">alphabet</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="n">x</span><span class="p">]))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">basek</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">alphabet</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="n">y</span><span class="p">]))</span>
+        <span class="n">basesub</span> <span class="o">=</span> <span class="n">base</span> <span class="o">-</span> <span class="n">basek</span>
+        <span class="k">if</span> <span class="n">basesub</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">basesub</span> <span class="o">+=</span> <span class="mi">26</span>
+        <span class="n">basefin</span> <span class="o">=</span> <span class="n">basesub</span> <span class="o">%</span> <span class="mi">26</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alphabet</span><span class="p">[</span><span class="n">basefin</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">))</span><span class="w">
+</span></pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<h2 id="poc">PoC</h2>
+
+<div class="highlighter-rouge">
+<div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20</pre></td>
+<td class="code"><pre class="highlight"><code>1 : Encode, 2 : Decode, 3 : Quit
+Choice ? 1               
+Plaintext ? who does not love python?
+Keyword ? morons
+
+ivf qgqg bbl zfjr bmkvbf?
+
+1 : Encode, 2 : Decode, 3 : Quit
+Choice ? 2
+Encrypted text ? ivf qgqg bbl zfjr bmkvbf?
+Keyword ? donuts
+
+fhs xons hit lspy yyxbin?
+
+1 : Encode, 2 : Decode, 3 : Quit
+Choice ? 2
+Encrypted text ? ivf qgqg bbl zfjr bmkvbf?
+Keyword ? morons
+
+who does not love python?
+</code></pre></td>
+</tr></tbody></table></div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/blogging" rel="tag"># blogging</a>
+          
+            
+            <a href="/tag/#/crypto" rel="tag"># crypto</a>
+          
+            
+            <a href="/tag/#/python" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/09/ICECTF-Write-Up-garfeld/" rel="prev" title="ICECTF - garfeld">
+                ICECTF - garfeld <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/assets/images/avatar.gif" alt="Pxmme">
+          <p class="site-author-name" itemprop="name">Pxmme</p>
+           
+              <p class="site-description motion-element" itemprop="description">Cybersec enthusiast.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/pxmme" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/prxph3t" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://www.hackthebox.eu/profile/20490" target="_blank" title="HackTheBox">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  HackTheBox
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class="nav">
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#a-little-history"> <span class="nav-number">1</span> <span class="nav-text">A little history</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#theory"> <span class="nav-number">2</span> <span class="nav-text">Theory</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#the-code"> <span class="nav-number">3</span> <span class="nav-text">The code</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#poc"> <span class="nav-number">4</span> <span class="nav-text">PoC</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  
+  © 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pxmme</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
