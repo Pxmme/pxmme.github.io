@@ -385,14 +385,6 @@
 
 <p>Let’s add them up!</p>
 
-<div class="highlighter-rouge">
-<div class="highlight"><table style="margin: 0px"><tbody><tr>
-<td class="gutter"><pre>1</pre></td>
-<td class="code"><pre class="highlight"><code>      keyword  s  e   x   keyword_codes  [18, 4, 23] + plaintext_codes[ 7, 4, 11, 11, 14] ______________________________________    encrypted_text[25, 8, 34...]
-</code></pre></td>
-</tr></tbody></table></div>
-</div>
-
 <p>Alrighty, first problem here. Key seems to short. Well, Vigenère cipher just says that we should “repeat the key” until the plaintext is fully encrypted. By logic, since the plaintext is 5 characters long, the key (which was 3 characters long, as in <strong>sex</strong>) should become : <strong>sexse</strong> (yup, nice pronunciation).</p>
 
 <div class="highlighter-rouge">
