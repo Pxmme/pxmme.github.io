@@ -398,7 +398,7 @@ ______________________________________
 </tr></tbody></table></div>
 </div>
 
-<p>Alrighty, first problem here. Key seems to short. Well, Vigenère cipher just says that we should “repeat the key” until the plaintext is fully encrypted. By logic, since the plaintext is 5 characters long, the key (which was 3 characters long, as in <strong>sex</strong>) should become : <strong>sexse</strong> (yup, nice pronunciation).</p>
+<p>Alrighty, first problem here. Key seems too short. Well, Vigenère cipher just says that we should “repeat the key” until the plaintext is fully encrypted. By this logic, since the plaintext is 5 characters long, the key (which was 3 characters long, as in <strong>sex</strong>) should become : <strong>sexse</strong> (yup, nice pronunciation).</p>
 
 <div class="highlighter-rouge">
 <div class="highlight"><table style="margin: 0px"><tbody><tr>
@@ -412,7 +412,7 @@ ______________________________________
 </tr></tbody></table></div>
 </div>
 
-<p>We’ve got our encrypted text! But, wait… There’s a problem… Some of the numbers are higher than 26 which is the maximum letters of the alphabet we’re using!</p>
+<p>We’ve got our encrypted text! But, wait… There’s a problem… Some of the numbers are larger than 26, the total number of letters in the alphabet we’re using!</p>
 
 <p>Well, no biggies here my good friend, we’ll just do some basic maths to get ourselves out of this mess. <img class="emoji" title=":smile:" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" height="20" width="20" align="absmiddle"></p>
 
@@ -420,15 +420,15 @@ ______________________________________
 
 <p>It’s an operation called “modulo” : you take a car, try to get as many full people as you can inside, then say “I could put 7 full people in this car, and one’s legs only!” and keep the legs. I don’t know if I’m being clear.</p>
 
-<p>Let’s take 20. Now let’s take 5. Now let’s take five and go pee. Now let’s divide 20 with 5. There’s anything left, right? Because 5*4 = 20. You could fit just about 4 people in that car.</p>
+<p>Let’s take 20. Now let’s take 5. Now let’s take five and go pee. Now let’s divide 20 with 5. There isn’t anything left, right? Because 5*4 = 20. You could fit just about 4 people in that car.</p>
 
-<p>Now let’s take 21, and let’s keep 5. Let’s divide 21 with 5… Like we were two year-olds. 21 minus 5 is 16, minus 5 is 11, minus 5 is 6, minus five is 1. We’ve got 1 left, and that’s called “modulo”.</p>
+<p>Now let’s take 21, and let’s keep 5. Let’s divide 21 with 5… Like we’re a two years old child. 21 minus 5 is 16, minus 5 is 11, minus 5 is 6, minus five is 1. Now we’ve got 1 left, and that’s called “modulo”.</p>
 
 <p>Anyway, getting back to our encrypted text : encrypted_text[25, 8, 34, 29, 18]</p>
 
-<p>We know our alphabet is 26 long, so having a 34 value would actually be like doing a full round of 26 steps in order to come back to our initial position… Then do 8 more to get to the 34 value. Well, son, that’s called a modulo. More specifically, <strong>34 % 26 = 8</strong>.</p>
+<p>We know our alphabet is 26 long, so having a 34 value would actually be like doing a full set of 26 steps and end up back at our initial position… Then do 8 more to get to the 34 value. Well, son, that’s called a modulo. More specifically, <strong>34 % 26 = 8</strong>.</p>
 
-<p>Our encrypted_text[25, 8, 34, 29, 18] needs to get “moduled” on every value that’s above 25, and there is two : 34 and 29.</p>
+<p>Our encrypted_text[25, 8, 34, 29, 18] needs to get “modulo’d” on every value that’s above 25, and there are two : 34 and 29.</p>
 
 <p>As we said, <strong>34 % 26 = 8</strong>, and <strong>29 % 26 = 3</strong>.</p>
 
@@ -454,7 +454,7 @@ __________________________________________
 </tr></tbody></table></div>
 </div>
 
-<p>Same problem with negative values, but inversed : we need to add them 26s in order to make them positive again, do bring us full circle back to their original values if I may say so.</p>
+<p>Same problem with negative values, but reversed : we need to add them 26s in order to make them positive again, do bring us full circle back to their original values if I may say so.</p>
 
 <p>Decrypted text then become [ 7, 4, 11, 11, 14] which oddly reminds me of something… Let’s see what’s matching to these values in the alphabet…</p>
 
