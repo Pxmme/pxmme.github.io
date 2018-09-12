@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-12T22:33:43+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">Vigenère</title><link href="/2018/09/12/Vigenere/" rel="alternate" type="text/html" title="Vigenère" /><published>2018-09-12T22:00:00+02:00</published><updated>2018-09-12T22:00:00+02:00</updated><id>/2018/09/12/Vigenere</id><content type="html" xml:base="/2018/09/12/Vigenere/">&lt;h2 id=&quot;a-little-history&quot;&gt;A little history&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-12T22:34:52+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">Vigenère</title><link href="/2018/09/12/Vigenere/" rel="alternate" type="text/html" title="Vigenère" /><published>2018-09-12T22:00:00+02:00</published><updated>2018-09-12T22:00:00+02:00</updated><id>/2018/09/12/Vigenere</id><content type="html" xml:base="/2018/09/12/Vigenere/">&lt;h2 id=&quot;a-little-history&quot;&gt;A little history&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&quot;/imgs/fraud.png&quot; alt=&quot;Fraud&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 
@@ -29,6 +29,14 @@
 &lt;p&gt;We then have plaintext_codes[7, 4, 11, 11, 14].&lt;/p&gt;
 
 &lt;p&gt;Let’s add them up!&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;          keyword  s  e   x
+  keyword_codes  [18, 4, 23]
++ plaintext_codes[ 7, 4, 11, 11, 14]
+______________________________________
+   encrypted_text[25, 8, 34...]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Alrighty, first problem here. Key seems to short. Well, Vigenère cipher just says that we should “repeat the key” until the plaintext is fully encrypted. By logic, since the plaintext is 5 characters long, the key (which was 3 characters long, as in &lt;strong&gt;sex&lt;/strong&gt;) should become : &lt;strong&gt;sexse&lt;/strong&gt; (yup, nice pronunciation).&lt;/p&gt;
 
