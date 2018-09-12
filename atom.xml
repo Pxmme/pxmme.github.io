@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-12T22:34:52+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">Vigenère</title><link href="/2018/09/12/Vigenere/" rel="alternate" type="text/html" title="Vigenère" /><published>2018-09-12T22:00:00+02:00</published><updated>2018-09-12T22:00:00+02:00</updated><id>/2018/09/12/Vigenere</id><content type="html" xml:base="/2018/09/12/Vigenere/">&lt;h2 id=&quot;a-little-history&quot;&gt;A little history&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-12T22:39:13+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">Vigenère</title><link href="/2018/09/12/Vigenere/" rel="alternate" type="text/html" title="Vigenère" /><published>2018-09-12T22:00:00+02:00</published><updated>2018-09-12T22:00:00+02:00</updated><id>/2018/09/12/Vigenere</id><content type="html" xml:base="/2018/09/12/Vigenere/">&lt;h2 id=&quot;a-little-history&quot;&gt;A little history&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&quot;/imgs/fraud.png&quot; alt=&quot;Fraud&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 
@@ -40,13 +40,19 @@ ______________________________________
 
 &lt;p&gt;Alrighty, first problem here. Key seems to short. Well, Vigenère cipher just says that we should “repeat the key” until the plaintext is fully encrypted. By logic, since the plaintext is 5 characters long, the key (which was 3 characters long, as in &lt;strong&gt;sex&lt;/strong&gt;) should become : &lt;strong&gt;sexse&lt;/strong&gt; (yup, nice pronunciation).&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      keyword  s  e   x   s   e   keyword_codes  [18, 4, 23, 18,  4] + plaintext_codes[ 7, 4, 11, 11, 14] ______________________________________    encrypted_text[25, 8, 34, 29, 18]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;          keyword  s  e   x   s   e
+  keyword_codes  [18, 4, 23, 18,  4]
++ plaintext_codes[ 7, 4, 11, 11, 14]
+______________________________________
+   encrypted_text[25, 8, 34, 29, 18]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;We’ve got our encrypted text! But, wait… There’s a problem… Some of the numbers are higher than 26 which is the maximum letters of the alphabet we’re using!&lt;/p&gt;
 
 &lt;p&gt;Well, no biggies here my good friend, we’ll just do some basic maths to get ourselves out of this mess. :smile:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/imgs/basicmaths.png&quot; alt=&quot;Basic&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It’s an operation called “modulo” : you take a car, try to get as many full people as you can inside, then say “I could put 7 full people in this car, and one’s legs only!” and keep the legs. I don’t know if I’m being clear.&lt;/p&gt;
 
@@ -72,13 +78,13 @@ ______________________________________
 
 &lt;p&gt;Decrypting process is actually quite the same as it follows the same logic. We’ll of course need the secret key :&lt;/p&gt;
 
-&lt;p&gt;encrypted_text_letters   z  i   i    d   s
-encrypted_text         [25, 8,  8,   3, 18]&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;keyword_codes        [18, 4, 23,  18,  4]
-&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;&lt;strong&gt;__&lt;/strong&gt;
-       decrypted_text[ 7, 4,-15, -15, 14]&lt;/li&gt;
-&lt;/ul&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;encrypted_text_letters   z  i   i    d   s
+encrypted_text         [25, 8,  8,   3, 18]
+- keyword_codes        [18, 4, 23,  18,  4]
+__________________________________________
+         decrypted_text[ 7, 4,-15, -15, 14]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Same problem with negative values, but inversed : we need to add them 26s in order to make them positive again, do bring us full circle back to their original values if I may say so.&lt;/p&gt;
 

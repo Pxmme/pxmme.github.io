@@ -104,6 +104,7 @@
 <meta property="og:description" content="In this post, I will review how the Vigenère cipher works and I will write a homemade script to experience it. Yeah, I was bored, and I thought it'd never hurt to go through the basics again.">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="/imgs/fraud.png">
+<meta property="og:image" content="/imgs/basicmaths.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vigenère">
 <meta name="twitter:description" content="In this post, I will review how the Vigenère cipher works and I will write a homemade script to experience it. Yeah, I was bored, and I thought it'd never hurt to go through the basics again.">
@@ -401,8 +402,12 @@ ______________________________________
 
 <div class="highlighter-rouge">
 <div class="highlight"><table style="margin: 0px"><tbody><tr>
-<td class="gutter"><pre>1</pre></td>
-<td class="code"><pre class="highlight"><code>      keyword  s  e   x   s   e   keyword_codes  [18, 4, 23, 18,  4] + plaintext_codes[ 7, 4, 11, 11, 14] ______________________________________    encrypted_text[25, 8, 34, 29, 18]
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5</pre></td>
+<td class="code"><pre class="highlight"><code>          keyword  s  e   x   s   e
+  keyword_codes  [18, 4, 23, 18,  4]
++ plaintext_codes[ 7, 4, 11, 11, 14]
+______________________________________
+   encrypted_text[25, 8, 34, 29, 18]
 </code></pre></td>
 </tr></tbody></table></div>
 </div>
@@ -410,6 +415,8 @@ ______________________________________
 <p>We’ve got our encrypted text! But, wait… There’s a problem… Some of the numbers are higher than 26 which is the maximum letters of the alphabet we’re using!</p>
 
 <p>Well, no biggies here my good friend, we’ll just do some basic maths to get ourselves out of this mess. <img class="emoji" title=":smile:" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" height="20" width="20" align="absmiddle"></p>
+
+<p><img src="/imgs/basicmaths.png" alt="Basic" class="img-responsive"></p>
 
 <p>It’s an operation called “modulo” : you take a car, try to get as many full people as you can inside, then say “I could put 7 full people in this car, and one’s legs only!” and keep the legs. I don’t know if I’m being clear.</p>
 
@@ -435,13 +442,17 @@ ______________________________________
 
 <p>Decrypting process is actually quite the same as it follows the same logic. We’ll of course need the secret key :</p>
 
-<p>encrypted_text_letters   z  i   i    d   s
-encrypted_text         [25, 8,  8,   3, 18]</p>
-<ul>
-  <li>keyword_codes        [18, 4, 23,  18,  4]
-<strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong>
-       decrypted_text[ 7, 4,-15, -15, 14]</li>
-</ul>
+<div class="highlighter-rouge">
+<div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5</pre></td>
+<td class="code"><pre class="highlight"><code>encrypted_text_letters   z  i   i    d   s
+encrypted_text         [25, 8,  8,   3, 18]
+- keyword_codes        [18, 4, 23,  18,  4]
+__________________________________________
+         decrypted_text[ 7, 4,-15, -15, 14]
+</code></pre></td>
+</tr></tbody></table></div>
+</div>
 
 <p>Same problem with negative values, but inversed : we need to add them 26s in order to make them positive again, do bring us full circle back to their original values if I may say so.</p>
 
