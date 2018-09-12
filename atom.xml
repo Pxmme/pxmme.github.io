@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-12T22:27:44+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">Vigenère</title><link href="/2018/09/12/Vigenere/" rel="alternate" type="text/html" title="Vigenère" /><published>2018-09-12T22:00:00+02:00</published><updated>2018-09-12T22:00:00+02:00</updated><id>/2018/09/12/Vigenere</id><content type="html" xml:base="/2018/09/12/Vigenere/">&lt;h2 id=&quot;a-little-history&quot;&gt;A little history&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-09-12T22:30:23+02:00</updated><id>/</id><title type="html">Pxmme</title><subtitle>Cybersec enthusiast.</subtitle><author><name>Pxmme</name></author><entry><title type="html">Vigenère</title><link href="/2018/09/12/Vigenere/" rel="alternate" type="text/html" title="Vigenère" /><published>2018-09-12T22:00:00+02:00</published><updated>2018-09-12T22:00:00+02:00</updated><id>/2018/09/12/Vigenere</id><content type="html" xml:base="/2018/09/12/Vigenere/">&lt;h2 id=&quot;a-little-history&quot;&gt;A little history&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&quot;/imgs/fraud.png&quot; alt=&quot;Fraud&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 
@@ -8,7 +8,7 @@
 
 &lt;p&gt;The Vigenère cipher was originally described by Giovan Battista Bellaso in his 1553 book &lt;em&gt;“La cifra del. Sig. Giovan Battista Bellaso”&lt;/em&gt;, but the scheme was later misattributed to Blaise de Vigenère (1523–1596) in the 19th century and so acquired its present name.&lt;/p&gt;
 
-&lt;p&gt;Yeah, I just quoted &lt;a href=&quot;https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher&quot;&gt;Wikipedia&lt;/a&gt;. So what?!&lt;/p&gt;
+&lt;p&gt;Yeah, I just quoted &lt;a href=&quot;https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher&quot;&gt;Wikipedia&lt;/a&gt;. So what?! Sue me!&lt;/p&gt;
 
 &lt;h2 id=&quot;theory&quot;&gt;Theory&lt;/h2&gt;
 
